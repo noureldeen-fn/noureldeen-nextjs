@@ -1,0 +1,183 @@
+{
+  "meta": {
+    "title": "Noureldeen | Principal Frontend Architect & Engineer",
+    "description": "Portfolio of Noureldeen - Principal Frontend Architect specializing in ultra-fast web systems, design systems, next-gen UI engineering, and distributed architecture.",
+    "ogTitle": "Noureldeen - Principal Frontend Architect",
+    "ogDescription": "Production-grade portfolio built with Next.js App Router, dynamic RTL/LTR, Space Grotesk, and strict semantic tokens."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "skills": "Skills",
+    "experience": "Experience",
+    "contact": "Contact",
+    "resume": "Download CV"
+  },
+  "hero": {
+    "status": "Available for High-Impact Roles & Advisory",
+    "greeting": "Hello, I am",
+    "name": "Noureldeen",
+    "role": "Principal Frontend Architect",
+    "tagline": "Architecting ultra-performant, accessible, and mission-critical web applications with meticulous visual engineering.",
+    "ctaPrimary": "Explore Featured Work",
+    "ctaSecondary": "Initiate Collaboration",
+    "stats": [
+      { "value": "10+", "label": "Years of Craft" },
+      { "value": "100/100", "label": "Perf & Core Vitals" },
+      { "value": "$40M+", "label": "Pipeline Value Powered" },
+      { "value": "99.99%", "label": "Reliability Standard" }
+    ]
+  },
+  "about": {
+    "badge": "Core Philosophy",
+    "title": "Bridging High-Scale Systems with Pixel-Perfect Design",
+    "description": "I specialize in scaling frontend architectures for complex enterprise products. From building multi-tenant component engines to tuning sub-millisecond edge renders, my focus is on delivering fluid user journeys without sacrificing maintainability.",
+    "points": [
+      {
+        "title": "Zero-Layout-Shift Engineering",
+        "description": "Crafting resilient layouts with strict SSR boundaries, skeleton frameworks, and CSS logical properties for true cross-cultural UX."
+      },
+      {
+        "title": "Design System Infrastructure",
+        "description": "Tokenized, accessible component libraries serving distributed engineering teams with automated visual regression testing."
+      },
+      {
+        "title": "Edge-First Performance",
+        "description": "Leveraging edge middlewares, incremental static regeneration, and server-only modules to maximize TTFB and Core Web Vitals."
+      }
+    ]
+  },
+  "projects": {
+    "badge": "Featured Creations",
+    "title": "Selected Architecture & Engineering Work",
+    "subtitle": "A collection of high-traffic platforms, design systems, and distributed web applications.",
+    "items": [
+      {
+        "id": "novaui",
+        "title": "NovaUI Enterprise System",
+        "category": "Design System & Monorepo",
+        "description": "Multi-brand, tokenized design system powering 18 micro-frontends with accessible WAI-ARIA primitives and dynamic theming.",
+        "metrics": "Used by 120+ engineers • 45% faster sprint cycles",
+        "tech": ["React", "TypeScript", "Tailwind CSS", "Storybook", "Turborepo"],
+        "link": "#",
+        "github": "#"
+      },
+      {
+        "id": "apex-trading",
+        "title": "Apex Real-Time Terminal",
+        "category": "Fintech & WebSockets",
+        "description": "High-frequency trading interface executing 50,000+ ticks/sec with virtualized canvas orderbooks and WebAssembly calculations.",
+        "metrics": "< 12ms render latency • 60 FPS orderbook",
+        "tech": ["Next.js", "WebAssembly", "RxJS", "Canvas API", "Tailwind"],
+        "link": "#",
+        "github": "#"
+      },
+      {
+        "id": "lumina-ai",
+        "title": "Lumina Multimodal AI Studio",
+        "category": "AI/ML Application",
+        "description": "Generative canvas application orchestrating LLM streaming, node-based workflow pipelines, and vector-driven UI cards.",
+        "metrics": "500k+ active sessions • Sub-100ms streaming UI",
+        "tech": ["Next.js App Router", "Server Actions", "Vercel AI SDK", "Zustand"],
+        "link": "#",
+        "github": "#"
+      },
+      {
+        "id": "nexus-edge",
+        "title": "Nexus Distributed Cache Portal",
+        "category": "Cloud & Developer Tools",
+        "description": "Observability and policy control panel for global edge CDN networks with interactive geo-latency heatmaps.",
+        "metrics": "Global telemetry • 99.999% SLA visualization",
+        "tech": ["TypeScript", "D3.js", "Edge Middleware", "Tailwind CSS"],
+        "link": "#",
+        "github": "#"
+      }
+    ]
+  },
+  "skills": {
+    "badge": "Technical Matrix",
+    "title": "Architectural Toolkit & Disciplines",
+    "categories": [
+      {
+        "name": "Frontend Architecture",
+        "skills": ["Next.js (App Router)", "TypeScript", "React 19/18", "Micro-Frontends", "Design Systems", "Web Performance (CWV)"]
+      },
+      {
+        "name": "Styling & Motion",
+        "skills": ["Tailwind CSS", "CSS Logical Properties", "Design Tokens", "Framer Motion", "Shadcn/Radix", "Responsive Glassmorphism"]
+      },
+      {
+        "name": "Edge, Cloud & Runtime",
+        "skills": ["Edge Middleware", "Server-Only Modules", "Turborepo", "Node.js", "Vercel / Cloudflare", "REST / GraphQL / gRPC"]
+      },
+      {
+        "name": "Quality & Standards",
+        "skills": ["WAI-ARIA (a11y)", "Vitest / Jest", "Playwright E2E", "Strict Type Checking", "CI/CD Pipelines", "Lighthouse 100"]
+      }
+    ]
+  },
+  "experience": {
+    "badge": "Career Path",
+    "title": "Leadership & Engineering Journey",
+    "timeline": [
+      {
+        "role": "Principal Frontend Architect",
+        "company": "Vanguard Cloud Technologies",
+        "period": "2023 — Present",
+        "description": "Leading global frontend strategy across 6 core product lines. Modernized legacy single-page apps into Next.js App Router architectures, slashing bundle sizes by 58% and elevating Core Web Vitals to the 99th percentile.",
+        "tags": ["Architecture", "Team Mentorship", "Next.js", "Performance"]
+      },
+      {
+        "role": "Staff UI Engineer & Design System Lead",
+        "company": "Horizon Financial Solutions",
+        "period": "2020 — 2023",
+        "description": "Architected unified cross-platform design token pipeline from Figma to React/iOS/Android. Standardized accessibility (WCAG AAA) across consumer banking portals serving 4M+ daily users.",
+        "tags": ["Design Tokens", "Accessibility", "React", "State Machines"]
+      },
+      {
+        "role": "Senior Frontend Developer",
+        "company": "Starlight Digital Labs",
+        "period": "2017 — 2020",
+        "description": "Delivered high-converting eCommerce web applications with dynamic internationalization (i18n), multi-currency support, and offline-first PWA capabilities.",
+        "tags": ["i18n & RTL", "TypeScript", "PWA", "GraphQL"]
+      }
+    ]
+  },
+  "contact": {
+    "badge": "Get In Touch",
+    "title": "Let's Engineer Something Exceptional",
+    "description": "Whether you are planning a high-scale frontend overhaul, building an enterprise design system, or seeking architectural guidance, my inbox is open.",
+    "form": {
+      "name": "Your Name",
+      "email": "Email Address",
+      "subject": "Subject / Project Scope",
+      "message": "Project Details & Timeline",
+      "send": "Transmit Message",
+      "sending": "Transmitting...",
+      "success": "Message sent successfully! I will get back to you within 24 hours.",
+      "error": "Failed to send message. Please reach out directly via email."
+    },
+    "directEmail": "architect@noureldeen.dev",
+    "location": "Available Worldwide (Remote / Hybrid)",
+    "socials": {
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "twitter": "X (Twitter)"
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "builtWith": "Built with Next.js App Router, Tailwind CSS, Space Grotesk, Inter & Cairo.",
+    "backToTop": "Back to Top"
+  },
+  "theme": {
+    "toggle": "Toggle Color Theme",
+    "dark": "Dark Theme",
+    "light": "Light Theme"
+  },
+  "locale": {
+    "current": "English",
+    "switch": "العربية"
+  }
+}

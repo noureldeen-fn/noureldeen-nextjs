@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light Mode Palette */
+  --bg-main: #FFFBFB;
+  --bg-alt: #FFF0F0;
+  --text-primary: #220202;
+  --text-muted: #610605;
+  --brand-cta: #C30C09;
+  --brand-cta-hover: #9E0A07;
+  --brand-cta-glow: rgba(195, 12, 9, 0.25);
+  --surface-card: rgba(255, 255, 255, 0.85);
+  --surface-card-border: rgba(97, 6, 5, 0.12);
+  --surface-hover: rgba(255, 240, 240, 0.9);
+  --accent-subtle: rgba(195, 12, 9, 0.08);
+
+  /* Shadcn Tokens Mapped to Your Palette */
+  --background: var(--bg-main);
+  --foreground: var(--text-primary);
+  --card: var(--surface-card);
+  --card-foreground: var(--text-primary);
+  --popover: var(--bg-main);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--brand-cta);
+  --primary-foreground: #FFFFFF;
+  --secondary: var(--bg-alt);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--bg-alt);
+  --muted-foreground: var(--text-muted);
+  --accent: var(--accent-subtle);
+  --accent-foreground: var(--brand-cta);
+  --destructive: #C30C09;
+  --border: var(--surface-card-border);
+  --input: var(--surface-card-border);
+  --ring: var(--brand-cta);
+  --radius: 0.625rem;
+}
+
+.dark {
+  /* Dark Mode (Default) Palette */
+  --bg-main: #161616;
+  --bg-alt: #220202;
+  --text-primary: #FFFFFF;
+  --text-muted: #FDCFCE;
+  --brand-cta: #F40F0B;
+  --brand-cta-hover: #FF3B38;
+  --brand-cta-glow: rgba(244, 15, 11, 0.4);
+  --surface-card: rgba(26, 26, 26, 0.8);
+  --surface-card-border: rgba(253, 207, 206, 0.15);
+  --surface-hover: rgba(34, 2, 2, 0.6);
+  --accent-subtle: rgba(244, 15, 11, 0.15);
+
+  /* Shadcn Tokens Mapped to Your Palette */
+  --background: var(--bg-main);
+  --foreground: var(--text-primary);
+  --card: var(--surface-card);
+  --card-foreground: var(--text-primary);
+  --popover: var(--bg-main);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--brand-cta);
+  --primary-foreground: #FFFFFF;
+  --secondary: var(--bg-alt);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--bg-alt);
+  --muted-foreground: var(--text-muted);
+  --accent: var(--accent-subtle);
+  --accent-foreground: var(--brand-cta);
+  --destructive: #F40F0B;
+  --border: var(--surface-card-border);
+  --input: var(--surface-card-border);
+  --ring: var(--brand-cta);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark light;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-sans), var(--font-arabic), system-ui, -apple-system, sans-serif;
+  transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--surface-card-border);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-cta);
+}
+
+/* Glassmorphism & Card Utilities */
+.glass-panel {
+  background: var(--surface-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--surface-card-border);
+}
+
+.glass-nav {
+  background: rgba(22, 22, 22, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--surface-card-border);
+}
+
+:root:not(.dark) .glass-nav {
+  background: rgba(255, 251, 251, 0.85);
+}
+
+.glow-effect {
+  box-shadow: 0 0 25px -4px var(--brand-cta-glow);
+}
+
+.glow-border {
+  border-color: var(--brand-cta);
+  box-shadow: 0 0 15px -3px var(--brand-cta-glow);
+}
+
+/* Text Selection */
+::selection {
+  background-color: var(--brand-cta);
+  color: #FFFFFF;
+}
