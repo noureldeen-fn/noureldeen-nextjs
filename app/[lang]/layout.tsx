@@ -13,11 +13,17 @@ export function generateStaticParams() {
   return [{ lang: 'en' }, { lang: 'ar' }];
 }
 
-export async function generateMetadata({
-  params: { lang },
-}: {
-  params: { lang: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ lang: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
+
+  const {
+    lang
+  } = params;
+
   const dict = await getDictionary(lang);
 
   const siteUrl = 'https://noureldeen.dev';
@@ -79,13 +85,22 @@ export async function generateMetadata({
   };
 }
 
-export default async function RootLayout({
-  children,
-  params: { lang },
-}: {
-  children: React.ReactNode;
-  params: { lang: string };
-}) {
+export default async function RootLayout(
+  props: {
+    children: React.ReactNode;
+    params: Promise<{ lang: string }>;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    lang
+  } = params;
+
+  const {
+    children
+  } = props;
+
   if (lang !== 'en' && lang !== 'ar') {
     notFound();
   }
