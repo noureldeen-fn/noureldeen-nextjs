@@ -9,6 +9,7 @@
     "home": "Home",
     "about": "About",
     "projects": "Projects",
+    "certificates": "Certificates",
     "skills": "Skills",
     "experience": "Experience",
     "contact": "Contact",
@@ -95,6 +96,50 @@
       }
     ]
   },
+  "certificates": {
+    "badge": "Credentials & Mastery",
+    "title": "Verified Architectural Certifications",
+    "subtitle": "Industry-recognized specializations in cloud frontend architecture, WebGL graphics, and web performance.",
+    "verify": "Verify Credential",
+    "items": [
+      {
+        "id": "cert-1",
+        "title": "AWS Certified Solutions Architect",
+        "issuer": "Amazon Web Services",
+        "specialization": "Cloud & Edge Systems",
+        "date": "Issued Oct 2024",
+        "credentialId": "AWS-SA-98241",
+        "link": "#"
+      },
+      {
+        "id": "cert-2",
+        "title": "Meta Frontend Architecture Specialization",
+        "issuer": "Meta Architecture Council",
+        "specialization": "React & Performance",
+        "date": "Issued Jan 2024",
+        "credentialId": "META-FE-77401",
+        "link": "#"
+      },
+      {
+        "id": "cert-3",
+        "title": "Google Web Performance Master",
+        "issuer": "Google Chrome Engineering",
+        "specialization": "Core Web Vitals & CWV",
+        "date": "Issued Nov 2023",
+        "credentialId": "GCP-CWV-55190",
+        "link": "#"
+      },
+      {
+        "id": "cert-4",
+        "title": "W3C Accessibility Expert (WCAG AAA)",
+        "issuer": "WAI Accessibility Initiative",
+        "specialization": "A11y & Inclusive Design",
+        "date": "Issued Aug 2023",
+        "credentialId": "W3C-A11Y-33102",
+        "link": "#"
+      }
+    ]
+  },
   "skills": {
     "badge": "Technical Matrix",
     "title": "Architectural Toolkit & Disciplines",
@@ -158,7 +203,7 @@
       "success": "Message sent successfully! I will get back to you within 24 hours.",
       "error": "Failed to send message. Please reach out directly via email."
     },
-    "directEmail": "architect@noureldeen.dev",
+    "directEmail": "noureldeen.fn@gmail.com",
     "location": "Available Worldwide (Remote / Hybrid)",
     "socials": {
       "github": "GitHub",

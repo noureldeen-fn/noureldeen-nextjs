@@ -2,6 +2,7 @@ import { getDictionary } from '@/lib/dictionaries';
 import { HeroSection } from '@/components/HeroSection';
 import { AboutSection } from '@/components/AboutSection';
 import { ProjectsSection } from '@/components/ProjectsSection';
+import { CertificatesSection } from '@/components/CertificatesSection';
 import { SkillsSection } from '@/components/SkillsSection';
 import { ExperienceSection } from '@/components/ExperienceSection';
 import { ContactSection } from '@/components/ContactSection';
@@ -24,6 +25,7 @@ export default async function Page(
       <HeroSection lang={lang} dict={dict} />
       <AboutSection dict={dict} />
       <ProjectsSection dict={dict} />
+      <CertificatesSection lang={lang} dict={dict} />
       <SkillsSection dict={dict} />
       <ExperienceSection dict={dict} />
       <ContactSection dict={dict} />

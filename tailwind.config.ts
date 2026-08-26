@@ -29,9 +29,11 @@ const config: Config = {
         'accent-subtle': 'var(--accent-subtle)',
       },
       fontFamily: {
-        heading: ['var(--font-heading)', 'var(--font-arabic)', 'sans-serif'],
-        sans: ['var(--font-sans)', 'var(--font-arabic)', 'sans-serif'],
-        arabic: ['var(--font-arabic)', 'Cairo', 'Tajawal', 'sans-serif'],
+        heading: ["var(--font-space-grotesk)", "var(--font-cairo)", "sans-serif"],
+        body: ["var(--font-inter)", "var(--font-cairo)", "sans-serif"],
+        sans: ["var(--font-inter)", "var(--font-cairo)", "sans-serif"],
+        mono: ["var(--font-jetbrains-mono)", "monospace"],
+        arabic: ["var(--font-cairo)", "sans-serif"],
       },
       animation: {
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',

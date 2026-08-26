@@ -72,15 +72,15 @@ export function HeroSection({ lang, dict }: HeroSectionProps) {
             </div>
 
             {/* Architectural Tagline */}
-            <p className="text-base sm:text-lg lg:text-xl text-text-muted max-w-2xl font-normal leading-relaxed mb-8 pointer-events-auto select-text">
+            <p className="text-base sm:text-lg lg:text-xl text-text-muted max-w-2xl font-normal leading-relaxed mb-8 pointer-events-auto select-text font-body">
               {hero.tagline}
             </p>
 
             {/* Primary & Secondary Call to Actions (Interactive) */}
-            <div className="flex flex-wrap items-center gap-4 w-full sm:w-auto mb-12 pointer-events-auto">
+            <div className="flex flex-wrap items-center gap-4 w-full sm:w-auto pointer-events-auto">
               <a
                 href="#projects"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-brand-cta hover:bg-brand-cta-hover text-white font-semibold text-sm tracking-wide shadow-glow transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-brand-cta hover:bg-brand-cta-hover text-white font-semibold text-sm tracking-wide shadow-glow transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta font-heading"
               >
                 <span>{hero.ctaPrimary}</span>
                 <ArrowUpRight className="w-4 h-4" />
@@ -88,25 +88,11 @@ export function HeroSection({ lang, dict }: HeroSectionProps) {
 
               <a
                 href="#contact"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl border border-surface-card-border bg-surface-card/80 backdrop-blur-md hover:bg-surface-hover text-text-primary hover:text-brand-cta font-semibold text-sm transition-all duration-300 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl border border-surface-card-border bg-surface-card/80 backdrop-blur-md hover:bg-surface-hover text-text-primary hover:text-brand-cta font-semibold text-sm transition-all duration-300 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta font-heading"
               >
                 <Sparkles className="w-4 h-4 text-brand-cta" />
                 <span>{hero.ctaSecondary}</span>
               </a>
-            </div>
-
-            {/* Architectural Trust Metrics (4-stat grid) */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-6 border-t border-surface-card-border w-full pointer-events-auto select-text">
-              {hero.stats.map((stat, idx) => (
-                <div key={idx} className="flex flex-col">
-                  <span className="text-2xl sm:text-3xl font-extrabold font-heading text-text-primary">
-                    {stat.value}
-                  </span>
-                  <span className="text-xs text-text-muted font-medium mt-1 leading-snug">
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
             </div>
 
           </div>
@@ -129,13 +115,13 @@ export function HeroSection({ lang, dict }: HeroSectionProps) {
                 <h3 className="font-heading font-bold text-base text-text-primary">
                   {hero.name}
                 </h3>
-                <p className="text-xs text-text-muted">
+                <p className="text-xs text-text-muted font-mono">
                   {hero.role}
                 </p>
               </div>
 
               {/* Status Indicator */}
-              <div className="relative z-10 mt-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-semibold text-emerald-500">
+              <div className="relative z-10 mt-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-semibold text-emerald-500 font-mono">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
                 <span>{lang === 'ar' ? 'معماري متفرغ' : 'Available for Work'}</span>
               </div>

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import '../globals.css';
-import { spaceGrotesk, inter, cairo } from '@/lib/fonts';
+import { spaceGrotesk, inter, jetbrainsMono, cairo } from '@/lib/fonts';
 import { getDictionary, Locale } from '@/lib/dictionaries';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { Navbar } from '@/components/Navbar';
@@ -47,6 +47,7 @@ export async function generateMetadata(
       'RTL Architecture',
       'Cairo Font',
       'Space Grotesk',
+      'JetBrains Mono',
     ],
     authors: [{ name: 'Noureldeen', url: siteUrl }],
     creator: 'Noureldeen',
@@ -109,10 +110,10 @@ export default async function RootLayout(
   const dir = isArabic ? 'rtl' : 'ltr';
   const dict = await getDictionary(lang);
 
-  // Font Optimization: Cairo for AR, Space Grotesk + Inter for EN
-  const fontVariables = isArabic
-    ? `${cairo.variable} font-arabic`
-    : `${spaceGrotesk.variable} ${inter.variable} font-sans`;
+  // Font Optimization: Space Grotesk, Inter, JetBrains Mono, Cairo
+  const fontVariables = `${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} ${cairo.variable} ${
+    isArabic ? 'font-arabic' : 'font-body'
+  }`;
 
   return (
     <html lang={lang} dir={dir} className={fontVariables} suppressHydrationWarning>

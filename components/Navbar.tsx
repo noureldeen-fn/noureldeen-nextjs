@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Menu, X, Terminal, ArrowUpRight } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 import { LocaleSwitcher } from './LocaleSwitcher';
+import { cn } from '@/lib/utils';
 
 interface NavbarProps {
   lang: string;
@@ -13,6 +14,7 @@ interface NavbarProps {
       home: string;
       about: string;
       projects: string;
+      certificates: string;
       skills: string;
       experience: string;
       contact: string;
@@ -46,16 +48,19 @@ export function Navbar({ lang, dict }: NavbarProps) {
     { href: `#home`, label: dict.nav.home },
     { href: `#about`, label: dict.nav.about },
     { href: `#projects`, label: dict.nav.projects },
+    { href: `#certificates`, label: dict.nav.certificates },
     { href: `#skills`, label: dict.nav.skills },
     { href: `#experience`, label: dict.nav.experience },
-    { href: `#contact`, label: dict.nav.contact },
   ];
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled ? 'glass-nav py-3 shadow-md' : 'bg-transparent py-5'
-      }`}
+      className={cn(
+        'fixed top-0 inset-x-0 z-50 transition-[background-color,border-color,box-shadow,padding] duration-200 outline-none ring-0',
+        scrolled
+          ? 'glass-nav py-3 border-b border-surface-card-border shadow-lg shadow-black/20'
+          : 'bg-transparent py-5 border-b border-transparent'
+      )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -71,7 +76,7 @@ export function Navbar({ lang, dict }: NavbarProps) {
               <span className="font-heading font-bold text-lg tracking-wider text-text-primary group-hover:text-brand-cta transition-colors">
                 NOURELDEEN<span className="text-brand-cta">.</span>
               </span>
-              <span className="text-[10px] uppercase tracking-widest text-text-muted font-medium">
+              <span className="text-[10px] uppercase tracking-widest text-text-muted font-medium font-mono">
                 {lang === 'ar' ? 'معماري واجهات' : 'Principal Architect'}
               </span>
             </div>
@@ -83,21 +88,21 @@ export function Navbar({ lang, dict }: NavbarProps) {
               <a
                 key={link.href}
                 href={link.href}
-                className="px-3.5 py-1.5 rounded-full text-xs lg:text-sm font-medium text-text-primary hover:text-brand-cta hover:bg-surface-hover transition-all duration-200"
+                className="px-3.5 py-1.5 rounded-full text-xs lg:text-sm font-medium text-text-primary hover:text-brand-cta hover:bg-surface-hover transition-colors duration-200"
               >
                 {link.label}
               </a>
             ))}
           </nav>
 
-          {/* Right Actions: Locale Switcher & Theme Toggle & CTA */}
+          {/* Right Actions: Locale Switcher & Theme Toggle & Standalone Red CTA */}
           <div className="hidden sm:flex items-center gap-2.5">
             <LocaleSwitcher currentLang={lang} />
             <ThemeToggle labelDark={dict.theme.dark} labelLight={dict.theme.light} />
 
             <a
               href="#contact"
-              className="hidden lg:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-cta hover:bg-brand-cta-hover text-white font-medium text-xs tracking-wide uppercase shadow-glow transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="hidden lg:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-cta hover:bg-brand-cta-hover text-white font-semibold text-xs tracking-wide uppercase shadow-glow transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] font-heading"
             >
               <span>{dict.nav.contact}</span>
               <ArrowUpRight className="w-3.5 h-3.5" />

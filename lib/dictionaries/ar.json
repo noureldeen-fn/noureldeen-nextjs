@@ -9,6 +9,7 @@
     "home": "الرئيسية",
     "about": "عن الخبرة",
     "projects": "المشاريع",
+    "certificates": "الشهادات",
     "skills": "المهارات",
     "experience": "المسيرة المهنية",
     "contact": "تواصل معي",
@@ -95,6 +96,50 @@
       }
     ]
   },
+  "certificates": {
+    "badge": "الاعتمادات والتخصصات",
+    "title": "الشهادات المعمارية المعتمدة",
+    "subtitle": "اعتمادات متخصصة وموثقة في هندسة واجهات السحاب، رسوميات الويب، وتحسين الأداء.",
+    "verify": "التحقق من الشهادة",
+    "items": [
+      {
+        "id": "cert-1",
+        "title": "مهندس حلول معتمد من AWS",
+        "issuer": "أمازون لخدمات الويب (AWS)",
+        "specialization": "الأنظمة السحابية والحافة",
+        "date": "أكتوبر 2024",
+        "credentialId": "AWS-SA-98241",
+        "link": "#"
+      },
+      {
+        "id": "cert-2",
+        "title": "شهادة التخصص في واجهات Meta",
+        "issuer": "مجلس هندسة Meta",
+        "specialization": "React والأداء العالي",
+        "date": "يناير 2024",
+        "credentialId": "META-FE-77401",
+        "link": "#"
+      },
+      {
+        "id": "cert-3",
+        "title": "خبير أداء الويب من Google",
+        "issuer": "فريق هندسة Google Chrome",
+        "specialization": "مؤشرات الأداء Core Web Vitals",
+        "date": "نوفمبر 2023",
+        "credentialId": "GCP-CWV-55190",
+        "link": "#"
+      },
+      {
+        "id": "cert-4",
+        "title": "خبير سهولة الوصول W3C (WCAG AAA)",
+        "issuer": "مبادرة إمكانية الوصول العالمية WAI",
+        "specialization": "التصميم الشامل وإمكانية الوصول",
+        "date": "أغسطس 2023",
+        "credentialId": "W3C-A11Y-33102",
+        "link": "#"
+      }
+    ]
+  },
   "skills": {
     "badge": "المصفوفة التقنية",
     "title": "الأدوات والمنهجيات الهندسية",
@@ -158,7 +203,7 @@
       "success": "تم إرسال رسالتك بنجاح! سأتواصل معك خلال 24 ساعة.",
       "error": "حدث خطأ أثناء الإرسال. يرجى التواصل مباشرة عبر البريد الإلكتروني."
     },
-    "directEmail": "architect@noureldeen.dev",
+    "directEmail": "noureldeen.fn@gmail.com",
     "location": "متاح عالمياً (عن بُعد / هجين)",
     "socials": {
       "github": "GitHub",
