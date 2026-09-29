@@ -213,8 +213,7 @@
   },
   "footer": {
     "rights": "All rights reserved.",
-    "builtWith": "Built with Next.js App Router, Tailwind CSS, Space Grotesk, Inter & Cairo.",
-    "backToTop": "Back to Top"
+    "builtWith": ""
   },
   "theme": {
     "toggle": "Toggle Color Theme",

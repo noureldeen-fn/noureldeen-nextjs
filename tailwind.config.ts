@@ -13,9 +13,11 @@ const config: Config = {
       colors: {
         'bg-main': 'var(--bg-main)',
         'bg-alt': 'var(--bg-alt)',
+        'main': 'var(--bg-main)',
         'border': "var(--border-subtle)",
         'text-primary': 'var(--text-primary)',
         'text-muted': 'var(--text-muted)',
+        'txt-muted': 'var(--text-muted)',
         'brand-cta': {
           DEFAULT: 'var(--brand-cta)',
           hover: 'var(--brand-cta-hover)',

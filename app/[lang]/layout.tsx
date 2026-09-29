@@ -6,6 +6,7 @@ import { getDictionary, Locale } from '@/lib/dictionaries';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
+import { ScrollToTop } from '@/components/ScrollToTop';
 
 export const dynamicParams = false;
 
@@ -123,6 +124,7 @@ export default async function RootLayout(
             <Navbar lang={lang} dict={dict} />
             <main className="flex-grow">{children}</main>
             <Footer dict={dict} />
+            <ScrollToTop />
           </div>
         </ThemeProvider>
       </body>

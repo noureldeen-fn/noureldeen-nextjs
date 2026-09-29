@@ -28,7 +28,7 @@ export default async function Page(
       <CertificatesSection lang={lang} dict={dict} />
       <SkillsSection dict={dict} />
       <ExperienceSection dict={dict} />
-      <ContactSection dict={dict} />
+      <ContactSection lang={lang} dict={dict} />
     </>
   );
 }

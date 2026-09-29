@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Cpu, CheckCircle } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 
 interface SkillsSectionProps {
   dict: {
@@ -25,10 +25,6 @@ export function SkillsSection({ dict }: SkillsSectionProps) {
         
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-surface-card-border bg-surface-card text-xs font-semibold text-brand-cta uppercase tracking-wider mb-4">
-            <Cpu className="w-3.5 h-3.5" />
-            <span>{skills.badge}</span>
-          </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-text-primary tracking-tight leading-tight">
             {skills.title}
           </h2>
@@ -39,10 +35,10 @@ export function SkillsSection({ dict }: SkillsSectionProps) {
           {skills.categories.map((category, idx) => (
             <div
               key={idx}
-              className="p-6 rounded-2xl border border-surface-card-border bg-surface-card flex flex-col justify-between"
+              className="group p-6 rounded-2xl border border-surface-card-border bg-surface-card flex flex-col justify-between hover:bg-surface-hover hover:border-brand-cta/30 hover:-translate-y-0.5 transition-all duration-300 shadow-sm hover:shadow-card-light dark:hover:shadow-card-dark"
             >
               <div>
-                <h3 className="text-base font-bold font-heading text-brand-cta mb-4 pb-3 border-b border-surface-card-border">
+                <h3 className="text-base font-bold font-heading text-brand-cta mb-4 pb-3 border-b border-surface-card-border group-hover:border-brand-cta/20 transition-colors">
                   {category.name}
                 </h3>
                 <ul className="space-y-2.5">
@@ -62,3 +58,5 @@ export function SkillsSection({ dict }: SkillsSectionProps) {
     </section>
   );
 }
+
+export default SkillsSection;

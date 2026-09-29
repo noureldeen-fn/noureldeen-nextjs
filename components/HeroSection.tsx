@@ -48,15 +48,6 @@ export function HeroSection({ lang, dict }: HeroSectionProps) {
           
           {/* Column 1: Text Content Block (8 Columns on lg) */}
           <div className="col-span-12 lg:col-span-8 flex flex-col items-start text-start">
-            
-            {/* Availability Badge (Interactive) */}
-            <div className="pointer-events-auto inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-surface-card-border bg-surface-card/80 backdrop-blur-md text-xs sm:text-sm font-medium text-text-primary shadow-sm mb-6 animate-in fade-in slide-in-from-bottom-4 duration-500 cursor-default select-none">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-cta opacity-75" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-cta" />
-              </span>
-              <span className="text-text-muted">{hero.status}</span>
-            </div>
 
             {/* Greeting & Headline */}
             <div className="space-y-2 mb-6 pointer-events-auto select-text">

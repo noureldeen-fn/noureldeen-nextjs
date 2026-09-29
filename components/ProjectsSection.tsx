@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ExternalLink, Github, Sparkles, TrendingUp, Code2 } from 'lucide-react';
+import { ExternalLink, Github, TrendingUp } from 'lucide-react';
 
 interface ProjectsSectionProps {
   dict: {
@@ -32,14 +32,10 @@ export function ProjectsSection({ dict }: ProjectsSectionProps) {
         
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-surface-card-border bg-surface-card text-xs font-semibold text-brand-cta uppercase tracking-wider mb-4">
-            <Code2 className="w-3.5 h-3.5" />
-            <span>{projects.badge}</span>
-          </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-text-primary tracking-tight leading-tight mb-4">
             {projects.title}
           </h2>
-          <p className="text-base sm:text-lg text-text-muted leading-relaxed">
+          <p className="text-base sm:text-lg text-text-muted leading-relaxed font-body">
             {projects.subtitle}
           </p>
         </div>
@@ -49,20 +45,20 @@ export function ProjectsSection({ dict }: ProjectsSectionProps) {
           {projects.items.map((item) => (
             <div
               key={item.id}
-              className="group relative flex flex-col justify-between p-8 rounded-2xl border border-surface-card-border bg-surface-card hover:bg-surface-hover transition-all duration-300 hover:shadow-card-dark dark:hover:shadow-card-dark"
+              className="group relative flex flex-col justify-between p-8 rounded-2xl border border-surface-card-border bg-surface-card hover:bg-surface-hover transition-all duration-300 hover:shadow-card-light dark:hover:shadow-card-dark"
             >
               <div>
                 {/* Category & Action Links */}
                 <div className="flex items-center justify-between gap-4 mb-4">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-brand-cta">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-brand-cta font-mono">
                     {item.category}
                   </span>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2">
                     <a
                       href={item.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 rounded-lg border border-surface-card-border bg-surface-card hover:bg-surface-hover text-text-primary hover:text-brand-cta transition-colors"
+                      className="p-2 rounded-lg border border-surface-card-border bg-surface-card hover:bg-surface-hover text-text-primary hover:text-brand-cta transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta"
                       aria-label={`${item.title} Source Code`}
                     >
                       <Github className="w-4 h-4" />
@@ -71,7 +67,7 @@ export function ProjectsSection({ dict }: ProjectsSectionProps) {
                       href={item.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 rounded-lg border border-surface-card-border bg-surface-card hover:bg-surface-hover text-text-primary hover:text-brand-cta transition-colors"
+                      className="p-2 rounded-lg border border-surface-card-border bg-surface-card hover:bg-surface-hover text-text-primary hover:text-brand-cta transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta"
                       aria-label={`${item.title} Live Preview`}
                     >
                       <ExternalLink className="w-4 h-4" />
@@ -85,7 +81,7 @@ export function ProjectsSection({ dict }: ProjectsSectionProps) {
                 </h3>
 
                 {/* Project Description */}
-                <p className="text-sm text-text-muted leading-relaxed mb-6">
+                <p className="text-sm text-text-muted leading-relaxed mb-6 font-body">
                   {item.description}
                 </p>
 
@@ -101,7 +97,7 @@ export function ProjectsSection({ dict }: ProjectsSectionProps) {
                 {item.tech.map((tech, idx) => (
                   <span
                     key={idx}
-                    className="px-2.5 py-1 rounded-md text-[11px] font-medium bg-surface-card-border/40 text-text-muted"
+                    className="px-2.5 py-1 rounded-md text-[11px] font-medium font-mono bg-surface-card-border/40 text-text-muted"
                   >
                     {tech}
                   </span>
@@ -115,3 +111,5 @@ export function ProjectsSection({ dict }: ProjectsSectionProps) {
     </section>
   );
 }
+
+export default ProjectsSection;

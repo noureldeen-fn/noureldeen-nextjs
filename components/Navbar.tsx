@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, X, Terminal, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 import { LocaleSwitcher } from './LocaleSwitcher';
 import { cn } from '@/lib/utils';
@@ -35,22 +35,58 @@ interface NavbarProps {
 export function Navbar({ lang, dict }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      const sectionIds = ['home', 'about', 'projects', 'certificates', 'skills', 'experience', 'contact'];
+      const scrollPosition = window.scrollY + 180;
+
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const id = sectionIds[i];
+        const element = document.getElementById(id);
+        if (element && element.offsetTop <= scrollPosition) {
+          setActiveSection(id);
+          break;
+        }
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Prevent background scroll when mobile menu is open and handle Esc key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleKeyDown);
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [mobileMenuOpen]);
+
   const navLinks = [
-    { href: `#home`, label: dict.nav.home },
-    { href: `#about`, label: dict.nav.about },
-    { href: `#projects`, label: dict.nav.projects },
-    { href: `#certificates`, label: dict.nav.certificates },
-    { href: `#skills`, label: dict.nav.skills },
-    { href: `#experience`, label: dict.nav.experience },
+    { href: `#home`, id: 'home', label: dict.nav.home },
+    { href: `#about`, id: 'about', label: dict.nav.about },
+    { href: `#projects`, id: 'projects', label: dict.nav.projects },
+    { href: `#certificates`, id: 'certificates', label: dict.nav.certificates },
+    { href: `#skills`, id: 'skills', label: dict.nav.skills },
+    { href: `#experience`, id: 'experience', label: dict.nav.experience },
   ];
 
   return (
@@ -67,32 +103,33 @@ export function Navbar({ lang, dict }: NavbarProps) {
           {/* Brand Monogram */}
           <Link
             href={`/${lang}`}
-            className="group flex items-center gap-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta rounded-lg p-1"
+            className="group flex flex-col focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta rounded-lg p-1"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-cta to-[#610605] flex items-center justify-center text-white font-bold text-xl shadow-md group-hover:scale-105 transition-transform duration-300">
-              <Terminal className="w-5 h-5 text-white" />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-heading font-bold text-lg tracking-wider text-text-primary group-hover:text-brand-cta transition-colors">
-                NOURELDEEN<span className="text-brand-cta">.</span>
-              </span>
-              <span className="text-[10px] uppercase tracking-widest text-text-muted font-medium font-mono">
-                {lang === 'ar' ? 'معماري واجهات' : 'Principal Architect'}
-              </span>
-            </div>
+            <span className="font-heading font-bold text-lg tracking-wider text-text-primary group-hover:text-brand-cta transition-colors">
+              NOURELDEEN
+            </span>
           </Link>
 
           {/* Desktop Nav Links */}
           <nav className="hidden md:flex items-center gap-1 lg:gap-2 px-3 py-1.5 rounded-full border border-surface-card-border bg-surface-card/60 backdrop-blur-md shadow-sm">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="px-3.5 py-1.5 rounded-full text-xs lg:text-sm font-medium text-text-primary hover:text-brand-cta hover:bg-surface-hover transition-colors duration-200"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={cn(
+                    'px-3.5 py-1.5 rounded-full text-xs lg:text-sm font-medium transition-all duration-200',
+                    isActive
+                      ? 'text-brand-cta bg-accent-subtle font-semibold shadow-sm'
+                      : 'text-text-primary hover:text-brand-cta hover:bg-surface-hover'
+                  )}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
           </nav>
 
           {/* Right Actions: Locale Switcher & Theme Toggle & Standalone Red CTA */}
@@ -102,7 +139,7 @@ export function Navbar({ lang, dict }: NavbarProps) {
 
             <a
               href="#contact"
-              className="hidden lg:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-cta hover:bg-brand-cta-hover text-white font-semibold text-xs tracking-wide uppercase shadow-glow transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] font-heading"
+              className="hidden lg:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-cta hover:bg-brand-cta-hover text-white font-semibold text-xs tracking-wide uppercase shadow-glow transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] font-heading focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta"
             >
               <span>{dict.nav.contact}</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -115,8 +152,9 @@ export function Navbar({ lang, dict }: NavbarProps) {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-xl border border-surface-card-border bg-surface-card text-text-primary hover:text-brand-cta"
+              className="p-2.5 rounded-xl border border-surface-card-border bg-surface-card text-text-primary hover:text-brand-cta focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta transition-colors"
               aria-label="Toggle Mobile Menu"
+              aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -126,18 +164,27 @@ export function Navbar({ lang, dict }: NavbarProps) {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="sm:hidden fixed inset-x-0 top-[65px] bg-bg-main border-b border-surface-card-border px-6 py-6 shadow-2xl backdrop-blur-2xl animate-in slide-in-from-top-5 duration-200">
-          <div className="flex flex-col gap-3">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-3 rounded-xl text-base font-medium text-text-primary hover:bg-surface-hover hover:text-brand-cta border border-transparent hover:border-surface-card-border transition-all"
-              >
-                {link.label}
-              </a>
-            ))}
+        <div className="sm:hidden absolute top-full inset-x-0 bg-bg-main/95 border-b border-surface-card-border px-6 py-6 shadow-2xl backdrop-blur-2xl animate-in slide-in-from-top-3 duration-200">
+          <div className="flex flex-col gap-2">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={cn(
+                    'px-4 py-3 rounded-xl text-base font-medium transition-all',
+                    isActive
+                      ? 'text-brand-cta bg-accent-subtle border border-brand-cta/25 font-semibold'
+                      : 'text-text-primary hover:bg-surface-hover hover:text-brand-cta border border-transparent hover:border-surface-card-border'
+                  )}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
             <div className="pt-4 mt-2 border-t border-surface-card-border flex items-center justify-between gap-3">
               <LocaleSwitcher currentLang={lang} className="w-full justify-center" />
               <a
@@ -155,3 +202,5 @@ export function Navbar({ lang, dict }: NavbarProps) {
     </header>
   );
 }
+
+export default Navbar;

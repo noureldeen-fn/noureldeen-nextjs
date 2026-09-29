@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Briefcase, Calendar, Building2 } from 'lucide-react';
+import { Calendar, Building2 } from 'lucide-react';
 
 interface ExperienceSectionProps {
   dict: {
@@ -28,10 +28,6 @@ export function ExperienceSection({ dict }: ExperienceSectionProps) {
         
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-surface-card-border bg-surface-card text-xs font-semibold text-brand-cta uppercase tracking-wider mb-4">
-            <Briefcase className="w-3.5 h-3.5" />
-            <span>{experience.badge}</span>
-          </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-text-primary tracking-tight leading-tight">
             {experience.title}
           </h2>
@@ -42,12 +38,12 @@ export function ExperienceSection({ dict }: ExperienceSectionProps) {
           {experience.timeline.map((item, idx) => (
             <div key={idx} className="relative group">
               {/* Timeline Marker Dot positioned with start- / -translate-x */}
-              <div className="absolute -start-[31px] sm:-start-[47px] top-1.5 w-4 h-4 rounded-full border-2 border-brand-cta bg-bg-main group-hover:bg-brand-cta group-hover:scale-125 transition-all duration-300 shadow-sm" />
+              <div className="absolute -start-[31px] sm:-start-[47px] top-2 w-3.5 h-3.5 rounded-full border-2 border-brand-cta bg-bg-main group-hover:bg-brand-cta group-hover:scale-125 transition-all duration-300 shadow-sm" />
 
               {/* Card Body */}
-              <div className="p-6 sm:p-8 rounded-2xl border border-surface-card-border bg-surface-card hover:bg-surface-hover transition-all duration-300">
+              <div className="p-6 sm:p-8 rounded-2xl border border-surface-card-border bg-surface-card hover:bg-surface-hover transition-all duration-300 shadow-sm hover:shadow-card-light dark:hover:shadow-card-dark">
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-cta uppercase tracking-wider">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-cta uppercase tracking-wider font-mono">
                     <Calendar className="w-3.5 h-3.5" />
                     <span>{item.period}</span>
                   </span>
@@ -57,11 +53,11 @@ export function ExperienceSection({ dict }: ExperienceSectionProps) {
                   </span>
                 </div>
 
-                <h3 className="text-xl sm:text-2xl font-bold font-heading text-text-primary mb-3">
+                <h3 className="text-xl sm:text-2xl font-bold font-heading text-text-primary mb-3 group-hover:text-brand-cta transition-colors">
                   {item.role}
                 </h3>
 
-                <p className="text-sm text-text-muted leading-relaxed mb-6">
+                <p className="text-sm text-text-muted leading-relaxed mb-6 font-body">
                   {item.description}
                 </p>
 
@@ -69,7 +65,7 @@ export function ExperienceSection({ dict }: ExperienceSectionProps) {
                   {item.tags.map((tag, tIdx) => (
                     <span
                       key={tIdx}
-                      className="px-2.5 py-1 rounded-md text-[11px] font-medium bg-surface-card-border/40 text-text-primary"
+                      className="px-2.5 py-1 rounded-md text-[11px] font-medium font-mono bg-surface-card-border/40 text-text-primary"
                     >
                       {tag}
                     </span>
@@ -84,3 +80,5 @@ export function ExperienceSection({ dict }: ExperienceSectionProps) {
     </section>
   );
 }
+
+export default ExperienceSection;

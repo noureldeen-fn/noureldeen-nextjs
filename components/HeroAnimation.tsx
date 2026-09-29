@@ -14,7 +14,7 @@ export const HeroAnimation = () => {
   }, []);
 
   if (!mounted) {
-    return <div className="absolute inset-0 bg-main -z-10" />;
+    return <div className="absolute inset-0 bg-bg-main -z-10" />;
   }
 
   const isDark = resolvedTheme === 'dark';
