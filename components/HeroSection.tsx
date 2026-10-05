@@ -1,8 +1,10 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { ArrowUpRight, Sparkles } from 'lucide-react';
 import { HeroAnimation } from './HeroAnimation';
+import { HeroImage } from './HeroImage';
 
 interface HeroSectionProps {
   lang: string;
@@ -60,11 +62,15 @@ export function HeroSection({ lang, dict }: HeroSectionProps) {
             </h1>
 
             {/* 3. Mobile-Only Avatar (Circular under Name, Hidden on Desktop) */}
-            <div className="block lg:hidden my-6 w-36 h-36 sm:w-44 sm:h-44 rounded-full border-2 border-brand-cta/40 glass-panel shadow-xl relative overflow-hidden flex items-center justify-center">
-              {/* Avatar placeholder / image */}
-              <div className="w-12 h-12 rounded-full bg-brand-cta/20 border border-brand-cta/40 flex items-center justify-center text-brand-cta font-bold font-heading text-lg">
-                {hero.name ? hero.name.charAt(0) : 'N'}
-              </div>
+            <div className="block lg:hidden my-6 w-36 h-36 sm:w-44 sm:h-44 rounded-full border-2 border-brand-cta/40 shadow-2xl relative overflow-hidden flex items-center justify-center">
+              <Image
+                src="/my-photo-portfolio.jpg"
+                alt={hero.name}
+                fill
+                priority
+                sizes="(max-width: 640px) 144px, 176px"
+                className="object-cover object-top"
+              />
             </div>
 
             {/* 4. Role Title */}
@@ -98,35 +104,9 @@ export function HeroSection({ lang, dict }: HeroSectionProps) {
 
           </div>
 
-          {/* Column 2: Spacer Column (Desktop: 1 Col | Mobile: Hidden) */}
-          <div className="hidden lg:block lg:col-span-1" aria-hidden="true" />
-
-          {/* Column 3: Profile/Image Box Placeholder (Desktop: 3 Cols | Mobile: Hidden) */}
-          <div className="hidden lg:flex lg:col-span-3 items-center justify-center pointer-events-auto">
-            <div className="w-full aspect-[3/4] rounded-2xl border border-surface-card-border glass-panel p-6 shadow-2xl relative overflow-hidden flex flex-col items-center justify-center text-center group hover:border-brand-cta/40 transition-all duration-500 cursor-pointer">
-              {/* Ambient inner glow */}
-              <div className="absolute inset-0 bg-gradient-to-b from-brand-cta/10 via-transparent to-brand-cta/5 opacity-50 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-              {/* Elegant Avatar Frame Placeholder */}
-              <div className="relative z-10 w-24 h-24 sm:w-28 sm:h-28 rounded-full border-2 border-brand-cta/30 bg-surface-card flex items-center justify-center mb-4 group-hover:scale-105 group-hover:border-brand-cta transition-all duration-300 shadow-glow">
-                <Sparkles className="w-10 h-10 text-brand-cta animate-pulse" />
-              </div>
-
-              <div className="relative z-10 space-y-1">
-                <h3 className="font-heading font-bold text-base text-text-primary">
-                  {hero.name}
-                </h3>
-                <p className="text-xs text-text-muted font-mono">
-                  {hero.role}
-                </p>
-              </div>
-
-              {/* Status Indicator */}
-              <div className="relative z-10 mt-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-semibold text-emerald-500 font-mono">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
-                <span>{lang === 'ar' ? 'معماري متفرغ' : 'Available for Work'}</span>
-              </div>
-            </div>
+          {/* Column 2: Standalone Static Photo (Desktop: 4 Cols shifted slightly to the left | Mobile: Hidden) */}
+          <div className="col-span-12 lg:col-span-4 hidden lg:flex items-center justify-center lg:-translate-x-12 rtl:lg:translate-x-12 pointer-events-auto">
+            <HeroImage />
           </div>
 
         </div>
