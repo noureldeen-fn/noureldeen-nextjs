@@ -142,3 +142,22 @@ body {
   background-color: var(--brand-cta);
   color: #FFFFFF;
 }
+
+/* ==========================================================================
+   GLOBAL NATIVE RED ARROW CURSOR
+   ========================================================================== */
+
+/* Default State: Sleek Red Arrow Cursor */
+html, body, * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28' fill='none'%3E%3Cpath d='M3 3L11.5 23.5L15 15L23.5 11.5L3 3Z' fill='%23F40F0B' stroke='%23B70B08' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 3 3, auto !important;
+}
+
+/* Interactive Hover State: Pointer feedback with glowing red arrow */
+a, button, [role="button"], input, select, textarea, .cursor-pointer {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28' fill='none'%3E%3Cpath d='M3 3L11.5 23.5L15 15L23.5 11.5L3 3Z' fill='%23FF2B27' stroke='%23FFFFFF' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 3 3, pointer !important;
+}
+
+/* Text Selection: Standard text beam */
+input[type="text"], input[type="email"], textarea, .select-text {
+  cursor: text !important;
+}
