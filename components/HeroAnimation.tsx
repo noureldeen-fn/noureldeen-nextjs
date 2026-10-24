@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
-import LineWaves from '@/components/LineWaves';
+import Antigravity from '@/components/Antigravity';
 import Particles from '@/components/Particles';
 
 export const HeroAnimation = () => {
@@ -22,21 +22,31 @@ export const HeroAnimation = () => {
   return (
     <div className="absolute inset-0 w-full h-full -z-10 overflow-hidden pointer-events-auto">
       {isDark ? (
-        <LineWaves
+        <Antigravity
           key="dark-canvas-active"
-          speed={0.2}
-          innerLineCount={16}
-          outerLineCount={17}
-          warpIntensity={0.5}
-          rotation={50}
-          edgeFadeWidth={1}
-          colorCycleSpeed={0.1}
-          brightness={0.1}
-          color1="#C30C09"
-          color2="#920907"
-          color3="#610605"
-          enableMouseInteraction={true}
-          mouseInfluence={1.8}
+          colors={["#f63f3c", "#f40f0b", "#c30c09"]}
+          count={1500}
+          magnetRadius={9}
+          ringRadius={7}
+          particleSize={0.9}
+          autoAnimate
+          colorMode="conic"
+          colorSpeed={0.05}
+          particleShape="capsule"
+          particleVariance={1}
+          fieldStrength={10}
+          waveAmplitude={1}
+          waveCount={3}
+          waveSpeed={0.4}
+          rotationSpeed={1.2}
+          pulseSpeed={3}
+          depthFactor={1}
+          ambient={0.23}
+          lerpSpeed={0.05}
+          interactive
+          clickBurst
+          intro
+          lightMode={false}
           className="w-full h-full"
         />
       ) : (
