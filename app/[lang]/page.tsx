@@ -1,10 +1,10 @@
 import { getDictionary } from '@/lib/dictionaries';
 import { HeroSection } from '@/components/HeroSection';
 import { AboutSection } from '@/components/AboutSection';
-import { ProjectsSection } from '@/components/ProjectsSection';
-import { CertificatesSection } from '@/components/CertificatesSection';
 import { SkillsSection } from '@/components/SkillsSection';
+import { ProjectsSection } from '@/components/ProjectsSection';
 import { ExperienceSection } from '@/components/ExperienceSection';
+import { CertificatesSection } from '@/components/CertificatesSection';
 import { ContactSection } from '@/components/ContactSection';
 
 export default async function Page(
@@ -23,11 +23,11 @@ export default async function Page(
   return (
     <>
       <HeroSection lang={lang} dict={dict} />
-      <AboutSection dict={dict} />
-      <ProjectsSection dict={dict} />
-      <CertificatesSection lang={lang} dict={dict} />
+      <AboutSection lang={lang} dict={dict} />
       <SkillsSection dict={dict} />
+      <ProjectsSection dict={dict} />
       <ExperienceSection dict={dict} />
+      <CertificatesSection lang={lang} dict={dict} />
       <ContactSection lang={lang} dict={dict} />
     </>
   );

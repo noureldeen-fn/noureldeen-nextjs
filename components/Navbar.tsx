@@ -41,7 +41,7 @@ export function Navbar({ lang, dict }: NavbarProps) {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      const sectionIds = ['home', 'about', 'projects', 'certificates', 'skills', 'experience', 'contact'];
+      const sectionIds = ['home', 'about', 'skills', 'projects', 'experience', 'certificates', 'contact'];
       const scrollPosition = window.scrollY + 180;
 
       for (let i = sectionIds.length - 1; i >= 0; i--) {
@@ -83,10 +83,10 @@ export function Navbar({ lang, dict }: NavbarProps) {
   const navLinks = [
     { href: `#home`, id: 'home', label: dict.nav.home },
     { href: `#about`, id: 'about', label: dict.nav.about },
-    { href: `#projects`, id: 'projects', label: dict.nav.projects },
-    { href: `#certificates`, id: 'certificates', label: dict.nav.certificates },
     { href: `#skills`, id: 'skills', label: dict.nav.skills },
+    { href: `#projects`, id: 'projects', label: dict.nav.projects },
     { href: `#experience`, id: 'experience', label: dict.nav.experience },
+    { href: `#certificates`, id: 'certificates', label: dict.nav.certificates },
   ];
 
   return (

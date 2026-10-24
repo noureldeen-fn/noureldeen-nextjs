@@ -27,7 +27,7 @@ export function ProjectsSection({ dict }: ProjectsSectionProps) {
   const { projects } = dict;
 
   return (
-    <section id="projects" className="py-20 lg:py-28 bg-bg-alt/40 relative">
+    <section id="projects" className="py-20 lg:py-28 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}

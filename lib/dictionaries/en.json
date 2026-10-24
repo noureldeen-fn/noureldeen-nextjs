@@ -25,23 +25,30 @@
     "ctaContact": "Initiate Collaboration"
   },
   "about": {
-    "badge": "Core Philosophy",
-    "title": "Bridging High-Scale Systems with Pixel-Perfect Design",
-    "description": "I specialize in scaling frontend architectures for complex enterprise products. From building multi-tenant component engines to tuning sub-millisecond edge renders, my focus is on delivering fluid user journeys without sacrificing maintainability.",
-    "points": [
-      {
-        "title": "Zero-Layout-Shift Engineering",
-        "description": "Crafting resilient layouts with strict SSR boundaries, skeleton frameworks, and CSS logical properties for true cross-cultural UX."
+    "sectionTitle": "Bridging Quality Engineering with Modern Frontend Architecture",
+    "leadParagraph": "Software Quality Control Engineer and SDET who combines structured verification methodologies with strong frontend development expertise in React.js. By understanding modern web applications from the source code up to the user interface, I design resilient automation frameworks, identify critical architectural bugs early, and build performant, accessible web components.",
+    "pillars": {
+      "sdet": {
+        "title": "Software Quality & SDET",
+        "description": "Designing scalable, maintainable test automation architectures using Java, Selenium, and TestNG. Comprehensive manual test strategies covering boundary value analysis, equivalence partitioning, test case matrices, and RESTful API verification."
       },
-      {
-        "title": "Design System Infrastructure",
-        "description": "Tokenized, accessible component libraries serving distributed engineering teams with automated visual regression testing."
+      "frontend": {
+        "title": "Modern Frontend Engineering",
+        "description": "Engineering dynamic, responsive, and accessible client-side applications with React.js, TypeScript, and Tailwind CSS. Deep focus on component lifecycle, modular monolith patterns, state management, and Core Web Vitals optimization."
       },
-      {
-        "title": "Edge-First Performance",
-        "description": "Leveraging edge middlewares, incremental static regeneration, and server-only modules to maximize TTFB and Core Web Vitals."
+      "synergy": {
+        "title": "The Dual-Engine Advantage",
+        "description": "Bridging the gap between software development and quality control. Crafting resilient, DOM-aware automation selectors, performing instant root-cause analysis on frontend state bugs, and enforcing shift-left testing across Agile cycles."
       }
-    ]
+    },
+    "metrics": {
+      "automationTitle": "Test Automation",
+      "automationDesc": "Java, Selenium WebDriver, TestNG, API Testing",
+      "frontendTitle": "Frontend Stack",
+      "frontendDesc": "React.js, Next.js, TypeScript, Tailwind CSS",
+      "methodologyTitle": "Standards & Workflow",
+      "methodologyDesc": "Agile / Scrum, Git/GitHub, STLC, Clean Code & DRY"
+    }
   },
   "projects": {
     "badge": "Featured Creations",
