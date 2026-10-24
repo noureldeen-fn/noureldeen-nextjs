@@ -16,19 +16,13 @@
     "resume": "Download CV"
   },
   "hero": {
-    "status": "Available for High-Impact Roles & Advisory",
-    "greeting": "Hello, I am",
-    "name": "Noureldeen",
-    "role": "Principal Frontend Architect",
-    "tagline": "Architecting ultra-performant, accessible, and mission-critical web applications with meticulous visual engineering.",
-    "ctaPrimary": "Explore Featured Work",
-    "ctaSecondary": "Initiate Collaboration",
-    "stats": [
-      { "value": "10+", "label": "Years of Craft" },
-      { "value": "100/100", "label": "Perf & Core Vitals" },
-      { "value": "$40M+", "label": "Pipeline Value Powered" },
-      { "value": "99.99%", "label": "Reliability Standard" }
-    ]
+    "greeting": "HELLO, I AM",
+    "name": "Noureldeen Zayan",
+    "role": "Software Quality Control Engineer",
+    "subRole": "SDET & Automation Specialist",
+    "description": "Specializing in robust Java test automation, comprehensive manual verification, and API testing—backed by a solid frontend engineering foundation in React.",
+    "ctaProjects": "Explore Work & Test Cases",
+    "ctaContact": "Initiate Collaboration"
   },
   "about": {
     "badge": "Core Philosophy",

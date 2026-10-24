@@ -10,14 +10,18 @@ interface HeroSectionProps {
   lang: string;
   dict: {
     hero: {
-      status: string;
       greeting: string;
       name: string;
       role: string;
-      tagline: string;
-      ctaPrimary: string;
-      ctaSecondary: string;
-      stats: Array<{ value: string; label: string }>;
+      subRole?: string;
+      description?: string;
+      ctaProjects?: string;
+      ctaContact?: string;
+      tagline?: string;
+      ctaPrimary?: string;
+      ctaSecondary?: string;
+      status?: string;
+      stats?: Array<{ value: string; label: string }>;
     };
   };
 }
@@ -78,18 +82,25 @@ export function HeroSection({ lang, dict }: HeroSectionProps) {
               {hero.role}
             </h2>
 
-            {/* 5. Description / Architectural Tagline */}
+            {/* 5. Sub-Role / Specialization */}
+            {hero.subRole && (
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-text-primary/90 font-heading mt-2">
+                {hero.subRole}
+              </h3>
+            )}
+
+            {/* 6. Description / Architectural Tagline */}
             <p className="text-base sm:text-lg lg:text-xl text-text-muted max-w-2xl font-normal leading-relaxed mt-4 mb-8 font-body">
-              {hero.tagline}
+              {hero.description || hero.tagline}
             </p>
 
-            {/* 6. Action Buttons (CTAs) */}
+            {/* 7. Action Buttons (CTAs) */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mt-8 w-full sm:w-auto">
               <a
                 href="#projects"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-brand-cta hover:bg-brand-cta-hover text-white font-semibold text-sm tracking-wide shadow-glow transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta font-heading"
               >
-                <span>{hero.ctaPrimary}</span>
+                <span>{hero.ctaProjects || hero.ctaPrimary}</span>
                 <ArrowUpRight className="w-4 h-4" />
               </a>
 
@@ -98,7 +109,7 @@ export function HeroSection({ lang, dict }: HeroSectionProps) {
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl border border-surface-card-border bg-surface-card/80 backdrop-blur-md hover:bg-surface-hover text-text-primary hover:text-brand-cta font-semibold text-sm transition-all duration-300 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta font-heading"
               >
                 <Sparkles className="w-4 h-4 text-brand-cta" />
-                <span>{hero.ctaSecondary}</span>
+                <span>{hero.ctaContact || hero.ctaSecondary}</span>
               </a>
             </div>
 
