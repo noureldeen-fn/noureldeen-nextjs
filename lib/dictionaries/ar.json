@@ -51,49 +51,47 @@
     }
   },
   "projects": {
-    "badge": "أعمال مختارة",
-    "title": "مشاريع هندسية ومعمارية متميزة",
-    "subtitle": "مجموعة مختارة من المنصات ذات الكثافة العالية، وأنظمة التصميم، وتطبيقات الويب الموزعة.",
+    "sectionTitle": "نماذج مختارة من المشاريع الهندسية وفحص الجودة",
+    "filters": {
+      "all": "الكل",
+      "frontend": "الواجهات (Frontend)",
+      "automation": "أتمتة الاختبارات",
+      "manualApi": "الاختبار اليدوي و API"
+    },
+    "liveStatus": "موقع لايف",
+    "qaStatus": "هندسة جودة",
+    "liveDemo": "معاينة مباشرة",
+    "githubRepo": "الكود المصدري",
     "items": [
       {
-        "id": "novaui",
-        "title": "نظام NovaUI للمؤسسات",
-        "category": "أنظمة التصميم والمستودعات الموحدة",
-        "description": "نظام تصميم متعدد الهويات مبني على الرموز الرقمية يدير 18 تطبيقاً مصغراً مع معايير إمكانية وصول WAI-ARIA متقدمة.",
-        "metrics": "يعتمد عليه أكثر من 120 مهندساً • تسريع دورات التطوير بنسبة 45%",
-        "tech": ["React", "TypeScript", "Tailwind CSS", "Storybook", "Turborepo"],
-        "link": "#",
-        "github": "#"
+        "id": "practice-software-testing",
+        "category": "automation",
+        "title": "منظومة أتمتة اختبارات منصة تجارة إلكترونية",
+        "description": "بناء وتطوير إطار عمل متكامل لأتمتة الاختبارات (UI Automation) بلغة Java لمنصات التجارة الإلكترونية. تم تطبيق نمط Page Object Model (POM) باستخدام Selenium WebDriver و TestNG لتغطية مسارات تسجيل الدخول، والبحث عن المنتجات، وسلة المشتريات، والدفع. يدعم إطار العمل التشغيل المتوازي (Parallel Execution) وتقارير الاختبارات التلقائية.",
+        "image": "/projects/automation-pom.jpg",
+        "liveUrl": "",
+        "githubUrl": "https://github.com/noureldeen-fn",
+        "tags": ["Java", "Selenium WebDriver", "TestNG", "Page Object Model", "Maven", "ExtentReports"]
       },
       {
-        "id": "apex-trading",
-        "title": "منصة Apex للتداول اللحظي",
-        "category": "التقنية المالية والبيانات اللحظية",
-        "description": "واجهة تداول فائقة التردد تعالج أكثر من 50,000 إشارة في الثانية باستخدام دفاتر أوامر افتراضية بتقنية WebAssembly.",
-        "metrics": "زمن معالجة أقل من 12ms • 60 إطاراً في الثانية",
-        "tech": ["Next.js", "WebAssembly", "RxJS", "Canvas API", "Tailwind"],
-        "link": "#",
-        "github": "#"
+        "id": "gobus-testing-plan",
+        "category": "manualApi",
+        "title": "خطة الفحص الشامل وتدقيق الـ APIs لمنظومة حجز التذاكر (Go Bus)",
+        "description": "إعداد خطة اختبار متكاملة وفق منهجية STLC لتغطية دورة حجز التذاكر وتسجيل المستخدمين واختيار المقاعد. كتابة مصفوفة حالات اختبار دقيقة باستخدام تقنيات Boundary Value Analysis و Equivalence Partitioning، مع إجراء تدقيق وظيفي كامل للـ RESTful APIs عبر Postman والتحقق من صحة الاستجابات والأخطاء.",
+        "image": "/projects/manual-matrix.jpg",
+        "liveUrl": "",
+        "githubUrl": "https://github.com/noureldeen-fn",
+        "tags": ["Manual Testing", "Postman", "REST APIs", "Test Case Design", "BVA", "Jira Bug Tracking"]
       },
       {
-        "id": "lumina-ai",
-        "title": "استوديو Lumina للذكاء الاصطناعي",
-        "category": "تطبيقات الذكاء الاصطناعي التوليدي",
-        "description": "منصة تفاعلية تدير تدفق النماذج اللغوية الكبيرة (LLM Streams) وسلاسل العمل المبنية على العقد التفاعلية مع واجهات شعاعية.",
-        "metrics": "أكثر من 500 ألف جلسة نشطة • استجابة تدفق أقل من 100ms",
-        "tech": ["Next.js App Router", "Server Actions", "Vercel AI SDK", "Zustand"],
-        "link": "#",
-        "github": "#"
-      },
-      {
-        "id": "nexus-edge",
-        "title": "بوابة Nexus للتخزين المؤقت الموزع",
-        "category": "الحوسبة السحابية وأدوات المطورين",
-        "description": "لوحة تحكم وتحليل لشبكات توصيل المحتوى العالمية (CDN) مع خرائط حرارية تفاعلية لحساب زمن الانتقال الجغرافي.",
-        "metrics": "رصد عالمي لحظي • دقة اتفاقية مستوى الخدمة 99.999%",
-        "tech": ["TypeScript", "D3.js", "Edge Middleware", "Tailwind CSS"],
-        "link": "#",
-        "github": "#"
+        "id": "portfolio-saas",
+        "category": "frontend",
+        "title": "بورتفوليو مهندس جودة البرمجيات (The Modern Cyber)",
+        "description": "تطبيق ويب متطور مبني بتقنيات Next.js و Tailwind CSS، يطبق معايير التوليد الثابت (SSG) لتحقيق سرعة تحميل فورية، مع دعم ثنائي كامل للغات العربية والإنجليزية (RTL/LTR)، وتوافق تام مع أعلى معايير الـ Core Web Vitals وتجربة المستخدم المتقدمة.",
+        "image": "",
+        "liveUrl": "https://noureldeen.me",
+        "githubUrl": "https://github.com/noureldeen-fn",
+        "tags": ["React.js", "Next.js", "TypeScript", "Tailwind CSS", "i18n", "Performance"]
       }
     ]
   },

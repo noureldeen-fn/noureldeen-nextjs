@@ -25,7 +25,7 @@ export default async function Page(
       <HeroSection lang={lang} dict={dict} />
       <AboutSection lang={lang} dict={dict} />
       <SkillsSection dict={dict} lang={lang} />
-      <ProjectsSection dict={dict} />
+      <ProjectsSection dict={dict} lang={lang} />
       <ExperienceSection dict={dict} />
       <CertificatesSection lang={lang} dict={dict} />
       <ContactSection lang={lang} dict={dict} />

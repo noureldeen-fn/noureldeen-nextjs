@@ -22,9 +22,9 @@ export const SkillsSection = ({ dict, lang = "en" }: SkillsSectionProps) => {
   const filterTabs = [
     { id: "all", label: lang === "ar" ? "الكل" : "All" },
     { id: "languages", label: lang === "ar" ? "لغات البرمجة" : "Languages" },
+    { id: "frontend", label: lang === "ar" ? "الواجهات (Frontend)" : "Frontend" },
     { id: "automation", label: lang === "ar" ? "أتمتة الاختبارات" : "Test Automation" },
     { id: "manualApi", label: lang === "ar" ? "الاختبار اليدوي و API" : "Manual & API" },
-    { id: "frontend", label: lang === "ar" ? "الواجهات (Frontend)" : "Frontend" },
     { id: "tools", label: lang === "ar" ? "الأدوات وبيئة العمل" : "Tools & OS" },
   ];
 
@@ -56,7 +56,24 @@ export const SkillsSection = ({ dict, lang = "en" }: SkillsSectionProps) => {
       icon: "/skills/css3.svg",
     },
 
-    // 2. TEST AUTOMATION
+    // 2. FRONTEND ENGINEERING
+    {
+      name: "React.js",
+      category: "frontend",
+      icon: "/skills/react.svg",
+    },
+    {
+      name: "Next.js",
+      category: "frontend",
+      icon: "/skills/nextjs.svg",
+    },
+    {
+      name: "Tailwind CSS",
+      category: "frontend",
+      icon: "/skills/tailwind.svg",
+    },
+
+    // 3. TEST AUTOMATION
     {
       name: "Selenium WebDriver",
       category: "automation",
@@ -73,7 +90,7 @@ export const SkillsSection = ({ dict, lang = "en" }: SkillsSectionProps) => {
       icon: "/skills/maven.svg",
     },
 
-    // 3. MANUAL & API TESTING
+    // 4. MANUAL & API TESTING
     {
       name: "Postman",
       category: "manualApi",
@@ -88,23 +105,6 @@ export const SkillsSection = ({ dict, lang = "en" }: SkillsSectionProps) => {
       name: "Chrome DevTools",
       category: "manualApi",
       icon: "/skills/devtools.svg",
-    },
-
-    // 4. FRONTEND ENGINEERING
-    {
-      name: "React.js",
-      category: "frontend",
-      icon: "/skills/react.svg",
-    },
-    {
-      name: "Next.js",
-      category: "frontend",
-      icon: "/skills/nextjs.svg",
-    },
-    {
-      name: "Tailwind CSS",
-      category: "frontend",
-      icon: "/skills/tailwind.svg",
     },
 
     // 5. TOOLS & OS

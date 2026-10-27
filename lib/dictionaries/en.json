@@ -51,49 +51,47 @@
     }
   },
   "projects": {
-    "badge": "Featured Creations",
-    "title": "Selected Architecture & Engineering Work",
-    "subtitle": "A collection of high-traffic platforms, design systems, and distributed web applications.",
+    "sectionTitle": "Featured Engineering & Quality Works",
+    "filters": {
+      "all": "All",
+      "frontend": "Frontend",
+      "automation": "Test Automation",
+      "manualApi": "Manual & API"
+    },
+    "liveStatus": "Live System",
+    "qaStatus": "Test Architecture",
+    "liveDemo": "Live Demo",
+    "githubRepo": "Repository",
     "items": [
       {
-        "id": "novaui",
-        "title": "NovaUI Enterprise System",
-        "category": "Design System & Monorepo",
-        "description": "Multi-brand, tokenized design system powering 18 micro-frontends with accessible WAI-ARIA primitives and dynamic theming.",
-        "metrics": "Used by 120+ engineers • 45% faster sprint cycles",
-        "tech": ["React", "TypeScript", "Tailwind CSS", "Storybook", "Turborepo"],
-        "link": "#",
-        "github": "#"
+        "id": "practice-software-testing",
+        "category": "automation",
+        "title": "E-Commerce Test Automation Framework",
+        "description": "Engineered a robust, end-to-end UI automation framework in Java for e-commerce platforms. Implemented the Page Object Model (POM) design pattern with Selenium WebDriver and TestNG to automate authentication, product search, cart operations, and checkout workflows. Features data-driven testing with parallel execution and automated ExtentReports.",
+        "image": "/projects/automation-pom.jpg",
+        "liveUrl": "",
+        "githubUrl": "https://github.com/noureldeen-fn",
+        "tags": ["Java", "Selenium WebDriver", "TestNG", "Page Object Model", "Maven", "ExtentReports"]
       },
       {
-        "id": "apex-trading",
-        "title": "Apex Real-Time Terminal",
-        "category": "Fintech & WebSockets",
-        "description": "High-frequency trading interface executing 50,000+ ticks/sec with virtualized canvas orderbooks and WebAssembly calculations.",
-        "metrics": "< 12ms render latency • 60 FPS orderbook",
-        "tech": ["Next.js", "WebAssembly", "RxJS", "Canvas API", "Tailwind"],
-        "link": "#",
-        "github": "#"
+        "id": "gobus-testing-plan",
+        "category": "manualApi",
+        "title": "Go Bus Transportation - Comprehensive Test Plan & API Audit",
+        "description": "Formulated a structured software test plan (STLC) covering booking lifecycles, user authentication, and seat allocation. Authored complete test case matrices using Boundary Value Analysis and Equivalence Partitioning. Conducted rigorous RESTful API functional testing in Postman, validating payload schemas, HTTP status codes, and edge-case error responses.",
+        "image": "/projects/manual-matrix.jpg",
+        "liveUrl": "",
+        "githubUrl": "https://github.com/noureldeen-fn",
+        "tags": ["Manual Testing", "Postman", "REST APIs", "Test Case Design", "BVA", "Jira Bug Tracking"]
       },
       {
-        "id": "lumina-ai",
-        "title": "Lumina Multimodal AI Studio",
-        "category": "AI/ML Application",
-        "description": "Generative canvas application orchestrating LLM streaming, node-based workflow pipelines, and vector-driven UI cards.",
-        "metrics": "500k+ active sessions • Sub-100ms streaming UI",
-        "tech": ["Next.js App Router", "Server Actions", "Vercel AI SDK", "Zustand"],
-        "link": "#",
-        "github": "#"
-      },
-      {
-        "id": "nexus-edge",
-        "title": "Nexus Distributed Cache Portal",
-        "category": "Cloud & Developer Tools",
-        "description": "Observability and policy control panel for global edge CDN networks with interactive geo-latency heatmaps.",
-        "metrics": "Global telemetry • 99.999% SLA visualization",
-        "tech": ["TypeScript", "D3.js", "Edge Middleware", "Tailwind CSS"],
-        "link": "#",
-        "github": "#"
+        "id": "portfolio-saas",
+        "category": "frontend",
+        "title": "Modern Cyber Portfolio & Engineering Showcase",
+        "description": "High-performance portfolio application built with Next.js (App Router) and Tailwind CSS, featuring strict SSG zero-runtime hydration principles, full RTL/LTR internationalization, and fluid hardware-accelerated animations. Scored 100% on Lighthouse performance, accessibility, and SEO metrics.",
+        "image": "",
+        "liveUrl": "https://noureldeen.me",
+        "githubUrl": "https://github.com/noureldeen-fn",
+        "tags": ["React.js", "Next.js", "TypeScript", "Tailwind CSS", "i18n", "Performance"]
       }
     ]
   },
