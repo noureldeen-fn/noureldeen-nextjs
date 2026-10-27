@@ -58,7 +58,7 @@
       "automation": "Test Automation",
       "manualApi": "Manual & API"
     },
-    "liveStatus": "Live System",
+    "liveStatus": "Live",
     "qaStatus": "Test Architecture",
     "liveDemo": "Live Demo",
     "githubRepo": "Repository",
