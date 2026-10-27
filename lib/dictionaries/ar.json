@@ -142,26 +142,22 @@
     ]
   },
   "skills": {
-    "badge": "المصفوفة التقنية",
-    "title": "الأدوات والمنهجيات الهندسية",
-    "categories": [
-      {
-        "name": "هندسة واجهات المستخدم",
-        "skills": ["Next.js (App Router)", "TypeScript", "React 19/18", "التطبيقات المصغرة (Micro-Frontends)", "أنظمة التصميم", "أداء الويب (CWV)"]
-      },
-      {
-        "name": "التنسيق والحركة البصرية",
-        "skills": ["Tailwind CSS", "الخصائص المنطقية (CSS Logical)", "رموز التصميم (Tokens)", "Framer Motion", "Shadcn/Radix", "الزجاج المعتم (Glassmorphism)"]
-      },
-      {
-        "name": "الحوسبة السحابية والبيئات",
-        "skills": ["برمجيات الحافة (Edge Middleware)", "وحدات الخادم الحصرية (Server-Only)", "Turborepo", "Node.js", "Vercel / Cloudflare", "REST / GraphQL / gRPC"]
-      },
-      {
-        "name": "الجودة والمعايير القياسية",
-        "skills": ["إمكانية الوصول (WAI-ARIA)", "Vitest / Jest", "Playwright E2E", "الفحص الصارم للأنواع (Strict TS)", "خطوط النشر المؤتمتة (CI/CD)", "درجة 100 في Lighthouse"]
-      }
-    ]
+    "badge": "الترسانة التقنية",
+    "title": "الترسانة التقنية والمهارات الأساسية",
+    "sectionTitle": "الترسانة التقنية والمهارات الأساسية",
+    "sectionSubtitle": "استكشف لغات البرمجة، وأطر أتمتة الاختبارات، ومكتبات واجهات المستخدم مصنفة حسب التخصص.",
+    "filters": {
+      "all": "الكل",
+      "languages": "لغات البرمجة",
+      "automation": "أتمتة الاختبارات",
+      "manualApi": "الاختبار اليدوي والـ API",
+      "frontend": "واجهات المستخدم",
+      "tools": "الأدوات وأنظمة التشغيل"
+    },
+    "searchPlaceholder": "ابحث عن المهارات أو الأدوات أو أطر العمل...",
+    "itemsCount": "مهارة في العرض الحالي",
+    "noResults": "لا توجد أدوات مطابقة لخيارات البحث أو التصفية المحددة.",
+    "clearSearch": "إعادة ضبط التصفية"
   },
   "experience": {
     "badge": "المسار المهني",

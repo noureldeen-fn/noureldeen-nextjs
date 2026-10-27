@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="testng-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E72525"/>
+      <stop offset="100%" stop-color="#A81818"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#testng-grad)"/>
+  <g fill="#FFFFFF" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="900" text-anchor="middle">
+    <text x="64" y="76" font-size="36" letter-spacing="1">TestNG</text>
+  </g>
+  <circle cx="102" cy="96" r="8" fill="#FFD200"/>
+</svg>

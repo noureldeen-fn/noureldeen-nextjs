@@ -142,26 +142,22 @@
     ]
   },
   "skills": {
-    "badge": "Technical Matrix",
-    "title": "Architectural Toolkit & Disciplines",
-    "categories": [
-      {
-        "name": "Frontend Architecture",
-        "skills": ["Next.js (App Router)", "TypeScript", "React 19/18", "Micro-Frontends", "Design Systems", "Web Performance (CWV)"]
-      },
-      {
-        "name": "Styling & Motion",
-        "skills": ["Tailwind CSS", "CSS Logical Properties", "Design Tokens", "Framer Motion", "Shadcn/Radix", "Responsive Glassmorphism"]
-      },
-      {
-        "name": "Edge, Cloud & Runtime",
-        "skills": ["Edge Middleware", "Server-Only Modules", "Turborepo", "Node.js", "Vercel / Cloudflare", "REST / GraphQL / gRPC"]
-      },
-      {
-        "name": "Quality & Standards",
-        "skills": ["WAI-ARIA (a11y)", "Vitest / Jest", "Playwright E2E", "Strict Type Checking", "CI/CD Pipelines", "Lighthouse 100"]
-      }
-    ]
+    "badge": "Technical Arsenal",
+    "title": "Technical Arsenal & Core Stack",
+    "sectionTitle": "Technical Arsenal & Core Stack",
+    "sectionSubtitle": "Explore technologies, automation frameworks, and frontend libraries filtered by domain.",
+    "filters": {
+      "all": "All",
+      "languages": "Languages",
+      "automation": "Test Automation",
+      "manualApi": "Manual & API",
+      "frontend": "Frontend",
+      "tools": "Tools & OS"
+    },
+    "searchPlaceholder": "Search skills, frameworks, or tools...",
+    "itemsCount": "skills in current view",
+    "noResults": "No technologies match your filter or search query.",
+    "clearSearch": "Reset Filters"
   },
   "experience": {
     "badge": "Career Path",
