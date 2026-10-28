@@ -73,7 +73,7 @@ export function HeroSection({ lang, dict }: HeroSectionProps) {
                 fill
                 priority
                 sizes="(max-width: 640px) 144px, 176px"
-                className="object-cover object-top"
+                className="object-cover object-center"
               />
             </div>
 
@@ -115,8 +115,8 @@ export function HeroSection({ lang, dict }: HeroSectionProps) {
 
           </div>
 
-          {/* Column 2: Standalone Static Photo (Desktop: 4 Cols shifted slightly to the left | Mobile: Hidden) */}
-          <div className="col-span-12 lg:col-span-4 hidden lg:flex items-center justify-center lg:-translate-x-12 rtl:lg:translate-x-12 pointer-events-auto">
+          {/* Column 2: Standalone Static Photo (Desktop: 4 Cols | Mobile: Hidden) */}
+          <div className="col-span-12 lg:col-span-4 hidden lg:flex items-center justify-center pointer-events-auto">
             <HeroImage />
           </div>
 
