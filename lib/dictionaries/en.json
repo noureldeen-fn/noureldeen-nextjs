@@ -98,7 +98,6 @@
   "certificates": {
     "badge": "Credentials & Mastery",
     "title": "Verified Architectural Certifications",
-    "subtitle": "Industry-recognized specializations in cloud frontend architecture, WebGL graphics, and web performance.",
     "verify": "Verify Credential",
     "items": [
       {
