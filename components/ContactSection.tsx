@@ -1,215 +1,243 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { Mail, MapPin, Send, CheckCircle2, Github, Linkedin, Twitter } from 'lucide-react';
+import React, { useState } from "react";
+import { Mail, MapPin, Send, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 
 interface ContactSectionProps {
+  dict?: any;
   lang?: string;
-  dict: {
-    contact: {
-      badge: string;
-      title: string;
-      description: string;
-      form: {
-        name: string;
-        email: string;
-        subject: string;
-        message: string;
-        send: string;
-        sending: string;
-        success: string;
-        error: string;
-      };
-      directEmail: string;
-      location: string;
-      socials: {
-        github: string;
-        linkedin: string;
-        twitter: string;
-      };
-    };
-  };
 }
 
-export function ContactSection({ lang, dict }: ContactSectionProps) {
-  const { contact } = dict;
-  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+export const ContactSection = ({ dict, lang = "en" }: ContactSectionProps) => {
+  const isRTL = lang === "ar" || dict?.locale?.current === "العربية";
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    if (status !== "idle") {
+      setStatus("idle");
+    }
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus('sending');
-    setTimeout(() => {
-      setStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 1200);
+    setIsSubmitting(true);
+    setStatus("idle");
+    setErrorMessage("");
+
+    const accessKey =
+      process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KEY_HERE";
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.name,
+          email: formData.email,
+          from_name: formData.name,
+          reply_to: formData.email,
+          subject: formData.subject || `New Portfolio Message from ${formData.name}`,
+          message: formData.message,
+          page_source: "noureldeen.me Portfolio",
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setStatus("success");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        setTimeout(() => {
+          setStatus("idle");
+        }, 6000);
+      } else {
+        setStatus("error");
+        setErrorMessage(result.message || "Failed to send message. Please try again.");
+      }
+    } catch (err: any) {
+      setStatus("error");
+      setErrorMessage("Network error occurred. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <section id="contact" className="py-20 lg:py-28 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="max-w-3xl mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-text-primary tracking-tight leading-tight mb-4">
-            {contact.title}
+    <section id="contact" className="relative w-full py-20 lg:py-28 bg-[#161616] text-[#FBEBEB] overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute top-1/2 -start-32 w-80 h-80 bg-[#220202] rounded-full blur-[128px] pointer-events-none" />
+      <div className="absolute bottom-10 -end-32 w-80 h-80 bg-[#F40F0B]/10 rounded-full blur-[128px] pointer-events-none" />
+
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        <div className="max-w-2xl mb-12">
+          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#FBEBEB] mb-4">
+            {isRTL ? "دعنا نتحدث" : "Let's Connect"}
           </h2>
-          <p className="text-base sm:text-lg text-text-muted leading-relaxed font-body">
-            {contact.description}
+          <p className="text-sm sm:text-base text-gray-400 font-body">
+            {isRTL
+              ? "سواء كنت ترغب في مناقشة أتمتة اختبارات مشروعك، أو فحص واجهات الويب، بريدي مفتوح دائماً."
+              : "Whether you are looking to scale test automation frameworks or audit frontend quality, my inbox is open."}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
-          {/* Left Column: Direct Info & Social Channels */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="p-6 sm:p-8 rounded-2xl border border-surface-card-border bg-surface-card shadow-sm space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-accent-subtle flex items-center justify-center text-brand-cta flex-shrink-0">
-                  <Mail className="w-5 h-5" />
-                </div>
-                <div>
-                  <span className="text-xs uppercase tracking-wider text-text-muted font-semibold block font-mono">
-                    {lang === 'ar' ? 'البريد الإلكتروني المباشر' : 'Direct Email'}
-                  </span>
-                  <a
-                    href={`mailto:${contact.directEmail}`}
-                    className="text-base sm:text-lg font-bold text-text-primary hover:text-brand-cta transition-colors focus:outline-none focus-visible:underline"
-                  >
-                    {contact.directEmail}
-                  </a>
-                </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Info Side */}
+          <div className="lg:col-span-5 rounded-2xl bg-[#220202]/50 border border-white/10 p-6 sm:p-8 space-y-6">
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-xl bg-[#F40F0B]/10 border border-[#F40F0B]/30 flex items-center justify-center text-[#F40F0B] shrink-0">
+                <Mail className="w-5 h-5"/>
               </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-accent-subtle flex items-center justify-center text-brand-cta flex-shrink-0">
-                  <MapPin className="w-5 h-5" />
-                </div>
-                <div>
-                  <span className="text-xs uppercase tracking-wider text-text-muted font-semibold block font-mono">
-                    {lang === 'ar' ? 'المقر ونطاق العمل' : 'Location / Presence'}
-                  </span>
-                  <span className="text-sm font-medium text-text-primary">
-                    {contact.location}
-                  </span>
-                </div>
+              <div>
+                <span className="text-xs uppercase tracking-wider text-gray-400 block font-heading">
+                  {isRTL ? "البريد الإلكتروني المباشر" : "Direct Email"}
+                </span>
+                <a
+                  href="mailto:noureldeen.fn@gmail.com"
+                  className="font-body text-sm font-semibold text-[#FBEBEB] hover:text-[#F40F0B] transition-colors"
+                >
+                  noureldeen.fn@gmail.com
+                </a>
               </div>
             </div>
 
-            {/* Social Links */}
-            <div className="p-6 rounded-2xl border border-surface-card-border bg-surface-card shadow-sm flex items-center justify-around gap-4">
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm font-semibold text-text-primary hover:text-brand-cta transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta rounded-lg p-1.5"
-              >
-                <Github className="w-5 h-5 text-brand-cta" />
-                <span>{contact.socials.github}</span>
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm font-semibold text-text-primary hover:text-brand-cta transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta rounded-lg p-1.5"
-              >
-                <Linkedin className="w-5 h-5 text-brand-cta" />
-                <span>{contact.socials.linkedin}</span>
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm font-semibold text-text-primary hover:text-brand-cta transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta rounded-lg p-1.5"
-              >
-                <Twitter className="w-5 h-5 text-brand-cta" />
-                <span>{contact.socials.twitter}</span>
-              </a>
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-xl bg-[#F40F0B]/10 border border-[#F40F0B]/30 flex items-center justify-center text-[#F40F0B] shrink-0">
+                <MapPin className="w-5 h-5"/>
+              </div>
+              <div>
+                <span className="text-xs uppercase tracking-wider text-gray-400 block font-heading">
+                  {isRTL ? "الموقع والعمل" : "Location / Availability"}
+                </span>
+                <span className="font-body text-sm text-[#FBEBEB] block">
+                  {isRTL ? "متاح للعمل (عن بُعد / هجين)" : "Available Worldwide (Remote / Hybrid)"}
+                </span>
+              </div>
             </div>
           </div>
 
-          {/* Right Column: Transmission Form */}
-          <div className="lg:col-span-7">
-            <form
-              onSubmit={handleSubmit}
-              className="p-6 sm:p-8 rounded-2xl border border-surface-card-border bg-surface-card shadow-sm space-y-4"
-            >
-              {status === 'success' && (
-                <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-sm flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
-                  <span>{contact.form.success}</span>
-                </div>
-              )}
+          {/* Form Side */}
+          <div className="lg:col-span-7 rounded-2xl bg-[#220202]/50 border border-white/10 p-6 sm:p-8">
+            {/* Status Alerts */}
+            {status === "success" && (
+              <div className="mb-6 p-4 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-400 text-sm flex items-center gap-3">
+                <CheckCircle2 className="w-5 h-5 shrink-0"/>
+                <span>
+                  {isRTL
+                    ? "تم إرسال رسالتك بنجاح! سأرد عليك في أقرب وقت."
+                    : "Message sent successfully! I will get back to you shortly."}
+                </span>
+              </div>
+            )}
 
+            {status === "error" && (
+              <div className="mb-6 p-4 rounded-xl bg-red-950/60 border border-red-500/40 text-red-400 text-sm flex items-center gap-3">
+                <AlertCircle className="w-5 h-5 shrink-0"/>
+                <span>{errorMessage}</span>
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5 font-mono">
-                    {contact.form.name}
+                  <label className="block text-xs uppercase tracking-wider text-gray-400 font-heading mb-2">
+                    {isRTL ? "الاسم" : "Your Name"}
                   </label>
                   <input
                     type="text"
+                    name="name"
                     required
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-xl border border-surface-card-border bg-bg-main text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-cta text-sm transition-shadow"
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white text-sm focus:border-[#F40F0B] focus:outline-none transition-colors"
+                    placeholder={isRTL ? "اسمك الكامل" : "Jane Doe"}
                   />
                 </div>
+
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5 font-mono">
-                    {contact.form.email}
+                  <label className="block text-xs uppercase tracking-wider text-gray-400 font-heading mb-2">
+                    {isRTL ? "البريد الإلكتروني" : "Email Address"}
                   </label>
                   <input
                     type="email"
+                    name="email"
                     required
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-xl border border-surface-card-border bg-bg-main text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-cta text-sm transition-shadow"
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white text-sm focus:border-[#F40F0B] focus:outline-none transition-colors"
+                    placeholder="name@example.com"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5 font-mono">
-                  {contact.form.subject}
+                <label className="block text-xs uppercase tracking-wider text-gray-400 font-heading mb-2">
+                  {isRTL ? "موضوع الرسالة" : "Subject"}
                 </label>
                 <input
                   type="text"
+                  name="subject"
                   required
                   value={formData.subject}
-                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl border border-surface-card-border bg-bg-main text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-cta text-sm transition-shadow"
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white text-sm focus:border-[#F40F0B] focus:outline-none transition-colors"
+                  placeholder={isRTL ? "استفسار بخصوص مشروع / جودة" : "Project Inquiry / SDET Role"}
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1.5 font-mono">
-                  {contact.form.message}
+                <label className="block text-xs uppercase tracking-wider text-gray-400 font-heading mb-2">
+                  {isRTL ? "تفاصيل الرسالة" : "Message"}
                 </label>
                 <textarea
-                  rows={4}
+                  name="message"
                   required
+                  rows={4}
                   value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl border border-surface-card-border bg-bg-main text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-cta text-sm resize-none transition-shadow"
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white text-sm focus:border-[#F40F0B] focus:outline-none transition-colors resize-none"
+                  placeholder={isRTL ? "اكتب تفاصيل طلبك أو استفسارك هنا..." : "Tell me about your project goals or testing requirements..."}
                 />
               </div>
 
               <button
                 type="submit"
-                disabled={status === 'sending'}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-brand-cta hover:bg-brand-cta-hover text-white font-semibold text-sm tracking-wide shadow-glow transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 font-heading focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta"
+                disabled={isSubmitting}
+                className="w-full py-3.5 px-6 rounded-xl bg-[#F40F0B] hover:brightness-110 text-white text-sm font-semibold flex items-center justify-center gap-2 transition-all shadow-lg shadow-[#F40F0B]/30 disabled:opacity-50 cursor-pointer"
               >
-                <Send className="w-4 h-4" />
-                <span>{status === 'sending' ? contact.form.sending : contact.form.send}</span>
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin"/>
+                    <span>{isRTL ? "جارٍ الإرسال..." : "Sending..."}</span>
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4"/>
+                    <span>{isRTL ? "إرسال الرسالة" : "Send Message"}</span>
+                  </>
+                )}
               </button>
             </form>
           </div>
-
         </div>
-
       </div>
     </section>
   );
-}
+};
 
 export default ContactSection;
