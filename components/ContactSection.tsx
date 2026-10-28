@@ -152,15 +152,10 @@ export const ContactSection = ({ dict, lang = "en" }: ContactSectionProps) => {
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         {/* Header */}
-        <div className="max-w-2xl mb-12">
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#FBEBEB] mb-4">
+        <div className="max-w-2xl mb-8 lg:mb-10">
+          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#FBEBEB]">
             {dict?.contact?.sectionTitle || (isRTL ? "دعنا نتواصل ونبني معاً" : "Let's Connect & Collaborate")}
           </h2>
-          <p className="text-sm sm:text-base text-gray-400 font-body leading-relaxed">
-            {dict?.contact?.sectionSubtitle || (isRTL
-              ? "متاح لفرص العمل بدوام كامل، حضورياً (On-site)، عن بُعد (Remote)، ومشاريع الفريلانس عالمياً. يمكنك التواصل عبر النموذج أو قنوات المراسلة الفورية."
-              : "Available for Full-time, On-site, Remote, and Contract engineering opportunities worldwide. Reach out directly via form or instant channels.")}
-          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
