@@ -185,24 +185,25 @@
     ]
   },
   "contact": {
-    "badge": "Get In Touch",
-    "title": "Let's Engineer Something Exceptional",
-    "description": "Whether you are planning a high-scale frontend overhaul, building an enterprise design system, or seeking architectural guidance, my inbox is open.",
+    "sectionTitle": "Let's Connect & Collaborate",
+    "sectionSubtitle": "Available for Full-time, On-site, Remote, and Contract engineering opportunities worldwide. Reach out directly via form or instant channels.",
+    "directEmail": "Direct Email",
+    "whatsapp": "WhatsApp Direct",
+    "linkedin": "LinkedIn Profile",
+    "github": "GitHub Repositories",
     "form": {
       "name": "Your Name",
+      "namePlaceholder": "Jane Doe",
       "email": "Email Address",
-      "subject": "Subject / Project Scope",
+      "emailPlaceholder": "name@example.com",
+      "subject": "Subject / Scope",
+      "subjectPlaceholder": "SDET Role / Testing Inquiry / Project Scope",
       "message": "Project Details & Timeline",
-      "send": "Transmit Message",
+      "messagePlaceholder": "Describe your requirements, role specifications, or timelines...",
+      "send": "Send Message",
       "sending": "Transmitting...",
-      "success": "Message sent successfully! I will get back to you within 24 hours.",
-      "error": "Failed to send message. Please reach out directly via email."
-    },
-    "directEmail": "noureldeen.fn@gmail.com",
-    "location": "Available Worldwide (Remote / Hybrid)",
-    "socials": {
-      "github": "GitHub",
-      "linkedin": "LinkedIn"
+      "success": "Message sent successfully! I will respond within 24 hours.",
+      "error": "Failed to send message. Please reach out directly via WhatsApp or Email."
     }
   },
   "footer": {

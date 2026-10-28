@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { Mail, MapPin, Send, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { Send, Loader2, CheckCircle2, AlertCircle, ArrowUpRight } from "lucide-react";
 
 interface ContactSectionProps {
-  dict?: any;
+  dict: any;
   lang?: string;
 }
 
@@ -54,7 +54,7 @@ export const ContactSection = ({ dict, lang = "en" }: ContactSectionProps) => {
           reply_to: formData.email,
           subject: formData.subject || `New Portfolio Message from ${formData.name}`,
           message: formData.message,
-          page_source: "noureldeen.me Portfolio",
+          page_source: "noureldeen.me Portfolio Contact",
         }),
       });
 
@@ -68,86 +68,147 @@ export const ContactSection = ({ dict, lang = "en" }: ContactSectionProps) => {
         }, 6000);
       } else {
         setStatus("error");
-        setErrorMessage(result.message || "Failed to send message. Please try again.");
+        setErrorMessage(result.message || dict?.contact?.form?.error || "Failed to send message.");
       }
     } catch (err: any) {
       setStatus("error");
-      setErrorMessage("Network error occurred. Please try again later.");
+      setErrorMessage(dict?.contact?.form?.error || "Network error occurred. Please try again later.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  // Official Brand Channels Data
+  const directChannels = [
+    {
+      label: dict?.contact?.directEmail || "Direct Email",
+      value: "noureldeen.fn@gmail.com",
+      href: "mailto:noureldeen.fn@gmail.com",
+      isExternal: false,
+      icon: (
+        <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
+          <rect width="24" height="24" rx="6" fill="#EA4335" />
+          <path d="M4 6.5l8 5.5 8-5.5v11H4v-11z" fill="#FFFFFF" fillOpacity="0.2" />
+          <path d="M4.5 6h15a.5.5 0 0 1 .5.5v1.2l-8 5.3-8-5.3V6.5a.5.5 0 0 1 .5-.5z" fill="#FFFFFF" />
+          <path d="M4 8.2v9.3a.5.5 0 0 0 .5.5H7V10.2l-3-2z" fill="#FFFFFF" fillOpacity="0.9" />
+          <path d="M20 8.2v9.3a.5.5 0 0 1-.5.5H17V10.2l3-2z" fill="#FFFFFF" fillOpacity="0.9" />
+        </svg>
+      ),
+    },
+    {
+      label: dict?.contact?.whatsapp || "WhatsApp Direct",
+      value: "+20 109 534 4657",
+      href: "https://wa.me/201095344657",
+      isExternal: true,
+      icon: (
+        <svg viewBox="0 0 32 32" className="w-6 h-6" fill="none">
+          <circle cx="16" cy="16" r="16" fill="#25D366" />
+          <path
+            d="M23.5 19.3c-.4-.2-2.4-1.2-2.8-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.3-.5.3-.9.1-.4-.2-1.8-.7-3.4-2.1-1.3-1.1-2.1-2.5-2.4-2.9-.3-.4 0-.7.2-.9.2-.2.4-.5.6-.7.2-.2.3-.4.4-.6.1-.2.1-.5 0-.7-.1-.2-.9-2.2-1.2-3-.3-.8-.7-.7-1-.7h-.8c-.3 0-.8.1-1.2.6-.4.4-1.6 1.6-1.6 3.8s1.6 4.4 1.9 4.7c.2.3 3.2 4.9 7.7 6.8 1.1.5 1.9.7 2.6.9 1.1.4 2.1.3 2.9.2.9-.1 2.8-1.1 3.2-2.2.4-1.2.4-2.1.3-2.3-.1-.2-.4-.3-.8-.5z"
+            fill="#FFFFFF"
+          />
+        </svg>
+      ),
+    },
+    {
+      label: dict?.contact?.linkedin || "LinkedIn Profile",
+      value: "linkedin.com/in/noureldeen-zayan",
+      href: "https://www.linkedin.com/in/noureldeen-zayan",
+      isExternal: true,
+      icon: (
+        <svg viewBox="0 0 32 32" className="w-6 h-6" fill="none">
+          <rect width="32" height="32" rx="6" fill="#0A66C2" />
+          <path
+            d="M9.8 12.3H5.8v13.9h4V12.3zM7.8 5.8a2.3 2.3 0 1 0 0 4.6 2.3 2.3 0 0 0 0-4.6zM26.2 12.3h-3.9v1.9h-.1c-.5-1.1-2-2.3-4.1-2.3-4.4 0-5.2 2.9-5.2 6.7v7.6h4v-6.7c0-1.6 0-3.7 2.3-3.7s2.6 1.8 2.6 3.6v6.8h4V12.3z"
+            fill="#FFFFFF"
+          />
+        </svg>
+      ),
+    },
+    {
+      label: dict?.contact?.github || "GitHub Repositories",
+      value: "github.com/noureldeen-fn",
+      href: "https://github.com/noureldeen-fn",
+      isExternal: true,
+      icon: (
+        <svg viewBox="0 0 32 32" className="w-6 h-6" fill="none">
+          <circle cx="16" cy="16" r="16" fill="#24292E" />
+          <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M16 5a11 11 0 0 0-3.5 21.4c.5.1.8-.2.8-.5v-2c-3.1.7-3.7-1.3-3.7-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1.7 2.8 3.5 2 .1-.8.4-1.3.7-1.6-2.5-.3-5-1.2-5-5.5 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-3 0 0 .9-.3 3.1 1.1a10.8 10.8 0 0 1 5.6 0c2.2-1.4 3.1-1.1 3.1-1.1.6 1.6.2 2.7.1 3 .7.8 1.1 1.8 1.1 3 0 4.3-2.6 5.2-5.1 5.5.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.5A11 11 0 0 0 16 5z"
+            fill="#FFFFFF"
+          />
+        </svg>
+      ),
+    },
+  ];
+
   return (
     <section id="contact" className="relative w-full py-20 lg:py-28 bg-[#161616] text-[#FBEBEB] overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute top-1/2 -start-32 w-80 h-80 bg-[#220202] rounded-full blur-[128px] pointer-events-none" />
-      <div className="absolute bottom-10 -end-32 w-80 h-80 bg-[#F40F0B]/10 rounded-full blur-[128px] pointer-events-none" />
+      {/* Background Ambient Glow */}
+      <div className="absolute top-1/2 -start-32 w-96 h-96 bg-[#220202] rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 -end-32 w-96 h-96 bg-[#F40F0B]/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        {/* Header */}
         <div className="max-w-2xl mb-12">
           <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#FBEBEB] mb-4">
-            {isRTL ? "دعنا نتحدث" : "Let's Connect"}
+            {dict?.contact?.sectionTitle || (isRTL ? "دعنا نتواصل ونبني معاً" : "Let's Connect & Collaborate")}
           </h2>
-          <p className="text-sm sm:text-base text-gray-400 font-body">
-            {isRTL
-              ? "سواء كنت ترغب في مناقشة أتمتة اختبارات مشروعك، أو فحص واجهات الويب، بريدي مفتوح دائماً."
-              : "Whether you are looking to scale test automation frameworks or audit frontend quality, my inbox is open."}
+          <p className="text-sm sm:text-base text-gray-400 font-body leading-relaxed">
+            {dict?.contact?.sectionSubtitle || (isRTL
+              ? "متاح لفرص العمل بدوام كامل، حضورياً (On-site)، عن بُعد (Remote)، ومشاريع الفريلانس عالمياً. يمكنك التواصل عبر النموذج أو قنوات المراسلة الفورية."
+              : "Available for Full-time, On-site, Remote, and Contract engineering opportunities worldwide. Reach out directly via form or instant channels.")}
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Info Side */}
-          <div className="lg:col-span-5 rounded-2xl bg-[#220202]/50 border border-white/10 p-6 sm:p-8 space-y-6">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-[#F40F0B]/10 border border-[#F40F0B]/30 flex items-center justify-center text-[#F40F0B] shrink-0">
-                <Mail className="w-5 h-5"/>
-              </div>
-              <div>
-                <span className="text-xs uppercase tracking-wider text-gray-400 block font-heading">
-                  {isRTL ? "البريد الإلكتروني المباشر" : "Direct Email"}
-                </span>
-                <a
-                  href="mailto:noureldeen.fn@gmail.com"
-                  className="font-body text-sm font-semibold text-[#FBEBEB] hover:text-[#F40F0B] transition-colors"
-                >
-                  noureldeen.fn@gmail.com
-                </a>
-              </div>
-            </div>
+          {/* Left Column: Direct Communication Channels (NO Location) */}
+          <div className="lg:col-span-5 rounded-3xl bg-[#220202]/60 border border-white/10 p-6 sm:p-8 space-y-4 shadow-2xl">
+            <span className="text-xs uppercase tracking-wider text-[#F40F0B] font-heading font-semibold block mb-2">
+              {isRTL ? "قنوات التواصل المباشر" : "Direct Channels"}
+            </span>
 
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-[#F40F0B]/10 border border-[#F40F0B]/30 flex items-center justify-center text-[#F40F0B] shrink-0">
-                <MapPin className="w-5 h-5"/>
-              </div>
-              <div>
-                <span className="text-xs uppercase tracking-wider text-gray-400 block font-heading">
-                  {isRTL ? "الموقع والعمل" : "Location / Availability"}
-                </span>
-                <span className="font-body text-sm text-[#FBEBEB] block">
-                  {isRTL ? "متاح للعمل (عن بُعد / هجين)" : "Available Worldwide (Remote / Hybrid)"}
-                </span>
-              </div>
-            </div>
+            {directChannels.map((channel, idx) => (
+              <a
+                key={idx}
+                href={channel.href}
+                target={channel.isExternal ? "_blank" : undefined}
+                rel={channel.isExternal ? "noreferrer" : undefined}
+                className="group flex items-center justify-between p-3.5 rounded-2xl bg-black/40 border border-white/5 hover:border-[#F40F0B]/50 hover:bg-[#310302]/40 transition-all duration-200"
+              >
+                <div className="flex items-center gap-3.5">
+                  <div className="shrink-0 transform transition-transform duration-200 group-hover:scale-110">
+                    {channel.icon}
+                  </div>
+                  <div>
+                    <span className="text-[11px] uppercase tracking-wider text-gray-400 block font-heading">
+                      {channel.label}
+                    </span>
+                    <span className="font-body text-xs sm:text-sm font-semibold text-[#FBEBEB] group-hover:text-white transition-colors">
+                      {channel.value}
+                    </span>
+                  </div>
+                </div>
+                <ArrowUpRight className="w-4 h-4 text-gray-500 group-hover:text-[#F40F0B] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+              </a>
+            ))}
           </div>
 
-          {/* Form Side */}
-          <div className="lg:col-span-7 rounded-2xl bg-[#220202]/50 border border-white/10 p-6 sm:p-8">
-            {/* Status Alerts */}
+          {/* Right Column: Web3Forms Email Submission */}
+          <div className="lg:col-span-7 rounded-3xl bg-[#220202]/60 border border-white/10 p-6 sm:p-8 shadow-2xl">
+            {/* Real Submission Feedback */}
             {status === "success" && (
-              <div className="mb-6 p-4 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-400 text-sm flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 shrink-0"/>
-                <span>
-                  {isRTL
-                    ? "تم إرسال رسالتك بنجاح! سأرد عليك في أقرب وقت."
-                    : "Message sent successfully! I will get back to you shortly."}
-                </span>
+              <div className="mb-6 p-4 rounded-xl bg-emerald-950/70 border border-emerald-500/40 text-emerald-400 text-sm flex items-center gap-3">
+                <CheckCircle2 className="w-5 h-5 shrink-0" />
+                <span>{dict?.contact?.form?.success || "Message sent successfully!"}</span>
               </div>
             )}
 
             {status === "error" && (
-              <div className="mb-6 p-4 rounded-xl bg-red-950/60 border border-red-500/40 text-red-400 text-sm flex items-center gap-3">
-                <AlertCircle className="w-5 h-5 shrink-0"/>
+              <div className="mb-6 p-4 rounded-xl bg-red-950/70 border border-red-500/40 text-red-400 text-sm flex items-center gap-3">
+                <AlertCircle className="w-5 h-5 shrink-0" />
                 <span>{errorMessage}</span>
               </div>
             )}
@@ -156,7 +217,7 @@ export const ContactSection = ({ dict, lang = "en" }: ContactSectionProps) => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs uppercase tracking-wider text-gray-400 font-heading mb-2">
-                    {isRTL ? "الاسم" : "Your Name"}
+                    {dict?.contact?.form?.name || "Your Name"}
                   </label>
                   <input
                     type="text"
@@ -165,13 +226,13 @@ export const ContactSection = ({ dict, lang = "en" }: ContactSectionProps) => {
                     value={formData.name}
                     onChange={handleChange}
                     className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white text-sm focus:border-[#F40F0B] focus:outline-none transition-colors"
-                    placeholder={isRTL ? "اسمك الكامل" : "Jane Doe"}
+                    placeholder={dict?.contact?.form?.namePlaceholder || "Jane Doe"}
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs uppercase tracking-wider text-gray-400 font-heading mb-2">
-                    {isRTL ? "البريد الإلكتروني" : "Email Address"}
+                    {dict?.contact?.form?.email || "Email Address"}
                   </label>
                   <input
                     type="email"
@@ -180,14 +241,14 @@ export const ContactSection = ({ dict, lang = "en" }: ContactSectionProps) => {
                     value={formData.email}
                     onChange={handleChange}
                     className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white text-sm focus:border-[#F40F0B] focus:outline-none transition-colors"
-                    placeholder="name@example.com"
+                    placeholder={dict?.contact?.form?.emailPlaceholder || "name@example.com"}
                   />
                 </div>
               </div>
 
               <div>
                 <label className="block text-xs uppercase tracking-wider text-gray-400 font-heading mb-2">
-                  {isRTL ? "موضوع الرسالة" : "Subject"}
+                  {dict?.contact?.form?.subject || "Subject"}
                 </label>
                 <input
                   type="text"
@@ -196,13 +257,13 @@ export const ContactSection = ({ dict, lang = "en" }: ContactSectionProps) => {
                   value={formData.subject}
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white text-sm focus:border-[#F40F0B] focus:outline-none transition-colors"
-                  placeholder={isRTL ? "استفسار بخصوص مشروع / جودة" : "Project Inquiry / SDET Role"}
+                  placeholder={dict?.contact?.form?.subjectPlaceholder || "Project Scope"}
                 />
               </div>
 
               <div>
                 <label className="block text-xs uppercase tracking-wider text-gray-400 font-heading mb-2">
-                  {isRTL ? "تفاصيل الرسالة" : "Message"}
+                  {dict?.contact?.form?.message || "Message"}
                 </label>
                 <textarea
                   name="message"
@@ -211,7 +272,7 @@ export const ContactSection = ({ dict, lang = "en" }: ContactSectionProps) => {
                   value={formData.message}
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white text-sm focus:border-[#F40F0B] focus:outline-none transition-colors resize-none"
-                  placeholder={isRTL ? "اكتب تفاصيل طلبك أو استفسارك هنا..." : "Tell me about your project goals or testing requirements..."}
+                  placeholder={dict?.contact?.form?.messagePlaceholder || "Describe your requirements..."}
                 />
               </div>
 
@@ -222,13 +283,13 @@ export const ContactSection = ({ dict, lang = "en" }: ContactSectionProps) => {
               >
                 {isSubmitting ? (
                   <>
-                    <Loader2 className="w-4 h-4 animate-spin"/>
-                    <span>{isRTL ? "جارٍ الإرسال..." : "Sending..."}</span>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>{dict?.contact?.form?.sending || "Sending..."}</span>
                   </>
                 ) : (
                   <>
-                    <Send className="w-4 h-4"/>
-                    <span>{isRTL ? "إرسال الرسالة" : "Send Message"}</span>
+                    <Send className="w-4 h-4" />
+                    <span>{dict?.contact?.form?.send || "Send Message"}</span>
                   </>
                 )}
               </button>
