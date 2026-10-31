@@ -124,9 +124,9 @@ export const SkillsSection = ({ dict, lang = "en" }: SkillsSectionProps) => {
       icon: "/skills/docker.svg",
     },
     {
-      name: "Linux Mint",
+      name: "Linux",
       category: "tools",
-      icon: "/skills/linuxmint.svg",
+      icon: "/skills/linux.svg",
     },
     {
       name: "Bash",
