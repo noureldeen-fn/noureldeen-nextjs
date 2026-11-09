@@ -13,18 +13,21 @@ export const HeroAnimation = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-
-    const checkMobile = () => {
-      // Disable on mobile/phone screens (< 1024px) or mobile touch devices
+    const checkIsMobile = () => {
       const isSmallScreen = window.innerWidth < 1024;
       const isTouch = window.matchMedia('(pointer: coarse)').matches && window.innerWidth < 1024;
-      setIsMobile(isSmallScreen || isTouch);
+      return isSmallScreen || isTouch;
     };
 
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    setIsMobile(checkIsMobile());
+    setMounted(true);
+
+    const onResize = () => {
+      setIsMobile(checkIsMobile());
+    };
+
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
   }, []);
 
   if (!mounted || isMobile) {
