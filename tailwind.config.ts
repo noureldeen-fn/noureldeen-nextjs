@@ -30,6 +30,9 @@ const config: Config = {
         'surface-hover': 'var(--surface-hover)',
         'accent-subtle': 'var(--accent-subtle)',
       },
+      textColor: {
+        'brand-cta': 'var(--brand-cta-text)',
+      },
       fontFamily: {
         heading: ["var(--font-space-grotesk)", "var(--font-cairo)", "sans-serif"],
         body: ["var(--font-inter)", "var(--font-cairo)", "sans-serif"],

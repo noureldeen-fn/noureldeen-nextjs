@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight, ExternalLink, Terminal } from "lucide-react";
 
 interface ProjectsSectionProps {
@@ -103,8 +104,8 @@ export const ProjectsSection = ({ dict, lang = "en" }: ProjectsSectionProps) => 
                 onClick={() => handleCategoryChange(tab.id)}
                 className={`px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
                   isActive
-                    ? "bg-[#F40F0B] text-white shadow-lg shadow-[#F40F0B]/40 scale-105"
-                    : "bg-[#220202]/70 text-gray-400 border border-white/10 hover:border-[#F40F0B]/40 hover:text-white"
+                    ? "bg-[#D70C09] text-white shadow-lg shadow-[#D70C09]/40 scale-105"
+                    : "bg-[#220202]/70 text-gray-400 border border-white/10 hover:border-[#D70C09]/40 hover:text-white"
                 }`}
               >
                 {tab.label}
@@ -152,12 +153,14 @@ export const ProjectsSection = ({ dict, lang = "en" }: ProjectsSectionProps) => 
 
                   {/* Image / Fallback */}
                   {!imageError ? (
-                    <img
+                    <Image
                       key={currentProject.id}
                       src={dynamicPreviewUrl}
                       alt={currentProject.title}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 520px"
+                      className="object-cover object-top"
                       onError={() => setImageError(true)}
-                      className="w-full h-full object-cover object-top"
                     />
                   ) : (
                     <div className="flex flex-col items-center justify-center p-6 text-center text-gray-400">
@@ -176,7 +179,7 @@ export const ProjectsSection = ({ dict, lang = "en" }: ProjectsSectionProps) => 
                 <div className="lg:col-span-6 flex flex-col justify-between">
                   <div>
                     {/* Category Label */}
-                    <span className="text-xs font-semibold text-[#F40F0B] uppercase tracking-wider block mb-2">
+                    <span className="text-xs font-semibold text-[#FF4D4D] uppercase tracking-wider block mb-2">
                       {getCategoryLabel(currentProject.category)}
                     </span>
 
@@ -200,7 +203,7 @@ export const ProjectsSection = ({ dict, lang = "en" }: ProjectsSectionProps) => 
                           href={currentProject.liveUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#F40F0B] text-white text-xs font-semibold hover:brightness-110 shadow-lg shadow-[#F40F0B]/30 transition-all cursor-pointer"
+                          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#D70C09] text-white text-xs font-semibold hover:brightness-110 shadow-lg shadow-[#D70C09]/30 transition-all cursor-pointer"
                         >
                           <span>{dict?.projects?.liveDemo || (isRTL ? "معاينة مباشرة" : "Live Demo")}</span>
                           <ExternalLink className="w-3.5 h-3.5" />
@@ -270,12 +273,16 @@ export const ProjectsSection = ({ dict, lang = "en" }: ProjectsSectionProps) => 
                   setCurrentIndex(idx);
                 }}
                 aria-label={`Jump to project ${idx + 1}`}
-                className={`transition-all duration-300 rounded-full cursor-pointer ${
-                  isActive
-                    ? "w-8 h-2.5 bg-[#F40F0B] shadow-md shadow-[#F40F0B]/50"
-                    : "w-2.5 h-2.5 bg-white/20 hover:bg-white/40"
-                }`}
-              />
+                className="w-8 h-8 flex items-center justify-center cursor-pointer -mx-1"
+              >
+                <span
+                  className={`transition-all duration-300 rounded-full ${
+                    isActive
+                      ? "w-8 h-2.5 bg-[#D70C09] shadow-md shadow-[#D70C09]/50"
+                      : "w-2.5 h-2.5 bg-white/20 hover:bg-white/40"
+                  }`}
+                />
+              </button>
             );
           })}
         </div>

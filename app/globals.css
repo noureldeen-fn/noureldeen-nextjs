@@ -9,6 +9,7 @@
   --text-primary: #220202;
   --text-muted: #610605;
   --brand-cta: #C30C09;
+  --brand-cta-text: #C30C09;
   --brand-cta-hover: #9E0A07;
   --brand-cta-glow: rgba(195, 12, 9, 0.25);
   --surface-card: rgba(255, 255, 255, 0.85);
@@ -44,13 +45,14 @@
   --bg-alt: #220202;
   --text-primary: #FFFFFF;
   --text-muted: #FDCFCE;
-  --brand-cta: #F40F0B;
-  --brand-cta-hover: #FF3B38;
-  --brand-cta-glow: rgba(244, 15, 11, 0.4);
+  --brand-cta: #D70C09;
+  --brand-cta-text: #FF4D4D;
+  --brand-cta-hover: #B80A07;
+  --brand-cta-glow: rgba(215, 12, 9, 0.4);
   --surface-card: rgba(26, 26, 26, 0.8);
   --surface-card-border: rgba(253, 207, 206, 0.15);
   --surface-hover: rgba(34, 2, 2, 0.6);
-  --accent-subtle: rgba(244, 15, 11, 0.15);
+  --accent-subtle: rgba(215, 12, 9, 0.15);
 
   /* Shadcn Tokens Mapped to Your Palette */
   --background: var(--bg-main);
@@ -67,7 +69,7 @@
   --muted-foreground: var(--text-muted);
   --accent: var(--accent-subtle);
   --accent-foreground: var(--brand-cta);
-  --destructive: #F40F0B;
+  --destructive: #D70C09;
   --border: var(--surface-card-border);
   --input: var(--surface-card-border);
   --ring: var(--brand-cta);

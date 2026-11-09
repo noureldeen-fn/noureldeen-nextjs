@@ -83,9 +83,9 @@ export const CertificatesSection = ({ lang = "en", dict }: CertificatesSectionPr
                       </div>
                     </div>
 
-                    <h4 className="font-heading text-base sm:text-lg font-bold text-[#FBEBEB] max-w-xs mb-1 line-clamp-2">
+                    <p className="font-heading text-base sm:text-lg font-bold text-[#FBEBEB] max-w-xs mb-1 line-clamp-2">
                       {currentCert.title}
-                    </h4>
+                    </p>
 
                     <span className="text-xs text-gray-400 font-mono">
                       {currentCert.issuer}
@@ -102,7 +102,7 @@ export const CertificatesSection = ({ lang = "en", dict }: CertificatesSectionPr
                 <div className="lg:col-span-6 flex flex-col justify-between">
                   <div>
                     {/* Issuer Label */}
-                    <span className="text-xs font-semibold text-[#F40F0B] uppercase tracking-wider block mb-2 font-mono">
+                    <span className="text-xs font-semibold text-[#FF4D4D] uppercase tracking-wider block mb-2 font-mono">
                       {currentCert.issuer}
                     </span>
 
@@ -141,7 +141,7 @@ export const CertificatesSection = ({ lang = "en", dict }: CertificatesSectionPr
                       href={currentCert.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#F40F0B] text-white text-xs font-semibold hover:brightness-110 shadow-lg shadow-[#F40F0B]/30 transition-all cursor-pointer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#D70C09] text-white text-xs font-semibold hover:brightness-110 shadow-lg shadow-[#D70C09]/30 transition-all cursor-pointer"
                     >
                       <ShieldCheck className="w-4 h-4" />
                       <span>{dict?.certificates?.verify || (isRTL ? "التحقق من الشهادة" : "Verify Credential")}</span>
@@ -193,7 +193,7 @@ export const CertificatesSection = ({ lang = "en", dict }: CertificatesSectionPr
         </div>
 
         {/* Interactive Pagination Dots */}
-        <div className="flex items-center justify-center gap-2.5 mt-8">
+        <div className="flex items-center justify-center gap-1.5 mt-8">
           {items.map((_: any, idx: number) => {
             const isActive = currentIndex === idx;
             return (
@@ -202,12 +202,16 @@ export const CertificatesSection = ({ lang = "en", dict }: CertificatesSectionPr
                 type="button"
                 onClick={() => setCurrentIndex(idx)}
                 aria-label={`Jump to certificate ${idx + 1}`}
-                className={`transition-all duration-300 rounded-full cursor-pointer ${
-                  isActive
-                    ? "w-8 h-2.5 bg-[#F40F0B] shadow-md shadow-[#F40F0B]/50"
-                    : "w-2.5 h-2.5 bg-white/20 hover:bg-white/40"
-                }`}
-              />
+                className="w-8 h-8 flex items-center justify-center cursor-pointer -mx-1"
+              >
+                <span
+                  className={`transition-all duration-300 rounded-full ${
+                    isActive
+                      ? "w-8 h-2.5 bg-[#D70C09] shadow-md shadow-[#D70C09]/50"
+                      : "w-2.5 h-2.5 bg-white/20 hover:bg-white/40"
+                  }`}
+                />
+              </button>
             );
           })}
         </div>

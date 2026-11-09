@@ -161,8 +161,8 @@ export const SkillsSection = ({ dict, lang = "en" }: SkillsSectionProps) => {
                 onClick={() => setActiveTab(tab.id)}
                 className={`px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
                   isActive
-                    ? "bg-[#F40F0B] text-white shadow-lg shadow-[#F40F0B]/40 scale-105"
-                    : "bg-[#220202]/70 text-gray-400 border border-white/10 hover:border-[#F40F0B]/40 hover:text-white"
+                    ? "bg-[#D70C09] text-white shadow-lg shadow-[#D70C09]/40 scale-105"
+                    : "bg-[#220202]/70 text-gray-400 border border-white/10 hover:border-[#D70C09]/40 hover:text-white"
                 }`}
               >
                 {tab.label}

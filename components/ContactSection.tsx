@@ -161,7 +161,7 @@ export const ContactSection = ({ dict, lang = "en" }: ContactSectionProps) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column: Direct Communication Channels (NO Location) */}
           <div className="lg:col-span-5 rounded-3xl bg-[#220202]/60 border border-white/10 p-6 sm:p-8 space-y-4 shadow-2xl">
-            <span className="text-xs uppercase tracking-wider text-[#F40F0B] font-heading font-semibold block mb-2">
+            <span className="text-xs uppercase tracking-wider text-[#FF4D4D] font-heading font-semibold block mb-2">
               {isRTL ? "قنوات التواصل المباشر" : "Direct Channels"}
             </span>
 
@@ -274,7 +274,7 @@ export const ContactSection = ({ dict, lang = "en" }: ContactSectionProps) => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3.5 px-6 rounded-xl bg-[#F40F0B] hover:brightness-110 text-white text-sm font-semibold flex items-center justify-center gap-2 transition-all shadow-lg shadow-[#F40F0B]/30 disabled:opacity-50 cursor-pointer"
+                className="w-full py-3.5 px-6 rounded-xl bg-[#D70C09] hover:brightness-110 text-white text-sm font-semibold flex items-center justify-center gap-2 transition-all shadow-lg shadow-[#D70C09]/30 disabled:opacity-50 cursor-pointer"
               >
                 {isSubmitting ? (
                   <>

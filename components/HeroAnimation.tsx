@@ -1,9 +1,11 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { useTheme } from 'next-themes';
-import Antigravity from '@/components/Antigravity';
-import Particles from '@/components/Particles';
+
+const Antigravity = dynamic(() => import('@/components/Antigravity'), { ssr: false });
+const Particles = dynamic(() => import('@/components/Particles'), { ssr: false });
 
 export const HeroAnimation = () => {
   const { resolvedTheme } = useTheme();
