@@ -8,19 +8,31 @@ import Particles from '@/components/Particles';
 export const HeroAnimation = () => {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+
+    const checkMobile = () => {
+      // Disable on mobile/phone screens (< 1024px) or mobile touch devices
+      const isSmallScreen = window.innerWidth < 1024;
+      const isTouch = window.matchMedia('(pointer: coarse)').matches && window.innerWidth < 1024;
+      setIsMobile(isSmallScreen || isTouch);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  if (!mounted) {
-    return <div className="absolute inset-0 bg-bg-main -z-10" />;
+  if (!mounted || isMobile) {
+    return null;
   }
 
   const isDark = resolvedTheme === 'dark';
 
   return (
-    <div className="absolute inset-0 w-full h-full -z-10 overflow-hidden pointer-events-auto">
+    <div className="hidden lg:block absolute inset-0 w-full h-full -z-10 overflow-hidden pointer-events-auto">
       {isDark ? (
         <Antigravity
           key="dark-canvas-active"
