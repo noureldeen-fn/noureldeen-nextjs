@@ -57,7 +57,7 @@ export const HeroAnimation = () => {
           lerpSpeed={0.05}
           interactive
           clickBurst
-          intro
+          intro={false}
           lightMode={false}
           className="w-full h-full"
         />

@@ -66,7 +66,7 @@ export function HeroSection({ lang, dict }: HeroSectionProps) {
             </h1>
 
             {/* 3. Mobile-Only Avatar (Circular under Name, Hidden on Desktop) */}
-            <div className="block lg:hidden my-6 w-36 h-36 sm:w-44 sm:h-44 rounded-full border-2 sm:border-[3px] border-brand-cta shadow-2xl shadow-brand-cta/30 relative overflow-hidden flex items-center justify-center bg-gradient-to-b from-brand-cta/15 via-surface-card to-surface-card">
+            <div className="block lg:hidden my-6 w-36 h-36 sm:w-44 sm:h-44 rounded-full shadow-2xl relative overflow-hidden flex items-center justify-center bg-surface-card">
               <Image
                 src="/my-photo-portfolio.png"
                 alt={hero.name}
