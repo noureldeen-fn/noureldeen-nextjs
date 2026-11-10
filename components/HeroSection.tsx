@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import Image from 'next/image';
 import { ArrowUpRight, Sparkles } from 'lucide-react';
@@ -68,7 +66,7 @@ export function HeroSection({ lang, dict }: HeroSectionProps) {
             {/* 3. Mobile-Only Avatar (Hidden on Desktop) */}
             <div className="block lg:hidden my-6 w-44 h-44 sm:w-52 sm:h-52 relative flex items-center justify-center [mask-image:linear-gradient(to_bottom,black_85%,transparent_100%)]">
               <Image
-                src="/my-photo-portfolio.png"
+                src="/my-photo-mobile.webp"
                 alt={hero.name}
                 fill
                 priority

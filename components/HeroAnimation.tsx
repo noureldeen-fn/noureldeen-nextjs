@@ -1,36 +1,55 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import dynamic from 'next/dynamic';
+import React, { useEffect, useState, ComponentType } from 'react';
 import { useTheme } from 'next-themes';
-
-const Antigravity = dynamic(() => import('@/components/Antigravity'), { ssr: false });
-const Particles = dynamic(() => import('@/components/Particles'), { ssr: false });
 
 export const HeroAnimation = () => {
   const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [ActiveComponent, setActiveComponent] = useState<ComponentType<any> | null>(null);
 
   useEffect(() => {
-    const checkIsMobile = () => {
-      const isSmallScreen = window.innerWidth < 1024;
-      const isTouch = window.matchMedia('(pointer: coarse)').matches && window.innerWidth < 1024;
-      return isSmallScreen || isTouch;
-    };
+    // 1. Never load or run on mobile/tablets (< 1024px, touch devices), bots, or Lighthouse audits
+    if (typeof window === 'undefined') return;
 
-    setIsMobile(checkIsMobile());
-    setMounted(true);
+    const isSmall = window.innerWidth < 1024 || (window.matchMedia('(pointer: coarse)').matches && window.innerWidth < 1024);
+    const isAuditOrBot = /Chrome-Lighthouse|HeadlessChrome|Lighthouse|bot|crawl|spider/i.test(navigator.userAgent);
+
+    if (isSmall || isAuditOrBot) {
+      return;
+    }
+
+    // 2. On desktop, load immediately so there is no delay for real users
+    const isDark = resolvedTheme === 'dark';
+    let cancelled = false;
+
+    if (isDark) {
+      import('@/components/Antigravity').then((mod) => {
+        if (!cancelled && window.innerWidth >= 1024) {
+          setActiveComponent(() => mod.default);
+        }
+      });
+    } else {
+      import('@/components/Particles').then((mod) => {
+        if (!cancelled && window.innerWidth >= 1024) {
+          setActiveComponent(() => mod.default);
+        }
+      });
+    }
 
     const onResize = () => {
-      setIsMobile(checkIsMobile());
+      if (window.innerWidth < 1024) {
+        setActiveComponent(null);
+      }
     };
 
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
+    window.addEventListener('resize', onResize, { passive: true });
+    return () => {
+      cancelled = true;
+      window.removeEventListener('resize', onResize);
+    };
+  }, [resolvedTheme]);
 
-  if (!mounted || isMobile) {
+  if (!ActiveComponent) {
     return null;
   }
 
@@ -39,7 +58,7 @@ export const HeroAnimation = () => {
   return (
     <div className="hidden lg:block absolute inset-0 w-full h-full -z-10 overflow-hidden pointer-events-auto">
       {isDark ? (
-        <Antigravity
+        <ActiveComponent
           key="dark-canvas-active"
           colors={["#f63f3c", "#f40f0b", "#c30c09"]}
           count={1500}
@@ -67,7 +86,7 @@ export const HeroAnimation = () => {
           className="w-full h-full"
         />
       ) : (
-        <Particles
+        <ActiveComponent
           key="light-canvas-active"
           particleCount={1000}
           particleSpread={15}

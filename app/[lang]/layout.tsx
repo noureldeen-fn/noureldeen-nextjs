@@ -114,10 +114,10 @@ export default async function RootLayout(
   const dir = isArabic ? 'rtl' : 'ltr';
   const dict = await getDictionary(lang);
 
-  // Font Optimization: Space Grotesk, Inter, JetBrains Mono, Cairo
-  const fontVariables = `${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} ${cairo.variable} ${
-    isArabic ? 'font-arabic' : 'font-body'
-  }`;
+  // Font Optimization: Load Arabic fonts only for Arabic, Latin fonts only for English
+  const fontVariables = isArabic
+    ? `${cairo.variable} ${jetbrainsMono.variable} font-arabic`
+    : `${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} font-body`;
 
   return (
     <html lang={lang} dir={dir} className={fontVariables} suppressHydrationWarning>

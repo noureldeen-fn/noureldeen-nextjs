@@ -37,9 +37,9 @@ export const CertificatesSection = ({ lang = "en", dict }: CertificatesSectionPr
 
   return (
     <section id="certificates" className="relative w-full py-16 lg:py-24 bg-[#161616] text-[#FBEBEB] overflow-hidden">
-      {/* Background Accent Gradients */}
-      <div className="absolute top-1/3 -start-32 w-96 h-96 bg-[#220202] rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 -end-32 w-96 h-96 bg-[#F40F0B]/10 rounded-full blur-[140px] pointer-events-none" />
+      {/* Background Accent Gradients (GPU-friendly radial gradient) */}
+      <div className="absolute top-1/3 -start-32 w-96 h-96 rounded-full pointer-events-none [background:radial-gradient(circle,rgba(34,2,2,0.6)_0%,transparent_70%)]" />
+      <div className="absolute bottom-10 -end-32 w-96 h-96 rounded-full pointer-events-none [background:radial-gradient(circle,rgba(215,12,9,0.12)_0%,transparent_70%)]" />
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Section Heading (No Subtitle as requested) */}
@@ -77,7 +77,7 @@ export const CertificatesSection = ({ lang = "en", dict }: CertificatesSectionPr
                   {/* Cyber Credential Visual Seal */}
                   <div className="relative flex flex-col items-center text-center">
                     <div className="relative mb-3 flex items-center justify-center">
-                      <div className="absolute inset-0 rounded-full bg-[#F40F0B]/20 blur-xl animate-pulse" />
+                      <div className="absolute inset-0 rounded-full [background:radial-gradient(circle,rgba(215,12,9,0.25)_0%,transparent_70%)]" />
                       <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#220202] border border-[#F40F0B]/40 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
                         <ShieldCheck className="w-9 h-9 sm:w-11 sm:h-11 text-[#F40F0B]" />
                       </div>

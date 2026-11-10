@@ -71,9 +71,9 @@ export const ProjectsSection = ({ dict, lang = "en" }: ProjectsSectionProps) => 
 
   return (
     <section id="projects" className="relative w-full py-16 lg:py-24 bg-[#161616] text-[#FBEBEB] overflow-hidden">
-      {/* Background Accent Gradients */}
-      <div className="absolute top-1/3 -start-32 w-96 h-96 bg-[#220202] rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 -end-32 w-96 h-96 bg-[#F40F0B]/10 rounded-full blur-[140px] pointer-events-none" />
+      {/* Background Accent Gradients (GPU-friendly radial gradient) */}
+      <div className="absolute top-1/3 -start-32 w-96 h-96 rounded-full pointer-events-none [background:radial-gradient(circle,rgba(34,2,2,0.6)_0%,transparent_70%)]" />
+      <div className="absolute bottom-10 -end-32 w-96 h-96 rounded-full pointer-events-none [background:radial-gradient(circle,rgba(215,12,9,0.12)_0%,transparent_70%)]" />
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Section Heading */}
