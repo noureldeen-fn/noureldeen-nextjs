@@ -133,8 +133,11 @@ const Particles: React.FC<ParticlesProps> = ({
     const resize = () => {
       const width = container.clientWidth;
       const height = container.clientHeight;
+      if (width === 0 || height === 0) return;
       renderer.setSize(width, height);
       camera.perspective({ aspect: gl.canvas.width / gl.canvas.height });
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = requestAnimationFrame(update);
     };
     window.addEventListener('resize', resize, false);
     resize();
@@ -198,6 +201,9 @@ const Particles: React.FC<ParticlesProps> = ({
     let elapsed = 0;
 
     const update = (t: number) => {
+      if (container.clientWidth === 0 || container.clientHeight === 0) {
+        return;
+      }
       animationFrameId = requestAnimationFrame(update);
       const delta = t - lastTime;
       lastTime = t;

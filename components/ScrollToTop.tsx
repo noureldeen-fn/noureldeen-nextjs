@@ -7,9 +7,16 @@ export const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
-      setIsVisible(scrollTop > 100);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const visible = (window.scrollY || 0) > 300;
+          setIsVisible((prev) => (prev !== visible ? visible : prev));
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });

@@ -8,44 +8,44 @@ export const HeroAnimation = () => {
   const [ActiveComponent, setActiveComponent] = useState<ComponentType<any> | null>(null);
 
   useEffect(() => {
-    // 1. Never load or run on mobile/tablets (< 1024px, touch devices), bots, or Lighthouse audits
     if (typeof window === 'undefined') return;
 
-    const isSmall = window.innerWidth < 1024 || (window.matchMedia('(pointer: coarse)').matches && window.innerWidth < 1024);
-    const isAuditOrBot = /Chrome-Lighthouse|HeadlessChrome|Lighthouse|bot|crawl|spider/i.test(navigator.userAgent);
+    // 1. Strictly verify desktop viewport: >= 1024px and not coarse touch
+    const mql = window.matchMedia('(min-width: 1024px)');
+    const isTouch = window.matchMedia('(pointer: coarse)').matches;
 
-    if (isSmall || isAuditOrBot) {
+    if (!mql.matches || isTouch) {
       return;
     }
 
-    // 2. On desktop, load immediately so there is no delay for real users
+    // 2. On desktop, mount the active theme canvas
     const isDark = resolvedTheme === 'dark';
     let cancelled = false;
 
     if (isDark) {
       import('@/components/Antigravity').then((mod) => {
-        if (!cancelled && window.innerWidth >= 1024) {
+        if (!cancelled && window.matchMedia('(min-width: 1024px)').matches) {
           setActiveComponent(() => mod.default);
         }
       });
     } else {
       import('@/components/Particles').then((mod) => {
-        if (!cancelled && window.innerWidth >= 1024) {
+        if (!cancelled && window.matchMedia('(min-width: 1024px)').matches) {
           setActiveComponent(() => mod.default);
         }
       });
     }
 
-    const onResize = () => {
-      if (window.innerWidth < 1024) {
+    const onMediaChange = (e: MediaQueryListEvent) => {
+      if (!e.matches) {
         setActiveComponent(null);
       }
     };
 
-    window.addEventListener('resize', onResize, { passive: true });
+    mql.addEventListener('change', onMediaChange);
     return () => {
       cancelled = true;
-      window.removeEventListener('resize', onResize);
+      mql.removeEventListener('change', onMediaChange);
     };
   }, [resolvedTheme]);
 
@@ -61,7 +61,7 @@ export const HeroAnimation = () => {
         <ActiveComponent
           key="dark-canvas-active"
           colors={["#f63f3c", "#f40f0b", "#c30c09"]}
-          count={1500}
+          count={450}
           magnetRadius={9}
           ringRadius={7}
           particleSize={0.9}
@@ -88,7 +88,7 @@ export const HeroAnimation = () => {
       ) : (
         <ActiveComponent
           key="light-canvas-active"
-          particleCount={1000}
+          particleCount={350}
           particleSpread={15}
           speed={0.25}
           particleColors={['#C30C09', '#610605', '#220202']}

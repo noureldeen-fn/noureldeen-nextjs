@@ -653,7 +653,7 @@ export const Antigravity = ({
 
     const frame = (now: number) => {
       raf = 0;
-      if (lost || !field) return;
+      if (lost || !field || !visible || !pageVisible || container.clientWidth === 0 || container.clientHeight === 0) return;
       const s = settingsRef.current;
       updatePalette(s);
       const dt = clamp((now - last) / 1000 || 0, 0, 1 / 30);
@@ -714,11 +714,11 @@ export const Antigravity = ({
       gl.uniform1f(u.uOpacity, s.opacity);
       gl.drawArraysInstanced(gl.TRIANGLE_STRIP, 0, 4, field.total);
 
-      if (visible && pageVisible) raf = requestAnimationFrame(frame);
+      if (visible && pageVisible && container.clientWidth > 0 && container.clientHeight > 0) raf = requestAnimationFrame(frame);
     };
 
     const wake = () => {
-      if (raf || lost || !visible || !pageVisible) return;
+      if (raf || lost || !visible || !pageVisible || container.clientWidth === 0 || container.clientHeight === 0) return;
       last = performance.now();
       raf = requestAnimationFrame(frame);
     };
