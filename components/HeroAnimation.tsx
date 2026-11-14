@@ -3,9 +3,35 @@
 import React, { useEffect, useState, ComponentType } from 'react';
 import { useTheme } from 'next-themes';
 
-export const HeroAnimation = () => {
+class AnimationErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: any) {
+    console.warn('HeroAnimation WebGL caught error:', error);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return null;
+    }
+    return this.props.children;
+  }
+}
+
+function HeroCanvas() {
   const { resolvedTheme } = useTheme();
   const [ActiveComponent, setActiveComponent] = useState<ComponentType<any> | null>(null);
+  const [activeTheme, setActiveTheme] = useState<'dark' | 'light' | null>(null);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -15,6 +41,8 @@ export const HeroAnimation = () => {
     const isTouch = window.matchMedia('(pointer: coarse)').matches;
 
     if (!mql.matches || isTouch) {
+      setActiveComponent(null);
+      setActiveTheme(null);
       return;
     }
 
@@ -23,22 +51,33 @@ export const HeroAnimation = () => {
     let cancelled = false;
 
     if (isDark) {
-      import('@/components/Antigravity').then((mod) => {
-        if (!cancelled && window.matchMedia('(min-width: 1024px)').matches) {
-          setActiveComponent(() => mod.default);
-        }
-      });
+      import('@/components/Antigravity')
+        .then((mod) => {
+          if (!cancelled && window.matchMedia('(min-width: 1024px)').matches) {
+            setActiveComponent(() => mod.default);
+            setActiveTheme('dark');
+          }
+        })
+        .catch((err) => {
+          console.warn('Failed to load Antigravity component:', err);
+        });
     } else {
-      import('@/components/Particles').then((mod) => {
-        if (!cancelled && window.matchMedia('(min-width: 1024px)').matches) {
-          setActiveComponent(() => mod.default);
-        }
-      });
+      import('@/components/Particles')
+        .then((mod) => {
+          if (!cancelled && window.matchMedia('(min-width: 1024px)').matches) {
+            setActiveComponent(() => mod.default);
+            setActiveTheme('light');
+          }
+        })
+        .catch((err) => {
+          console.warn('Failed to load Particles component:', err);
+        });
     }
 
     const onMediaChange = (e: MediaQueryListEvent) => {
       if (!e.matches) {
         setActiveComponent(null);
+        setActiveTheme(null);
       }
     };
 
@@ -49,18 +88,16 @@ export const HeroAnimation = () => {
     };
   }, [resolvedTheme]);
 
-  if (!ActiveComponent) {
+  if (!ActiveComponent || !activeTheme) {
     return null;
   }
 
-  const isDark = resolvedTheme === 'dark';
-
   return (
     <div className="hidden lg:block absolute inset-0 w-full h-full -z-10 overflow-hidden pointer-events-auto">
-      {isDark ? (
+      {activeTheme === 'dark' ? (
         <ActiveComponent
           key="dark-canvas-active"
-          colors={["#f63f3c", "#f40f0b", "#c30c09"]}
+          colors={['#f63f3c', '#f40f0b', '#c30c09']}
           count={450}
           magnetRadius={9}
           ringRadius={7}
@@ -99,10 +136,19 @@ export const HeroAnimation = () => {
           sizeRandomness={1}
           cameraDistance={20}
           disableRotation={false}
+          pixelRatio={1}
           className="w-full h-full"
         />
       )}
     </div>
+  );
+}
+
+export const HeroAnimation = () => {
+  return (
+    <AnimationErrorBoundary>
+      <HeroCanvas />
+    </AnimationErrorBoundary>
   );
 };
 
