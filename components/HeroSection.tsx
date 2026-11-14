@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { ArrowUpRight, Sparkles } from 'lucide-react';
+import { ArrowUpRight, FileDown } from 'lucide-react';
 import { HeroAnimation } from './HeroAnimation';
 import { HeroImage } from './HeroImage';
 
@@ -13,6 +13,7 @@ interface HeroSectionProps {
       role: string;
       subRole?: string;
       description?: string;
+      ctaCv?: string;
       ctaProjects?: string;
       ctaContact?: string;
       tagline?: string;
@@ -95,19 +96,21 @@ export function HeroSection({ lang, dict }: HeroSectionProps) {
             {/* 7. Action Buttons (CTAs) */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mt-8 w-full sm:w-auto">
               <a
-                href="#projects"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-brand-cta hover:bg-brand-cta-hover text-white font-semibold text-sm tracking-wide shadow-glow transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta font-heading"
+                href="/cv.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto min-w-[150px] inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl bg-brand-cta hover:bg-brand-cta-hover text-white font-semibold text-sm tracking-wide shadow-glow transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta font-heading"
               >
-                <span>{hero.ctaProjects || hero.ctaPrimary}</span>
-                <ArrowUpRight className="w-4 h-4" />
+                <FileDown className="w-4 h-4 shrink-0" />
+                <span>{hero.ctaCv || 'Download CV'}</span>
               </a>
 
               <a
-                href="#contact"
+                href="#projects"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl border border-surface-card-border bg-surface-card/80 backdrop-blur-md hover:bg-surface-hover text-text-primary hover:text-brand-cta font-semibold text-sm transition-all duration-300 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta font-heading"
               >
-                <Sparkles className="w-4 h-4 text-brand-cta" />
-                <span>{hero.ctaContact || hero.ctaSecondary}</span>
+                <span>{hero.ctaProjects || hero.ctaPrimary}</span>
+                <ArrowUpRight className="w-4 h-4 shrink-0" />
               </a>
             </div>
 

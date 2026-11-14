@@ -5,6 +5,7 @@ export const spaceGrotesk = Space_Grotesk({
   variable: '--font-space-grotesk',
   display: 'swap',
   preload: true,
+  weight: ['500', '600', '700'],
 });
 
 export const inter = Inter({
@@ -22,8 +23,9 @@ export const jetbrainsMono = JetBrains_Mono({
 });
 
 export const cairo = Cairo({
-  subsets: ['arabic'],
+  subsets: ['arabic', 'latin'],
   variable: '--font-cairo',
   display: 'swap',
   preload: false,
+  weight: ['400', '500', '600', '700', '800'],
 });
