@@ -146,7 +146,7 @@ export const SkillsSection = ({ dict, lang = "en" }: SkillsSectionProps) => {
         {/* Section Heading */}
         <div className="text-center max-w-2xl mx-auto mb-10">
           <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#FBEBEB] mb-3">
-            {lang === "ar" ? "الترسانة التقنية والأدوات" : "Technical Arsenal & Tools"}
+            {dict?.skills?.sectionTitle || dict?.skills?.title || (lang === "ar" ? "المهارات والتقنيات الأساسية" : "Technical Arsenal & Tools")}
           </h2>
         </div>
 
