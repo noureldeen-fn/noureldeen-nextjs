@@ -60,7 +60,7 @@ export async function generateMetadata(
 
   const dict = await getDictionary(lang);
 
-  const siteUrl = 'https://noureldeen.dev';
+  const siteUrl = 'https://www.noureldeen.me';
   const canonicalUrl = `${siteUrl}/${lang}`;
 
   return {
@@ -93,6 +93,9 @@ export async function generateMetadata(
       languages: {
         'en-US': `${siteUrl}/en`,
         'ar-EG': `${siteUrl}/ar`,
+        en: `${siteUrl}/en`,
+        ar: `${siteUrl}/ar`,
+        'x-default': `${siteUrl}/en`,
       },
     },
     openGraph: {

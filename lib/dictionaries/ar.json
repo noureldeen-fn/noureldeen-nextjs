@@ -90,7 +90,7 @@
         "title": "الموقع الشخصي ومعرض الأعمال التفاعلي",
         "description": "تطبيق ويب متطور مبني بتقنيات Next.js و Tailwind CSS، يطبق معايير التوليد الثابت (SSG) لتحقيق سرعة تحميل فورية، مع دعم كامل للغتين العربية والإنجليزية (RTL/LTR)، وتوافق تام مع أعلى معايير أداء الويب Core Web Vitals.",
         "image": "",
-        "liveUrl": "https://noureldeen.me",
+        "liveUrl": "https://www.noureldeen.me",
         "githubUrl": "https://github.com/noureldeen-fn",
         "tags": ["React.js", "Next.js", "TypeScript", "Tailwind CSS", "i18n", "Performance"]
       }

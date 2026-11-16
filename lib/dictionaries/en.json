@@ -90,7 +90,7 @@
         "title": "Modern Cyber Portfolio & Engineering Showcase",
         "description": "High-performance portfolio application built with Next.js (App Router) and Tailwind CSS, featuring strict SSG zero-runtime hydration principles, full RTL/LTR internationalization, and fluid hardware-accelerated animations. Scored 100% on Lighthouse performance, accessibility, and SEO metrics.",
         "image": "",
-        "liveUrl": "https://noureldeen.me",
+        "liveUrl": "https://www.noureldeen.me",
         "githubUrl": "https://github.com/noureldeen-fn",
         "tags": ["React.js", "Next.js", "TypeScript", "Tailwind CSS", "i18n", "Performance"]
       }
