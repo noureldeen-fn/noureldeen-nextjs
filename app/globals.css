@@ -8,10 +8,10 @@
   --bg-alt: #FFF0F0;
   --text-primary: #220202;
   --text-muted: #610605;
-  --brand-cta: #C30C09;
-  --brand-cta-text: #C30C09;
+  --brand-cta: #BC1200;
+  --brand-cta-text: #BC1200;
   --brand-cta-hover: #9E0A07;
-  --brand-cta-glow: rgba(195, 12, 9, 0.25);
+  --brand-cta-glow: rgba(188, 18, 0, 0.25);
   --surface-card: rgba(255, 255, 255, 0.85);
   --surface-card-border: rgba(97, 6, 5, 0.12);
   --surface-hover: rgba(255, 240, 240, 0.9);
@@ -45,10 +45,10 @@
   --bg-alt: #220202;
   --text-primary: #FFFFFF;
   --text-muted: #FDCFCE;
-  --brand-cta: #D01300;
-  --brand-cta-text: #D01300;
-  --brand-cta-hover: #B80A07;
-  --brand-cta-glow: rgba(208, 19, 0, 0.4);
+  --brand-cta: #BC1200;
+  --brand-cta-text: #BC1200;
+  --brand-cta-hover: #9E0A07;
+  --brand-cta-glow: rgba(188, 18, 0, 0.4);
   --surface-card: rgba(26, 26, 26, 0.8);
   --surface-card-border: rgba(253, 207, 206, 0.15);
   --surface-hover: rgba(34, 2, 2, 0.6);
