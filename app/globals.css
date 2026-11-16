@@ -45,10 +45,10 @@
   --bg-alt: #220202;
   --text-primary: #FFFFFF;
   --text-muted: #FDCFCE;
-  --brand-cta: #D70C09;
-  --brand-cta-text: #BC1200;
+  --brand-cta: #D01300;
+  --brand-cta-text: #D01300;
   --brand-cta-hover: #B80A07;
-  --brand-cta-glow: rgba(215, 12, 9, 0.4);
+  --brand-cta-glow: rgba(208, 19, 0, 0.4);
   --surface-card: rgba(26, 26, 26, 0.8);
   --surface-card-border: rgba(253, 207, 206, 0.15);
   --surface-hover: rgba(34, 2, 2, 0.6);
