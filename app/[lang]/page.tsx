@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import { getDictionary } from '@/lib/dictionaries';
 import HeroSection from "@/components/HeroSection";
+import LazySection from "@/components/LazySection";
 
 const AboutSection = dynamic(() => import("@/components/AboutSection"));
 const SkillsSection = dynamic(() => import("@/components/SkillsSection"));
@@ -27,11 +28,17 @@ export default async function Page(
     <>
       <HeroSection lang={lang} dict={dict} />
       <AboutSection lang={lang} dict={dict} />
-      <SkillsSection dict={dict} lang={lang} />
-      <ProjectsSection dict={dict} lang={lang} />
+      <LazySection>
+        <SkillsSection dict={dict} lang={lang} />
+      </LazySection>
+      <LazySection>
+        <ProjectsSection dict={dict} lang={lang} />
+      </LazySection>
       <ExperienceSection dict={dict} />
       <CertificatesSection lang={lang} dict={dict} />
-      <ContactSection lang={lang} dict={dict} />
+      <LazySection>
+        <ContactSection lang={lang} dict={dict} />
+      </LazySection>
       <ScrollToTop />
     </>
   );
