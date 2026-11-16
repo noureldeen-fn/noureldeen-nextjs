@@ -5,6 +5,7 @@ export const spaceGrotesk = Space_Grotesk({
   variable: '--font-space-grotesk',
   display: 'swap',
   preload: true,
+  adjustFontFallback: true,
   weight: ['500', '600', '700'],
 });
 
@@ -13,19 +14,22 @@ export const inter = Inter({
   variable: '--font-inter',
   display: 'swap',
   preload: true,
+  adjustFontFallback: true,
 });
 
 export const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-jetbrains-mono',
   display: 'swap',
-  preload: false,
+  preload: true,
+  adjustFontFallback: true,
 });
 
 export const cairo = Cairo({
   subsets: ['arabic', 'latin'],
   variable: '--font-cairo',
   display: 'swap',
-  preload: false,
+  preload: true,
+  adjustFontFallback: true,
   weight: ['400', '500', '600', '700', '800'],
 });

@@ -46,32 +46,44 @@ function HeroCanvas() {
       return;
     }
 
-    // 2. On desktop, mount the active theme canvas
-    const isDark = resolvedTheme === 'dark';
+    // 2. On desktop, defer mounting the active theme canvas until after hydration and main thread is idle
     let cancelled = false;
+    let idleHandle: number | null = null;
+    let timeoutHandle: ReturnType<typeof setTimeout> | null = null;
 
-    if (isDark) {
-      import('@/components/Antigravity')
-        .then((mod) => {
-          if (!cancelled && window.matchMedia('(min-width: 1024px)').matches) {
-            setActiveComponent(() => mod.default);
-            setActiveTheme('dark');
-          }
-        })
-        .catch((err) => {
-          console.warn('Failed to load Antigravity component:', err);
-        });
+    const initCanvas = () => {
+      if (cancelled) return;
+      const isDark = resolvedTheme === 'dark';
+
+      if (isDark) {
+        import('@/components/Antigravity')
+          .then((mod) => {
+            if (!cancelled && window.matchMedia('(min-width: 1024px)').matches && !window.matchMedia('(pointer: coarse)').matches) {
+              setActiveComponent(() => mod.default);
+              setActiveTheme('dark');
+            }
+          })
+          .catch((err) => {
+            console.warn('Failed to load Antigravity component:', err);
+          });
+      } else {
+        import('@/components/Particles')
+          .then((mod) => {
+            if (!cancelled && window.matchMedia('(min-width: 1024px)').matches && !window.matchMedia('(pointer: coarse)').matches) {
+              setActiveComponent(() => mod.default);
+              setActiveTheme('light');
+            }
+          })
+          .catch((err) => {
+            console.warn('Failed to load Particles component:', err);
+          });
+      }
+    };
+
+    if ('requestIdleCallback' in window) {
+      idleHandle = (window as any).requestIdleCallback(initCanvas, { timeout: 2000 });
     } else {
-      import('@/components/Particles')
-        .then((mod) => {
-          if (!cancelled && window.matchMedia('(min-width: 1024px)').matches) {
-            setActiveComponent(() => mod.default);
-            setActiveTheme('light');
-          }
-        })
-        .catch((err) => {
-          console.warn('Failed to load Particles component:', err);
-        });
+      timeoutHandle = setTimeout(initCanvas, 300);
     }
 
     const onMediaChange = (e: MediaQueryListEvent) => {
@@ -84,6 +96,12 @@ function HeroCanvas() {
     mql.addEventListener('change', onMediaChange);
     return () => {
       cancelled = true;
+      if (idleHandle !== null && 'cancelIdleCallback' in window) {
+        (window as any).cancelIdleCallback(idleHandle);
+      }
+      if (timeoutHandle !== null) {
+        clearTimeout(timeoutHandle);
+      }
       mql.removeEventListener('change', onMediaChange);
     };
   }, [resolvedTheme]);

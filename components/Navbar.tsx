@@ -42,7 +42,7 @@ export function Navbar({ lang, dict }: NavbarProps) {
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          const isScrolled = window.scrollY > 20;
+          const isScrolled = (window.scrollY || 0) > 20;
           setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev));
           ticking = false;
         });
@@ -51,7 +51,6 @@ export function Navbar({ lang, dict }: NavbarProps) {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
 
     // Use IntersectionObserver to determine active section without forced reflow
     const sectionIds = ['home', 'about', 'skills', 'projects', 'experience', 'certificates', 'contact'];
@@ -66,13 +65,31 @@ export function Navbar({ lang, dict }: NavbarProps) {
       { rootMargin: '-20% 0px -65% 0px', threshold: 0 }
     );
 
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
+    const observeSections = () => {
+      sectionIds.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+      });
+    };
+
+    observeSections();
+    let idleHandle: number | null = null;
+    let timeoutHandle: ReturnType<typeof setTimeout> | null = null;
+
+    if ('requestIdleCallback' in window) {
+      idleHandle = (window as any).requestIdleCallback(observeSections, { timeout: 1500 });
+    } else {
+      timeoutHandle = setTimeout(observeSections, 300);
+    }
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      if (idleHandle !== null && 'cancelIdleCallback' in window) {
+        (window as any).cancelIdleCallback(idleHandle);
+      }
+      if (timeoutHandle !== null) {
+        clearTimeout(timeoutHandle);
+      }
       observer.disconnect();
     };
   }, []);

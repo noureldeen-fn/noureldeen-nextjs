@@ -1,11 +1,14 @@
+import dynamic from "next/dynamic";
 import { getDictionary } from '@/lib/dictionaries';
-import { HeroSection } from '@/components/HeroSection';
-import { AboutSection } from '@/components/AboutSection';
-import { SkillsSection } from '@/components/SkillsSection';
-import { ProjectsSection } from '@/components/ProjectsSection';
-import { ExperienceSection } from '@/components/ExperienceSection';
-import { CertificatesSection } from '@/components/CertificatesSection';
-import { ContactSection } from '@/components/ContactSection';
+import HeroSection from "@/components/HeroSection";
+
+const AboutSection = dynamic(() => import("@/components/AboutSection"));
+const SkillsSection = dynamic(() => import("@/components/SkillsSection"));
+const ProjectsSection = dynamic(() => import("@/components/ProjectsSection"));
+const ExperienceSection = dynamic(() => import("@/components/ExperienceSection"));
+const CertificatesSection = dynamic(() => import("@/components/CertificatesSection"));
+const ContactSection = dynamic(() => import("@/components/ContactSection"));
+const ScrollToTop = dynamic(() => import("@/components/ScrollToTop"));
 
 export default async function Page(
   props: {
@@ -29,6 +32,7 @@ export default async function Page(
       <ExperienceSection dict={dict} />
       <CertificatesSection lang={lang} dict={dict} />
       <ContactSection lang={lang} dict={dict} />
+      <ScrollToTop />
     </>
   );
 }

@@ -4,9 +4,11 @@ import React, { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 
 export const ScrollToTop = () => {
+  const [mounted, setMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     let ticking = false;
     const handleScroll = () => {
       if (!ticking) {
@@ -20,10 +22,11 @@ export const ScrollToTop = () => {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  if (!mounted) return null;
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });

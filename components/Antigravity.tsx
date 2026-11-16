@@ -545,11 +545,18 @@ export const Antigravity = ({
       return next;
     };
 
-    const resize = () => {
+    const resize = (widthOverride?: number, heightOverride?: number) => {
       const s = settingsRef.current;
-      const rect = container.getBoundingClientRect();
-      const cssWidth = Math.max(1, rect.width);
-      const cssHeight = Math.max(1, rect.height);
+      let cssWidth = widthOverride;
+      let cssHeight = heightOverride;
+      if (typeof cssWidth !== 'number' || typeof cssHeight !== 'number' || cssWidth <= 0 || cssHeight <= 0) {
+        const rect = container.getBoundingClientRect();
+        cssWidth = Math.max(1, rect.width);
+        cssHeight = Math.max(1, rect.height);
+      } else {
+        cssWidth = Math.max(1, cssWidth);
+        cssHeight = Math.max(1, cssHeight);
+      }
       const ratio = Math.min(
         window.devicePixelRatio || 1,
         s.maxRatio,
@@ -653,7 +660,7 @@ export const Antigravity = ({
 
     const frame = (now: number) => {
       raf = 0;
-      if (lost || !field || !visible || !pageVisible || container.clientWidth === 0 || container.clientHeight === 0) return;
+      if (lost || !field || !visible || !pageVisible || size.width === 0 || size.height === 0) return;
       const s = settingsRef.current;
       updatePalette(s);
       const dt = clamp((now - last) / 1000 || 0, 0, 1 / 30);
@@ -714,11 +721,11 @@ export const Antigravity = ({
       gl.uniform1f(u.uOpacity, s.opacity);
       gl.drawArraysInstanced(gl.TRIANGLE_STRIP, 0, 4, field.total);
 
-      if (visible && pageVisible && container.clientWidth > 0 && container.clientHeight > 0) raf = requestAnimationFrame(frame);
+      if (visible && pageVisible && size.width > 0 && size.height > 0) raf = requestAnimationFrame(frame);
     };
 
     const wake = () => {
-      if (raf || lost || !visible || !pageVisible || container.clientWidth === 0 || container.clientHeight === 0) return;
+      if (raf || lost || !visible || !pageVisible || size.width === 0 || size.height === 0) return;
       last = performance.now();
       raf = requestAnimationFrame(frame);
     };
@@ -783,8 +790,13 @@ export const Antigravity = ({
     canvas.addEventListener('webglcontextlost', onLost);
     canvas.addEventListener('webglcontextrestored', onRestored);
 
-    const resizeObserver = new ResizeObserver(() => {
-      resize();
+    const resizeObserver = new ResizeObserver((entries) => {
+      const entry = entries[0];
+      if (entry && entry.contentRect) {
+        resize(entry.contentRect.width, entry.contentRect.height);
+      } else {
+        resize();
+      }
       wake();
     });
     resizeObserver.observe(container);
@@ -801,11 +813,28 @@ export const Antigravity = ({
     };
     document.addEventListener('visibilitychange', onVisibility);
 
-    resize();
-    wake();
+    let startIdleId: number | null = null;
+    let startTimeoutId: ReturnType<typeof setTimeout> | null = null;
+
+    const startInitial = () => {
+      resize();
+      wake();
+    };
+
+    if ('requestIdleCallback' in window) {
+      startIdleId = (window as any).requestIdleCallback(startInitial, { timeout: 1000 });
+    } else {
+      startTimeoutId = setTimeout(startInitial, 50);
+    }
 
     return () => {
       cancelAnimationFrame(raf);
+      if (startIdleId !== null && 'cancelIdleCallback' in window) {
+        (window as any).cancelIdleCallback(startIdleId);
+      }
+      if (startTimeoutId !== null) {
+        clearTimeout(startTimeoutId);
+      }
       wakeRef.current = null;
       resizeObserver.disconnect();
       intersection.disconnect();

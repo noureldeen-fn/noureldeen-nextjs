@@ -71,6 +71,8 @@ export function HeroSection({ lang, dict }: HeroSectionProps) {
                 alt={hero.name}
                 fill
                 priority
+                fetchPriority="high"
+                loading="eager"
                 sizes="(max-width: 640px) 176px, 208px"
                 className="object-contain object-bottom"
               />

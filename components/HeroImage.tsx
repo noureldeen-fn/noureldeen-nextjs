@@ -10,6 +10,9 @@ export const HeroImage = () => {
           alt="Noureldeen"
           className="object-contain object-bottom"
           fill
+          priority
+          fetchPriority="high"
+          loading="eager"
           sizes="(max-width: 1024px) 288px, (max-width: 1280px) 420px, 460px"
           src="/my-photo-portfolio.webp"
         />

@@ -181,10 +181,12 @@ const Particles: React.FC<ParticlesProps> = ({
 
       let lastTime = performance.now();
       let elapsed = 0;
+      let currentWidth = 0;
+      let currentHeight = 0;
 
       const update = (t: number) => {
         if (isCleanedUp) return;
-        if (container.clientWidth === 0 || container.clientHeight === 0) {
+        if (currentWidth === 0 || currentHeight === 0) {
           return;
         }
         animationFrameId = requestAnimationFrame(update);
@@ -211,19 +213,29 @@ const Particles: React.FC<ParticlesProps> = ({
         renderer?.render({ scene: particles, camera });
       };
 
-      const resize = () => {
+      const resize = (w?: number, h?: number) => {
         if (isCleanedUp) return;
-        const width = container.clientWidth;
-        const height = container.clientHeight;
+        const width = w ?? container.clientWidth;
+        const height = h ?? container.clientHeight;
         if (width === 0 || height === 0) return;
+        currentWidth = width;
+        currentHeight = height;
         renderer?.setSize(width, height);
         if (gl?.canvas) {
           camera.perspective({ aspect: gl.canvas.width / gl.canvas.height });
         }
       };
 
-      window.addEventListener('resize', resize, { passive: true });
-      resize();
+      const resizeObserver = new ResizeObserver((entries) => {
+        if (isCleanedUp) return;
+        const entry = entries[0];
+        if (entry && entry.contentRect) {
+          resize(entry.contentRect.width, entry.contentRect.height);
+        } else {
+          resize();
+        }
+      });
+      resizeObserver.observe(container);
 
       const handleMouseMove = (e: MouseEvent) => {
         const rect = container.getBoundingClientRect();
@@ -236,11 +248,29 @@ const Particles: React.FC<ParticlesProps> = ({
         window.addEventListener('mousemove', handleMouseMove, { passive: true });
       }
 
-      animationFrameId = requestAnimationFrame(update);
+      let idleStartId: number | null = null;
+      let timeoutStartId: ReturnType<typeof setTimeout> | null = null;
+
+      const startUpdate = () => {
+        if (isCleanedUp) return;
+        animationFrameId = requestAnimationFrame(update);
+      };
+
+      if ('requestIdleCallback' in window) {
+        idleStartId = (window as any).requestIdleCallback(startUpdate, { timeout: 1000 });
+      } else {
+        timeoutStartId = setTimeout(startUpdate, 50);
+      }
 
       return () => {
         isCleanedUp = true;
-        window.removeEventListener('resize', resize);
+        if (idleStartId !== null && 'cancelIdleCallback' in window) {
+          (window as any).cancelIdleCallback(idleStartId);
+        }
+        if (timeoutStartId !== null) {
+          clearTimeout(timeoutStartId);
+        }
+        resizeObserver.disconnect();
         if (moveParticlesOnHover) {
           window.removeEventListener('mousemove', handleMouseMove);
         }

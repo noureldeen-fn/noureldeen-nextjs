@@ -1,12 +1,45 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import '../globals.css';
-import { spaceGrotesk, inter, jetbrainsMono, cairo } from '@/lib/fonts';
+import { Space_Grotesk, Inter, JetBrains_Mono, Cairo } from 'next/font/google';
 import { getDictionary, Locale } from '@/lib/dictionaries';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { ScrollToTop } from '@/components/ScrollToTop';
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-space-grotesk',
+  display: 'swap',
+  preload: true,
+  adjustFontFallback: true,
+  weight: ['500', '600', '700'],
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+  preload: true,
+  adjustFontFallback: true,
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+  display: 'swap',
+  preload: true,
+  adjustFontFallback: true,
+});
+
+const cairo = Cairo({
+  subsets: ['arabic', 'latin'],
+  variable: '--font-cairo',
+  display: 'swap',
+  preload: true,
+  adjustFontFallback: true,
+  weight: ['400', '500', '600', '700', '800'],
+});
 
 export const dynamicParams = false;
 
@@ -127,7 +160,6 @@ export default async function RootLayout(
             <Navbar lang={lang} dict={dict} />
             <main className="flex-grow">{children}</main>
             <Footer dict={dict} />
-            <ScrollToTop />
           </div>
         </ThemeProvider>
       </body>

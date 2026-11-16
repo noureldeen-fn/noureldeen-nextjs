@@ -8,6 +8,12 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "browserslist": [
+    "defaults and supports es6-module",
+    "maintained node versions",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
   "dependencies": {
     "@base-ui/react": "^1.7.0",
     "@formatjs/intl-localematcher": "^0.5.4",
