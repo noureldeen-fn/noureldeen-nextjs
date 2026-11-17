@@ -158,11 +158,11 @@ export default async function RootLayout(
   return (
     <html lang={lang} dir={dir} className={fontVariables} suppressHydrationWarning>
       <body className="bg-bg-main text-text-primary antialiased selection:bg-brand-cta selection:text-white transition-colors duration-300">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           <div className="flex flex-col min-h-screen">
-            <Navbar lang={lang} dict={dict} />
+            <Navbar lang={lang} dict={{ nav: dict.nav, theme: dict.theme, locale: dict.locale }} />
             <main className="flex-grow">{children}</main>
-            <Footer dict={dict} />
+            <Footer dict={{ footer: dict.footer }} />
           </div>
         </ThemeProvider>
       </body>

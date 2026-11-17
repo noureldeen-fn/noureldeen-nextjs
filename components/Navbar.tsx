@@ -34,25 +34,11 @@ interface NavbarProps {
 
 export function Navbar({ lang, dict }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const isScrolled = (window.scrollY || 0) > 20;
-          setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev));
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    // Use IntersectionObserver to determine active section without forced reflow
+    // Pure CSS sticky navbar: zero window.scrollY reads, zero forced reflows.
+    // Use IntersectionObserver to determine active section asynchronously without layout reads
     const sectionIds = ['home', 'about', 'skills', 'projects', 'experience', 'certificates', 'contact'];
     const observer = new IntersectionObserver(
       (entries) => {
@@ -72,7 +58,6 @@ export function Navbar({ lang, dict }: NavbarProps) {
       });
     };
 
-    observeSections();
     let idleHandle: number | null = null;
     let timeoutHandle: ReturnType<typeof setTimeout> | null = null;
 
@@ -83,7 +68,6 @@ export function Navbar({ lang, dict }: NavbarProps) {
     }
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
       if (idleHandle !== null && 'cancelIdleCallback' in window) {
         (window as any).cancelIdleCallback(idleHandle);
       }
@@ -125,14 +109,7 @@ export function Navbar({ lang, dict }: NavbarProps) {
   ];
 
   return (
-    <header
-      className={cn(
-        'fixed top-0 inset-x-0 z-50 transition-[background-color,border-color,box-shadow,padding] duration-200 outline-none ring-0',
-        scrolled
-          ? 'glass-nav py-3 border-b border-surface-card-border shadow-lg shadow-black/20'
-          : 'bg-transparent py-5 border-b border-transparent'
-      )}
-    >
+    <header className="sticky top-0 inset-x-0 z-50 w-full py-3.5 border-b border-surface-card-border glass-nav shadow-sm outline-none ring-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Brand Monogram */}

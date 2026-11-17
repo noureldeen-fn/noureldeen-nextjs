@@ -26,18 +26,18 @@ export default async function Page(
 
   return (
     <>
-      <HeroSection lang={lang} dict={dict} />
-      <AboutSection lang={lang} dict={dict} />
+      <HeroSection lang={lang} dict={{ hero: dict.hero }} />
+      <AboutSection lang={lang} dict={{ about: dict.about }} />
       <LazySection>
-        <SkillsSection dict={dict} lang={lang} />
+        <SkillsSection dict={{ skills: dict.skills }} lang={lang} />
       </LazySection>
       <LazySection>
-        <ProjectsSection dict={dict} lang={lang} />
+        <ProjectsSection dict={{ projects: dict.projects, locale: dict.locale }} lang={lang} />
       </LazySection>
-      <ExperienceSection dict={dict} />
-      <CertificatesSection lang={lang} dict={dict} />
+      <ExperienceSection dict={{ experience: dict.experience }} />
+      <CertificatesSection lang={lang} dict={{ certificates: dict.certificates, locale: dict.locale }} />
       <LazySection>
-        <ContactSection lang={lang} dict={dict} />
+        <ContactSection lang={lang} dict={{ contact: dict.contact, locale: dict.locale }} />
       </LazySection>
       <ScrollToTop />
     </>
