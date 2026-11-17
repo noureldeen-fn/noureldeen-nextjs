@@ -8,9 +8,17 @@ const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
   },
+  experimental: {
+    optimizePackageImports: ["lucide-react"],
+    optimizeCss: true,
+    inlineCss: true,
+  },
   turbopack: {
     resolveAlias: {
+      "../build/polyfills/polyfill-module": "./lib/empty-polyfill.js",
+      "../build/polyfills/polyfill-module.js": "./lib/empty-polyfill.js",
       "next/dist/build/polyfills/polyfill-module": "./lib/empty-polyfill.js",
+      "next/dist/build/polyfills/polyfill-module.js": "./lib/empty-polyfill.js",
     },
   },
   webpack: (config, { isServer }) => {
@@ -22,11 +30,6 @@ const nextConfig = {
       };
     }
     return config;
-  },
-  experimental: {
-    optimizePackageImports: ['lucide-react'],
-    optimizeCss: true,
-    inlineCss: true,
   },
 };
 
