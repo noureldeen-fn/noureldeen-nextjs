@@ -108,7 +108,7 @@
         "specialization": "Cloud & Edge Systems",
         "date": "Issued Oct 2024",
         "credentialId": "AWS-SA-98241",
-        "link": "#"
+        "link": "https://www.credly.com/earner/earned"
       },
       {
         "id": "cert-2",
@@ -117,7 +117,7 @@
         "specialization": "React & Performance",
         "date": "Issued Jan 2024",
         "credentialId": "META-FE-77401",
-        "link": "#"
+        "link": "https://www.coursera.org/account/accomplishments"
       },
       {
         "id": "cert-3",
@@ -126,7 +126,7 @@
         "specialization": "Core Web Vitals & CWV",
         "date": "Issued Nov 2023",
         "credentialId": "GCP-CWV-55190",
-        "link": "#"
+        "link": "https://developers.google.com/speed/pagespeed/insights/"
       },
       {
         "id": "cert-4",
@@ -135,7 +135,7 @@
         "specialization": "A11y & Inclusive Design",
         "date": "Issued Aug 2023",
         "credentialId": "W3C-A11Y-33102",
-        "link": "#"
+        "link": "https://www.w3.org/WAI/standards-guidelines/wcag/"
       }
     ]
   },
