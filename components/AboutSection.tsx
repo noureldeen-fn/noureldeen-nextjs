@@ -10,7 +10,7 @@ export const AboutSection = ({ dict, lang }: AboutSectionProps) => {
   const isRTL = lang === "ar";
 
   return (
-    <section id="about" className="relative w-full pt-10 pb-20 lg:pt-14 lg:pb-28 bg-bg-main text-text-primary overflow-hidden">
+    <section id="about" className="relative w-full pt-10 pb-20 lg:pt-14 lg:pb-28 bg-bg-main text-text-primary overflow-hidden scroll-mt-20">
       {/* Background Ambient Glow (GPU-friendly radial gradient) */}
       <div className="absolute top-1/4 -start-32 w-96 h-96 rounded-full pointer-events-none [background:radial-gradient(circle,rgba(215,12,9,0.08)_0%,transparent_70%)]" />
       <div className="absolute bottom-10 -end-32 w-96 h-96 rounded-full pointer-events-none [background:radial-gradient(circle,rgba(34,2,2,0.12)_0%,transparent_70%)]" />

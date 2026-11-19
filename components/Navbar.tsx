@@ -99,6 +99,36 @@ export function Navbar({ lang, dict }: NavbarProps) {
     };
   }, [mobileMenuOpen]);
 
+  // Handle initial hash in URL if present
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const hashId = window.location.hash.substring(1);
+      const target = document.getElementById(hashId);
+      if (target) {
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }, 150);
+      }
+    }
+  }, []);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (mobileMenuOpen) {
+      setMobileMenuOpen(false);
+      document.body.style.overflow = '';
+    }
+    if (href.startsWith('#')) {
+      const targetId = href.substring(1);
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        e.preventDefault();
+        targetEl.scrollIntoView({ behavior: 'smooth' });
+        window.history.pushState(null, '', href);
+        setActiveSection(targetId);
+      }
+    }
+  };
+
   const navLinks = [
     { href: `#home`, id: 'home', label: dict.nav.home },
     { href: `#about`, id: 'about', label: dict.nav.about },
@@ -130,6 +160,7 @@ export function Navbar({ lang, dict }: NavbarProps) {
                 <a
                   key={link.href}
                   href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   aria-current={isActive ? 'page' : undefined}
                   className={cn(
                     'px-3.5 py-1.5 rounded-full text-xs lg:text-sm font-medium transition-all duration-200',
@@ -151,6 +182,7 @@ export function Navbar({ lang, dict }: NavbarProps) {
 
             <a
               href="#contact"
+              onClick={(e) => handleNavClick(e, '#contact')}
               className="hidden lg:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-cta hover:bg-brand-cta-hover text-white font-semibold text-xs tracking-wide uppercase shadow-glow transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] font-heading focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta"
             >
               <span>{dict.nav.contact}</span>
@@ -184,7 +216,7 @@ export function Navbar({ lang, dict }: NavbarProps) {
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   aria-current={isActive ? 'page' : undefined}
                   className={cn(
                     'px-4 py-3 rounded-xl text-base font-medium transition-all',
@@ -201,7 +233,7 @@ export function Navbar({ lang, dict }: NavbarProps) {
               <LocaleSwitcher currentLang={lang} className="w-full justify-center" />
               <a
                 href="#contact"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(e) => handleNavClick(e, '#contact')}
                 className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-brand-cta text-white font-medium text-sm shadow-glow"
               >
                 <span>{dict.nav.contact}</span>
