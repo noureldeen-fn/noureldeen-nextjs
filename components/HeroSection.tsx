@@ -31,7 +31,7 @@ export function HeroSection({ lang, dict }: HeroSectionProps) {
   return (
     <section
       id="home"
-      className="relative w-full min-h-[calc(100vh-4.5rem)] flex items-center justify-center pt-8 pb-8 lg:pt-12 lg:pb-12 overflow-hidden"
+      className="relative w-full min-h-[calc(100vh-4.5rem)] flex items-center justify-center pt-14 pb-8 lg:pt-16 lg:pb-12 overflow-hidden scroll-mt-28"
     >
       {/* Absolute Background WebGL Layer with pointer-events-auto */}
       <HeroAnimation />

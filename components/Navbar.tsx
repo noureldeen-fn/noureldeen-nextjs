@@ -103,6 +103,10 @@ export function Navbar({ lang, dict }: NavbarProps) {
   useEffect(() => {
     if (typeof window !== 'undefined' && window.location.hash) {
       const hashId = window.location.hash.substring(1);
+      if (hashId === 'home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
       const target = document.getElementById(hashId);
       if (target) {
         setTimeout(() => {
@@ -116,6 +120,13 @@ export function Navbar({ lang, dict }: NavbarProps) {
     if (mobileMenuOpen) {
       setMobileMenuOpen(false);
       document.body.style.overflow = '';
+    }
+    if (href === '#home' || href === '/' || href.endsWith('#home')) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.history.pushState(null, '', href);
+      setActiveSection('home');
+      return;
     }
     if (href.startsWith('#')) {
       const targetId = href.substring(1);
@@ -143,14 +154,15 @@ export function Navbar({ lang, dict }: NavbarProps) {
       <div className="max-w-7xl mx-auto pointer-events-auto">
         <div className="flex items-center justify-between px-4 sm:px-6 py-2 sm:py-2.5 rounded-full border border-surface-card-border bg-surface-card/85 dark:bg-[#161616]/85 backdrop-blur-xl shadow-lg shadow-black/5 dark:shadow-black/40 transition-all duration-300">
           {/* Brand Monogram */}
-          <Link
-            href={`/${lang}`}
-            className="group flex flex-col focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta rounded-lg p-1"
+          <a
+            href={`/${lang}#home`}
+            onClick={(e) => handleNavClick(e, '#home')}
+            className="group flex flex-col focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta rounded-lg p-1 cursor-pointer"
           >
             <span className="font-heading font-bold text-base sm:text-lg tracking-wider text-text-primary group-hover:text-brand-cta transition-colors">
               NOURELDEEN
             </span>
-          </Link>
+          </a>
 
           {/* Desktop Nav Links */}
           <nav className="hidden md:flex items-center gap-1 lg:gap-1.5">
