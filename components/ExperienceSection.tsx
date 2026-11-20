@@ -21,7 +21,7 @@ export function ExperienceSection({ dict }: ExperienceSectionProps) {
   const { experience } = dict;
 
   return (
-    <section id="experience" className="py-20 lg:py-28 bg-bg-alt/40 relative">
+    <section id="experience" className="pt-24 pb-20 lg:pt-28 lg:pb-28 bg-bg-alt/40 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
