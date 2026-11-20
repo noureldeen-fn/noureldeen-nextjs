@@ -135,7 +135,7 @@ export function Navbar({ lang, dict }: NavbarProps) {
     { href: `#skills`, id: 'skills', label: dict.nav.skills },
     { href: `#projects`, id: 'projects', label: dict.nav.projects },
     { href: `#experience`, id: 'experience', label: dict.nav.experience },
-    { href: `#certificates`, id: 'certificates', label: dict.nav.certificates },
+    // { href: `#certificates`, id: 'certificates', label: dict.nav.certificates },
   ];
 
   return (

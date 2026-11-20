@@ -30,7 +30,7 @@ export default async function Page(
       <SkillsSection dict={{ skills: dict.skills }} lang={lang} />
       <ProjectsSection dict={{ projects: dict.projects, locale: dict.locale }} lang={lang} />
       <ExperienceSection dict={{ experience: dict.experience }} />
-      <CertificatesSection lang={lang} dict={{ certificates: dict.certificates, locale: dict.locale }} />
+      {/* <CertificatesSection lang={lang} dict={{ certificates: dict.certificates, locale: dict.locale }} /> */}
       <ContactSection lang={lang} dict={{ contact: dict.contact, locale: dict.locale }} />
       <ScrollToTop />
     </>
