@@ -139,21 +139,21 @@ export function Navbar({ lang, dict }: NavbarProps) {
   ];
 
   return (
-    <header className="sticky top-0 inset-x-0 z-50 w-full py-3.5 border-b border-surface-card-border glass-nav shadow-sm outline-none ring-0">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
+    <header className="sticky top-0 sm:top-3 inset-x-0 z-50 w-full px-3 sm:px-6 lg:px-8 pointer-events-none transition-all duration-300">
+      <div className="max-w-7xl mx-auto pointer-events-auto">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-2 sm:py-2.5 rounded-full border border-surface-card-border bg-surface-card/85 dark:bg-[#161616]/85 backdrop-blur-xl shadow-lg shadow-black/5 dark:shadow-black/40 transition-all duration-300">
           {/* Brand Monogram */}
           <Link
             href={`/${lang}`}
             className="group flex flex-col focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta rounded-lg p-1"
           >
-            <span className="font-heading font-bold text-lg tracking-wider text-text-primary group-hover:text-brand-cta transition-colors">
+            <span className="font-heading font-bold text-base sm:text-lg tracking-wider text-text-primary group-hover:text-brand-cta transition-colors">
               NOURELDEEN
             </span>
           </Link>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-1 lg:gap-2 px-3 py-1.5 rounded-full border border-surface-card-border bg-surface-card/60 backdrop-blur-md shadow-sm">
+          <nav className="hidden md:flex items-center gap-1 lg:gap-1.5">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
               return (
@@ -176,14 +176,14 @@ export function Navbar({ lang, dict }: NavbarProps) {
           </nav>
 
           {/* Right Actions: Locale Switcher & Theme Toggle & Standalone Red CTA */}
-          <div className="hidden sm:flex items-center gap-2.5">
+          <div className="hidden sm:flex items-center gap-2 sm:gap-2.5">
             <LocaleSwitcher currentLang={lang} />
             <ThemeToggle labelDark={dict.theme.dark} labelLight={dict.theme.light} />
 
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, '#contact')}
-              className="hidden lg:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-cta hover:bg-brand-cta-hover text-white font-semibold text-xs tracking-wide uppercase shadow-glow transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] font-heading focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta"
+              className="hidden lg:inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-brand-cta hover:bg-brand-cta-hover text-white font-semibold text-xs tracking-wide uppercase shadow-glow transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] font-heading focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta"
             >
               <span>{dict.nav.contact}</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -196,7 +196,7 @@ export function Navbar({ lang, dict }: NavbarProps) {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-xl border border-surface-card-border bg-surface-card text-text-primary hover:text-brand-cta focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta transition-colors"
+              className="p-2 rounded-full border border-surface-card-border bg-surface-card text-text-primary hover:text-brand-cta focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta transition-colors"
               aria-label="Toggle Mobile Menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -208,7 +208,7 @@ export function Navbar({ lang, dict }: NavbarProps) {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="sm:hidden absolute top-full inset-x-0 bg-bg-main/95 border-b border-surface-card-border px-6 py-6 shadow-2xl backdrop-blur-2xl animate-in slide-in-from-top-3 duration-200">
+        <div className="sm:hidden absolute top-full mt-2 inset-x-3 rounded-2xl bg-bg-main/95 border border-surface-card-border px-6 py-6 shadow-2xl backdrop-blur-2xl animate-in slide-in-from-top-3 duration-200 pointer-events-auto">
           <div className="flex flex-col gap-2">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
