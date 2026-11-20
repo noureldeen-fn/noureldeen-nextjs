@@ -81,7 +81,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 4.75rem;
   color-scheme: dark light;
 }
 
@@ -178,15 +178,4 @@ a, button, [role="button"], input, select, textarea, .cursor-pointer {
 /* Text Selection: Standard text beam */
 input[type="text"], input[type="email"], textarea, .select-text {
   cursor: text !important;
-}
-
-/* Skip off-screen style, layout, and paint calculations until scrolled near */
-#about,
-#skills,
-#projects,
-#experience,
-#certificates,
-#contact {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 650px;
 }

@@ -141,7 +141,7 @@ export const SkillsSection = ({ dict, lang = "en" }: SkillsSectionProps) => {
       : skillsList.filter((item) => item.category === activeTab);
 
   return (
-    <section id="skills" className="relative w-full py-20 lg:py-24 bg-[#161616] text-[#FBEBEB] overflow-hidden scroll-mt-20">
+    <section id="skills" className="relative w-full py-20 lg:py-24 bg-[#161616] text-[#FBEBEB] overflow-hidden">
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         {/* Section Heading */}
         <div className="text-center max-w-2xl mx-auto mb-10">

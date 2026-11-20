@@ -36,7 +36,7 @@ export const CertificatesSection = ({ lang = "en", dict }: CertificatesSectionPr
   const currentCert = items[currentIndex] || items[0];
 
   return (
-    <section id="certificates" className="relative w-full py-16 lg:py-24 bg-[#161616] text-[#FBEBEB] overflow-hidden scroll-mt-20">
+    <section id="certificates" className="relative w-full py-16 lg:py-24 bg-[#161616] text-[#FBEBEB] overflow-hidden">
       {/* Background Accent Gradients (GPU-friendly radial gradient) */}
       <div className="absolute top-1/3 -start-32 w-96 h-96 rounded-full pointer-events-none [background:radial-gradient(circle,rgba(34,2,2,0.6)_0%,transparent_70%)]" />
       <div className="absolute bottom-10 -end-32 w-96 h-96 rounded-full pointer-events-none [background:radial-gradient(circle,rgba(215,12,9,0.12)_0%,transparent_70%)]" />

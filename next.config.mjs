@@ -9,6 +9,7 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
   },
   experimental: {
+    agentUpgrade: "security",
     optimizePackageImports: ["lucide-react"],
     optimizeCss: true,
     inlineCss: true,
