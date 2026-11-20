@@ -145,23 +145,23 @@ export const ContactSection = ({ dict, lang = "en" }: ContactSectionProps) => {
   ];
 
   return (
-    <section id="contact" className="relative w-full pt-24 pb-20 lg:pt-28 lg:pb-28 bg-[#161616] text-[#FBEBEB] overflow-hidden">
-      {/* Background Ambient Glow (GPU-friendly radial gradient) */}
-      <div className="absolute top-1/2 -start-32 w-96 h-96 rounded-full pointer-events-none [background:radial-gradient(circle,rgba(34,2,2,0.6)_0%,transparent_70%)]" />
-      <div className="absolute bottom-10 -end-32 w-96 h-96 rounded-full pointer-events-none [background:radial-gradient(circle,rgba(215,12,9,0.12)_0%,transparent_70%)]" />
+    <section id="contact" className="relative w-full pt-24 pb-20 lg:pt-28 lg:pb-28 bg-bg-main text-text-primary overflow-hidden">
+      {/* Background Ambient Glow */}
+      <div className="absolute top-1/2 -start-32 w-96 h-96 rounded-full pointer-events-none [background:radial-gradient(circle,rgba(215,12,9,0.06)_0%,transparent_70%)]" />
+      <div className="absolute bottom-10 -end-32 w-96 h-96 rounded-full pointer-events-none [background:radial-gradient(circle,rgba(34,2,2,0.08)_0%,transparent_70%)]" />
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         {/* Header */}
         <div className="max-w-2xl mb-8 lg:mb-10">
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#FBEBEB]">
+          <h2 className="font-heading rtl:font-arabic text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-text-primary">
             {dict?.contact?.sectionTitle || (isRTL ? "دعنا نتواصل ونبني معاً" : "Let's Connect & Collaborate")}
           </h2>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column: Direct Communication Channels (NO Location) */}
-          <div className="lg:col-span-5 rounded-3xl bg-[#220202]/60 border border-white/10 p-6 sm:p-8 space-y-4 shadow-2xl">
-            <span className="text-xs uppercase tracking-wider text-[#FF4D4D] font-heading font-semibold block mb-2">
+          <div className="lg:col-span-5 rounded-3xl bg-surface-card border border-surface-card-border p-6 sm:p-8 space-y-4 shadow-sm hover:shadow-card-light dark:hover:shadow-card-dark transition-all duration-300">
+            <span className="text-xs uppercase tracking-wider text-brand-cta font-heading rtl:font-arabic font-semibold block mb-2">
               {isRTL ? "قنوات التواصل المباشر" : "Direct Channels"}
             </span>
 
@@ -171,38 +171,38 @@ export const ContactSection = ({ dict, lang = "en" }: ContactSectionProps) => {
                 href={channel.href}
                 target={channel.isExternal ? "_blank" : undefined}
                 rel={channel.isExternal ? "noreferrer" : undefined}
-                className="group flex items-center justify-between p-3.5 rounded-2xl bg-black/40 border border-white/5 hover:border-[#F40F0B]/50 hover:bg-[#310302]/40 transition-all duration-200"
+                className="group flex items-center justify-between p-3.5 rounded-2xl bg-bg-main border border-surface-card-border hover:border-brand-cta/50 hover:bg-surface-hover transition-all duration-200"
               >
                 <div className="flex items-center gap-3.5">
                   <div className="shrink-0 transform transition-transform duration-200 group-hover:scale-110">
                     {channel.icon}
                   </div>
                   <div>
-                    <span className="text-[11px] uppercase tracking-wider text-gray-400 block font-heading">
+                    <span className="text-[11px] uppercase tracking-wider text-text-muted block font-heading rtl:font-arabic">
                       {channel.label}
                     </span>
-                    <span className="font-body text-xs sm:text-sm font-semibold text-[#FBEBEB] group-hover:text-white transition-colors">
+                    <span className="font-body text-xs sm:text-sm font-semibold text-text-primary group-hover:text-brand-cta transition-colors">
                       {channel.value}
                     </span>
                   </div>
                 </div>
-                <ArrowUpRight className="w-4 h-4 text-gray-500 group-hover:text-[#F40F0B] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                <ArrowUpRight className="w-4 h-4 text-text-muted group-hover:text-brand-cta group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
               </a>
             ))}
           </div>
 
           {/* Right Column: Web3Forms Email Submission */}
-          <div className="lg:col-span-7 rounded-3xl bg-[#220202]/60 border border-white/10 p-6 sm:p-8 shadow-2xl">
+          <div className="lg:col-span-7 rounded-3xl bg-surface-card border border-surface-card-border p-6 sm:p-8 shadow-sm hover:shadow-card-light dark:hover:shadow-card-dark transition-all duration-300">
             {/* Real Submission Feedback */}
             {status === "success" && (
-              <div className="mb-6 p-4 rounded-xl bg-emerald-950/70 border border-emerald-500/40 text-emerald-400 text-sm flex items-center gap-3">
+              <div className="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-sm flex items-center gap-3">
                 <CheckCircle2 className="w-5 h-5 shrink-0" />
                 <span>{dict?.contact?.form?.success || "Message sent successfully!"}</span>
               </div>
             )}
 
             {status === "error" && (
-              <div className="mb-6 p-4 rounded-xl bg-red-950/70 border border-red-500/40 text-red-400 text-sm flex items-center gap-3">
+              <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-600 dark:text-red-400 text-sm flex items-center gap-3">
                 <AlertCircle className="w-5 h-5 shrink-0" />
                 <span>{errorMessage}</span>
               </div>
@@ -211,7 +211,7 @@ export const ContactSection = ({ dict, lang = "en" }: ContactSectionProps) => {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-gray-400 font-heading mb-2">
+                  <label className="block text-xs uppercase tracking-wider text-text-muted font-heading rtl:font-arabic mb-2">
                     {dict?.contact?.form?.name || "Your Name"}
                   </label>
                   <input
@@ -220,13 +220,13 @@ export const ContactSection = ({ dict, lang = "en" }: ContactSectionProps) => {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white text-sm focus:border-[#F40F0B] focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-bg-main border border-surface-card-border text-text-primary text-sm focus:border-brand-cta focus:outline-none focus:ring-1 focus:ring-brand-cta transition-colors placeholder:text-text-muted/60"
                     placeholder={dict?.contact?.form?.namePlaceholder || "Jane Doe"}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-gray-400 font-heading mb-2">
+                  <label className="block text-xs uppercase tracking-wider text-text-muted font-heading rtl:font-arabic mb-2">
                     {dict?.contact?.form?.email || "Email Address"}
                   </label>
                   <input
@@ -235,14 +235,14 @@ export const ContactSection = ({ dict, lang = "en" }: ContactSectionProps) => {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white text-sm focus:border-[#F40F0B] focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-bg-main border border-surface-card-border text-text-primary text-sm focus:border-brand-cta focus:outline-none focus:ring-1 focus:ring-brand-cta transition-colors placeholder:text-text-muted/60"
                     placeholder={dict?.contact?.form?.emailPlaceholder || "name@example.com"}
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-wider text-gray-400 font-heading mb-2">
+                <label className="block text-xs uppercase tracking-wider text-text-muted font-heading rtl:font-arabic mb-2">
                   {dict?.contact?.form?.subject || "Subject"}
                 </label>
                 <input
@@ -251,13 +251,13 @@ export const ContactSection = ({ dict, lang = "en" }: ContactSectionProps) => {
                   required
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white text-sm focus:border-[#F40F0B] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl bg-bg-main border border-surface-card-border text-text-primary text-sm focus:border-brand-cta focus:outline-none focus:ring-1 focus:ring-brand-cta transition-colors placeholder:text-text-muted/60"
                   placeholder={dict?.contact?.form?.subjectPlaceholder || "Project Scope"}
                 />
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-wider text-gray-400 font-heading mb-2">
+                <label className="block text-xs uppercase tracking-wider text-text-muted font-heading rtl:font-arabic mb-2">
                   {dict?.contact?.form?.message || "Message"}
                 </label>
                 <textarea
@@ -266,7 +266,7 @@ export const ContactSection = ({ dict, lang = "en" }: ContactSectionProps) => {
                   rows={4}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white text-sm focus:border-[#F40F0B] focus:outline-none transition-colors resize-none"
+                  className="w-full px-4 py-3 rounded-xl bg-bg-main border border-surface-card-border text-text-primary text-sm focus:border-brand-cta focus:outline-none focus:ring-1 focus:ring-brand-cta transition-colors placeholder:text-text-muted/60 resize-none"
                   placeholder={dict?.contact?.form?.messagePlaceholder || "Describe your requirements..."}
                 />
               </div>
@@ -274,7 +274,7 @@ export const ContactSection = ({ dict, lang = "en" }: ContactSectionProps) => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3.5 px-6 rounded-xl bg-[#D70C09] hover:brightness-110 text-white text-sm font-semibold flex items-center justify-center gap-2 transition-all shadow-lg shadow-[#D70C09]/30 disabled:opacity-50 cursor-pointer"
+                className="w-full py-3.5 px-6 rounded-xl bg-brand-cta hover:bg-brand-cta-hover text-white text-sm font-semibold flex items-center justify-center gap-2 transition-all shadow-lg shadow-brand-cta/30 disabled:opacity-50 cursor-pointer"
               >
                 {isSubmitting ? (
                   <>

@@ -36,15 +36,15 @@ export const CertificatesSection = ({ lang = "en", dict }: CertificatesSectionPr
   const currentCert = items[currentIndex] || items[0];
 
   return (
-    <section id="certificates" className="relative w-full pt-24 pb-20 lg:pt-28 lg:pb-24 bg-[#161616] text-[#FBEBEB] overflow-hidden">
-      {/* Background Accent Gradients (GPU-friendly radial gradient) */}
-      <div className="absolute top-1/3 -start-32 w-96 h-96 rounded-full pointer-events-none [background:radial-gradient(circle,rgba(34,2,2,0.6)_0%,transparent_70%)]" />
-      <div className="absolute bottom-10 -end-32 w-96 h-96 rounded-full pointer-events-none [background:radial-gradient(circle,rgba(215,12,9,0.12)_0%,transparent_70%)]" />
+    <section id="certificates" className="relative w-full pt-24 pb-20 lg:pt-28 lg:pb-24 bg-bg-main text-text-primary overflow-hidden">
+      {/* Background Accent Gradients */}
+      <div className="absolute top-1/3 -start-32 w-96 h-96 rounded-full pointer-events-none [background:radial-gradient(circle,rgba(215,12,9,0.06)_0%,transparent_70%)]" />
+      <div className="absolute bottom-10 -end-32 w-96 h-96 rounded-full pointer-events-none [background:radial-gradient(circle,rgba(34,2,2,0.08)_0%,transparent_70%)]" />
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Section Heading (No Subtitle as requested) */}
         <div className="text-center max-w-2xl mx-auto mb-10 lg:mb-12">
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#FBEBEB]">
+          <h2 className="font-heading rtl:font-arabic text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-text-primary">
             {dict?.certificates?.title || (isRTL ? "الشهادات والاعتمادات" : "Verified Architectural Certifications")}
           </h2>
         </div>
@@ -57,20 +57,20 @@ export const CertificatesSection = ({ lang = "en", dict }: CertificatesSectionPr
               type="button"
               onClick={isRTL ? handleNext : handlePrev}
               aria-label={isRTL ? "الشهادة التالية" : "Previous Certificate"}
-              className="hidden md:flex shrink-0 w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-[#220202]/80 border border-white/10 items-center justify-center text-white hover:border-[#F40F0B] hover:bg-[#F40F0B] transition-all shadow-xl hover:scale-110 cursor-pointer z-20"
+              className="hidden md:flex shrink-0 w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-surface-card border border-surface-card-border items-center justify-center text-text-primary hover:border-brand-cta hover:bg-brand-cta hover:text-white transition-all shadow-md hover:shadow-glow cursor-pointer z-20"
             >
               <ChevronLeft className="w-6 h-6 stroke-[2.5]" />
             </button>
 
             {/* The Main 2-Column Responsive Card (Zero Vertical Overflow) */}
-            <div className="w-full max-w-5xl rounded-3xl bg-[#220202]/60 border border-white/10 p-6 sm:p-8 lg:p-10 shadow-2xl transition-all duration-300">
+            <div className="w-full max-w-5xl rounded-3xl bg-surface-card border border-surface-card-border p-6 sm:p-8 lg:p-10 shadow-sm hover:shadow-card-light dark:hover:shadow-card-dark transition-all duration-300">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 
                 {/* Side 1: Certificate Preview Container */}
-                <div className="lg:col-span-6 relative w-full aspect-[16/10] rounded-2xl overflow-hidden bg-black/70 border border-white/10 flex flex-col items-center justify-center p-6 shadow-inner group">
+                <div className="lg:col-span-6 relative w-full aspect-[16/10] rounded-2xl overflow-hidden bg-surface-card border border-surface-card-border flex flex-col items-center justify-center p-6 shadow-inner group">
                   {/* Floating Specialization Badge */}
                   <div className="absolute top-3 end-3 z-20 flex items-center gap-2 px-3 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-[11px] font-medium text-white shadow-lg">
-                    <Award className="w-3.5 h-3.5 text-[#F40F0B]" />
+                    <Award className="w-3.5 h-3.5 text-brand-cta" />
                     <span>{currentCert.specialization}</span>
                   </div>
 
@@ -78,21 +78,21 @@ export const CertificatesSection = ({ lang = "en", dict }: CertificatesSectionPr
                   <div className="relative flex flex-col items-center text-center">
                     <div className="relative mb-3 flex items-center justify-center">
                       <div className="absolute inset-0 rounded-full [background:radial-gradient(circle,rgba(215,12,9,0.25)_0%,transparent_70%)]" />
-                      <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#220202] border border-[#F40F0B]/40 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
-                        <ShieldCheck className="w-9 h-9 sm:w-11 sm:h-11 text-[#F40F0B]" />
+                      <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-surface-card border border-brand-cta/40 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
+                        <ShieldCheck className="w-9 h-9 sm:w-11 sm:h-11 text-brand-cta" />
                       </div>
                     </div>
 
-                    <p className="font-heading text-base sm:text-lg font-bold text-[#FBEBEB] max-w-xs mb-1 line-clamp-2">
+                    <p className="font-heading rtl:font-arabic text-base sm:text-lg font-bold text-text-primary max-w-xs mb-1 line-clamp-2">
                       {currentCert.title}
                     </p>
 
-                    <span className="text-xs text-gray-400 font-mono">
+                    <span className="text-xs text-text-muted font-mono">
                       {currentCert.issuer}
                     </span>
 
-                    <div className="mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[11px] font-mono text-emerald-400">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                    <div className="mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[11px] font-mono text-emerald-600 dark:text-emerald-400">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
                       <span>{isRTL ? "اعتماد رسمي موثق" : "Officially Verified Credential"}</span>
                     </div>
                   </div>
@@ -102,53 +102,53 @@ export const CertificatesSection = ({ lang = "en", dict }: CertificatesSectionPr
                 <div className="lg:col-span-6 flex flex-col justify-between">
                   <div>
                     {/* Issuer Label */}
-                    <span className="text-xs font-semibold text-[#FF4D4D] uppercase tracking-wider block mb-2 font-mono">
+                    <span className="text-xs font-semibold text-brand-cta uppercase tracking-wider block mb-2 font-mono">
                       {currentCert.issuer}
                     </span>
 
                     {/* Certificate Title */}
-                    <h3 className="font-heading text-2xl sm:text-3xl font-bold text-[#FBEBEB] mb-4">
+                    <h3 className="font-heading rtl:font-arabic text-2xl sm:text-3xl font-bold text-text-primary mb-4">
                       {currentCert.title}
                     </h3>
 
                     {/* Meta Details Pills (Date & ID) */}
                     <div className="flex flex-wrap items-center gap-3 mb-6">
-                      <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-black/40 border border-white/10 text-xs font-mono text-gray-300">
-                        <Calendar className="w-3.5 h-3.5 text-[#F40F0B]" />
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-accent-subtle border border-surface-card-border text-xs font-mono text-text-muted">
+                        <Calendar className="w-3.5 h-3.5 text-brand-cta" />
                         <span>{currentCert.date}</span>
                       </div>
 
-                      <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-black/40 border border-white/10 text-xs font-mono text-gray-300">
-                        <Hash className="w-3.5 h-3.5 text-[#F40F0B]" />
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-accent-subtle border border-surface-card-border text-xs font-mono text-text-muted">
+                        <Hash className="w-3.5 h-3.5 text-brand-cta" />
                         <span>{isRTL ? "المعرف: " : "ID: "}{currentCert.credentialId}</span>
                       </div>
                     </div>
 
                     {/* Specialization Callout */}
-                    <div className="p-4 rounded-2xl bg-black/30 border border-white/10 mb-6">
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-gray-400 block mb-1">
+                    <div className="p-4 rounded-2xl bg-surface-card border border-surface-card-border mb-6">
+                      <span className="text-[11px] font-mono uppercase tracking-wider text-text-muted block mb-1">
                         {isRTL ? "مجال التخصص والخبرة المعمارية" : "Architectural Mastery & Specialization"}
                       </span>
-                      <p className="text-sm font-semibold text-[#FBEBEB]">
+                      <p className="text-sm font-semibold text-text-primary">
                         {currentCert.specialization}
                       </p>
                     </div>
                   </div>
 
                   {/* Actions & Verification */}
-                  <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+                  <div className="pt-4 border-t border-surface-card-border flex items-center justify-between">
                     <a
                       href={currentCert.link && currentCert.link !== '#' ? currentCert.link : 'https://www.linkedin.com/in/noureldeen-zayan'}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#D70C09] text-white text-xs font-semibold hover:brightness-110 shadow-lg shadow-[#D70C09]/30 transition-all cursor-pointer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-cta text-white text-xs font-semibold hover:bg-brand-cta-hover shadow-lg shadow-brand-cta/30 transition-all cursor-pointer"
                     >
                       <ShieldCheck className="w-4 h-4" />
                       <span>{dict?.certificates?.verify || (isRTL ? "التحقق من الشهادة" : "Verify Credential")}</span>
                       <ExternalLink className="w-3.5 h-3.5" />
                     </a>
 
-                    <span className="text-xs font-mono text-gray-400">
+                    <span className="text-xs font-mono text-text-muted">
                       {String(currentIndex + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
                     </span>
                   </div>
@@ -162,7 +162,7 @@ export const CertificatesSection = ({ lang = "en", dict }: CertificatesSectionPr
               type="button"
               onClick={isRTL ? handlePrev : handleNext}
               aria-label={isRTL ? "الشهادة السابقة" : "Next Certificate"}
-              className="hidden md:flex shrink-0 w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-[#220202]/80 border border-white/10 items-center justify-center text-white hover:border-[#F40F0B] hover:bg-[#F40F0B] transition-all shadow-xl hover:scale-110 cursor-pointer z-20"
+              className="hidden md:flex shrink-0 w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-surface-card border border-surface-card-border items-center justify-center text-text-primary hover:border-brand-cta hover:bg-brand-cta hover:text-white transition-all shadow-md hover:shadow-glow cursor-pointer z-20"
             >
               <ChevronRight className="w-6 h-6 stroke-[2.5]" />
             </button>
@@ -175,18 +175,18 @@ export const CertificatesSection = ({ lang = "en", dict }: CertificatesSectionPr
             type="button"
             onClick={isRTL ? handleNext : handlePrev}
             aria-label="Previous Certificate"
-            className="w-10 h-10 rounded-full bg-[#220202] border border-white/10 flex items-center justify-center text-white hover:border-[#F40F0B] active:bg-[#F40F0B]"
+            className="w-10 h-10 rounded-full bg-surface-card border border-surface-card-border flex items-center justify-center text-text-primary hover:border-brand-cta hover:text-brand-cta active:bg-brand-cta active:text-white"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
-          <span className="text-xs font-mono text-gray-400">
+          <span className="text-xs font-mono text-text-muted">
             {String(currentIndex + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
           </span>
           <button
             type="button"
             onClick={isRTL ? handlePrev : handleNext}
             aria-label="Next Certificate"
-            className="w-10 h-10 rounded-full bg-[#220202] border border-white/10 flex items-center justify-center text-white hover:border-[#F40F0B] active:bg-[#F40F0B]"
+            className="w-10 h-10 rounded-full bg-surface-card border border-surface-card-border flex items-center justify-center text-text-primary hover:border-brand-cta hover:text-brand-cta active:bg-brand-cta active:text-white"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
@@ -207,8 +207,8 @@ export const CertificatesSection = ({ lang = "en", dict }: CertificatesSectionPr
                 <span
                   className={`transition-all duration-300 rounded-full ${
                     isActive
-                      ? "w-8 h-2.5 bg-[#D70C09] shadow-md shadow-[#D70C09]/50"
-                      : "w-2.5 h-2.5 bg-white/20 hover:bg-white/40"
+                      ? "w-8 h-2.5 bg-brand-cta shadow-md shadow-brand-cta/50"
+                      : "w-2.5 h-2.5 bg-surface-card-border hover:bg-brand-cta/50"
                   }`}
                 />
               </button>
