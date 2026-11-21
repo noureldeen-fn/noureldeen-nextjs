@@ -42,15 +42,12 @@ export function LocaleSwitcher({ currentLang, label = 'Language', className = ''
     <button
       type="button"
       onClick={handleSwitch}
-      className={`relative group flex items-center gap-2 px-3.5 py-2 rounded-xl border border-surface-card-border bg-surface-card hover:bg-surface-hover text-text-primary hover:text-brand-cta transition-all duration-300 font-medium text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta shadow-sm ${className}`}
+      className={`relative group flex items-center gap-1.5 px-3 h-10 rounded-xl border border-surface-card-border bg-surface-card hover:bg-surface-hover text-text-primary hover:text-brand-cta transition-all duration-300 font-medium text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cta shadow-sm cursor-pointer ${className}`}
       aria-label={`${label}: ${targetLabel}`}
       title={`${label}: ${targetLabel}`}
     >
       <Globe className="w-4 h-4 text-brand-cta transition-transform duration-500 group-hover:rotate-45" />
-      <span className="font-heading tracking-wide uppercase text-xs font-semibold">
-        {targetLabel}
-      </span>
-      <span className="inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold rounded bg-brand-cta/15 text-brand-cta ms-1">
+      <span className="font-heading tracking-wider uppercase text-xs font-bold text-text-primary group-hover:text-brand-cta transition-colors">
         {targetLocale.toUpperCase()}
       </span>
     </button>
